@@ -8,7 +8,7 @@
 빌드 없는 ES 모듈 앱이라 `index.html`을 더블클릭하면 열리지 않습니다. 간단한 로컬 서버로 엽니다.
 
 ```bash
-npm run serve        # python -m http.server 8000
+npm run serve        # python dev/serve.py 8000 (캐시 끈 개발 서버)
 ```
 
 브라우저에서 <http://localhost:8000> 을 엽니다.

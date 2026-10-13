@@ -31,6 +31,19 @@ test('tokens.css가 DESIGN.md 3장의 토큰을 모두 같은 값으로 갖는�
   }
 });
 
+test('색은 tokens.css에만 둔다: 다른 CSS·JS에 HEX 색이 없다 (DESIGN.md 14장)', () => {
+  const files = [
+    ...readdirSync(join(root, 'css')).filter((f) => f.endsWith('.css') && f !== 'tokens.css').map((f) => `css/${f}`),
+    ...['js/ui', 'js/ui/components', 'js/screens'].flatMap((d) =>
+      readdirSync(join(root, d)).filter((f) => f.endsWith('.js')).map((f) => `${d}/${f}`),
+    ),
+  ];
+  for (const f of files) {
+    const hex = read(f).match(/#[0-9A-Fa-f]{6}\b|#[0-9A-Fa-f]{3}\b(?![\w-])/g);
+    assert.equal(hex, null, `${f}에 HEX 색: ${hex}`);
+  }
+});
+
 test('DOM을 쓰지 않는 모듈은 Node에서 불러올 수 있다', async () => {
   const dirs = ['js/core', 'js/ai'];
   const files = ['js/state.js', 'js/selectors.js', 'js/router.js'];

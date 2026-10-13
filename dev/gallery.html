@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Travel Pick · 컴포넌트 갤러리</title>
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../css/tokens.css">
+  <link rel="stylesheet" href="../css/base.css">
+  <link rel="stylesheet" href="../css/components.css">
+  <link rel="stylesheet" href="../css/screens.css">
+  <style>
+    .gallery { max-width: 1312px; margin: 0 auto; padding: 56px clamp(16px, 4vw, 64px); display: flex; flex-direction: column; gap: 40px; }
+    .g-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+    .g-head h1 { font-size: 56px; font-weight: 800; letter-spacing: -0.03em; }
+    .g-sec { display: flex; flex-direction: column; gap: 18px; }
+    .g-sec > h2 { font-family: var(--font-mono); font-size: 14px; font-weight: 500; letter-spacing: 0.16em; color: var(--text-faint); }
+    .g-row { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    .g-cap { font-size: 12px; color: var(--text-muted); }
+    .g-item { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+    .g-swatch { display: flex; flex-direction: column; gap: 6px; width: 104px; }
+    .g-swatch span:first-child { height: 56px; border-radius: 14px; border: 1px solid var(--line-strong); }
+    .g-paper { background: var(--paper); color: var(--ink); border-radius: var(--r-card); padding: 24px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    .g-nav { width: 280px; border: 1px solid var(--line); border-radius: 16px; background: var(--night-nav); }
+    .g-sea { position: relative; width: 300px; height: 170px; border-radius: 22px; overflow: hidden; background: var(--surface-3); display: flex; align-items: flex-start; justify-content: flex-end; padding: 16px; }
+  </style>
+  <script type="module" src="gallery.js"></script>
+</head>
+<body>
+  <main id="gallery" class="gallery"></main>
+</body>
+</html>

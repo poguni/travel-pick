@@ -39,7 +39,7 @@ M5(P2 기능: TOPSIS, 완전 AHP, 스트리밍, Excel 가져오기, 동행인별
 | 항목 | 결정 | 이유 |
 |---|---|---|
 | 파일 구조 | `index.html` + `css/*.css` + `js/**/*.js`(ES 모듈), **빌드 없음** | 모듈별 테스트와 관리가 쉬움. GitHub Pages는 여러 파일도 그대로 서비스함 |
-| 로컬 실행 | `python -m http.server 8000`(또는 VS Code Live Server) | ES 모듈은 더블클릭(file://)으로 열면 브라우저가 막음. 평소에는 GitHub Pages 주소 사용 |
+| 로컬 실행 | `npm run serve`(= `python dev/serve.py`, 캐시를 끈 개발 서버) | ES 모듈은 더블클릭(file://)으로 열면 브라우저가 막음. 평소에는 GitHub Pages 주소 사용 |
 | 테스트 | Node 내장 `node:test` + `node:assert` (`npm test` = `node --test tests/`) | 설치할 의존성 없음. 계산·저장·비용·AI 응답 파싱 같은 순수 함수만 테스트 |
 | 화면 확인 | Playwright MCP로 스크린샷을 찍어 시안(`Travel-Pick-Design-Mockup.html`)과 비교 | DESIGN.md 14장의 "시안과 나란히 비교" 지침 |
 | UI 방식 | Vanilla JS. 화면마다 `render(root, state)` 함수, 상태가 바뀌면 해당 화면만 다시 그림 | PRD 8장. 프레임워크 없이 충분한 규모 |
@@ -512,7 +512,7 @@ Phase 0에서 프로젝트 루트에 아래 내용으로 `CLAUDE.md`를 만듭�
 - [x] Phase 0 프로젝트 준비 (2026-10-13, 커밋 4d9f991)
 - [x] Phase 1 계산 엔진 (2026-10-13)
 - [x] Phase 2 데이터 저장 (2026-10-13)
-- [ ] Phase 3 디자인 시스템과 앱 셸
+- [x] Phase 3 디자인 시스템과 앱 셸 (2026-10-13)
 - [ ] Phase 4 여행 조건·후보·동행인
 - [ ] Phase 5 기준·가중치
 - [ ] Phase 6 점수·결과·홈 → **M1 완료**

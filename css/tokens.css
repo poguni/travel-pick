@@ -70,6 +70,14 @@
   /* ── 간격(4 기반) ── */
   --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 28px; --s7: 40px; --s8: 56px;
 
+  /* ── DESIGN.md 본문(6장)에서 직접 지정한 색 ── */
+  --line-btn:        #2E3B57;  /* 6.16 Secondary 버튼 테두리 */
+  --text-step:       #8995AE;  /* 6.1 미완료 단계 글자 */
+  --paper-warn-bg:   #F9DDD0;  /* 6.5 종이 위 경고 태그 */
+  --paper-warn-text: #9A3412;
+  --scrim:           rgba(6,10,18,0.72);   /* 6.15 대화상자 뒤 덮개 */
+  --night-bar:       rgba(11,18,32,0.96);  /* 7장 07 모바일 하단 고정 바 */
+
   /* ── 모션 (DESIGN.md 10장) ── */
   --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 }

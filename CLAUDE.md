@@ -6,7 +6,7 @@
 - 새로 작성하는 문서는 docs/에 둔다. 디자인 관련 파일은 design/에 그대로 둔다.
 
 ## 구조 규칙
-- 빌드 없는 ES 모듈. 로컬 확인은 `npm run serve`(python -m http.server 8000). file:// 로는 열리지 않는다.
+- 빌드 없는 ES 모듈. 로컬 확인은 `npm run serve`(dev/serve.py, 캐시 끈 개발 서버, 8000번). file:// 로는 열리지 않는다.
 - js/core/ 는 DOM·localStorage·fetch를 직접 쓰지 않는 순수 함수만 둔다(저장소는 주입). 여기는 반드시 테스트를 쓴다.
 - 의존 방향: screens → ui → selectors → core. core는 다른 폴더를 import하지 않는다.
 - CSS 색은 css/tokens.css의 변수만 쓴다. 새 색을 만들지 않는다(DESIGN.md 14장). tokens.css는 DESIGN.md 3장과 같아야 한다(tests/smoke.test.js가 검사).
