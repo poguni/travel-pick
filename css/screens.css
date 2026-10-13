@@ -1,0 +1,13 @@
+/* 화면별 배치 — Phase 3~ */
+
+/* Phase 0 임시 첫 화면 (Phase 3에서 앱 셸로 교체) */
+.boot {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--s3);
+  padding: var(--s6) clamp(16px, 3vw, 44px);
+}
+.boot h1 { font-weight: 800; font-size: clamp(48px, 8vw, 84px); line-height: 0.95; }
+.boot-sub { font-size: 11px; }

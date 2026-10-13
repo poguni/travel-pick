@@ -1,0 +1,75 @@
+/* Travel Pick 디자인 토큰 — design/DESIGN.md 3장 그대로.
+   컴포넌트에서는 HEX 대신 이 변수만 씁니다. */
+:root {
+  /* ── 바탕(밤) ── */
+  --night:        #0B1220;  /* 페이지 바탕 */
+  --night-nav:    rgba(11,18,32,0.92); /* 사이드바 */
+  --surface:      #0F1828;  /* 카드·패널 */
+  --surface-2:    #111A2B;  /* 입력·칩·보조 카드 */
+  --surface-3:    #152036;  /* 표 강조 행, 칩 */
+  --raised:       #1A2540;  /* 선택된 내비 항목, 플랩 타일 */
+  --line:         #1E2A40;  /* 기본 테두리 */
+  --line-strong:  #24304A;  /* 입력·칩 테두리 */
+  --line-dashed:  #3A4763;  /* 점선, 미완료 단계 */
+  --track:        #22304B;  /* 막대·슬라이더 트랙 */
+
+  /* ── 글자(밤 위) ── */
+  --text:         #EEF1F6;
+  --text-strong:  #F5F0E6;  /* 제목, 큰 숫자 */
+  --text-2:       #C9D1DF;  /* 본문 보조 */
+  --text-muted:   #9AA6BC;  /* 설명, 메타 */
+  --text-faint:   #7C88A3;  /* Mono 라벨 (12px 이상에서만) */
+
+  /* ── 종이(탑승권) ── */
+  --paper:        #F5F0E6;
+  --paper-stub:   #EFE8DA;  /* 절취선 오른쪽 */
+  --paper-line:   #DCD3C2;
+  --paper-dash:   #CFC4AE;
+  --paper-chip:   #E9E1D1;
+  --ink:          #161A22;  /* 종이 위 글자 */
+  --ink-2:        #3B3830;
+  --ink-muted:    #5A5446;
+
+  /* ── 강조(노을) ── */
+  --sunset:       #FF7A45;  /* 주요 버튼, 1위, 현재 단계 */
+  --sunset-soft:  #FFB08A;  /* 밤 위 링크·강조 글자 */
+  --sunset-text:  #FF9D6E;  /* Mono 강조 라벨 */
+  --on-sunset:    #1A0F08;  /* sunset 위 글자 */
+  --sunset-ink:   #C2410C;  /* 종이 위 강조 글자·숫자 */
+  --warn-bg:      #1E1A1E;  /* 경고 행 바탕 */
+  --warn-line:    #5A3424;
+  --warn-text:    #FFC9B0;
+
+  /* ── 상태 ── */
+  --ok:           #6FD6B0;  /* 밤 위 성공 */
+  --ok-ink:       #146B52;  /* 종이 위 성공 */
+  --info:         #8EC5FF;  /* '경합' 등 */
+
+  /* ── AI 모델 ── */
+  --m-claude:       #FF9D6E;  --m-claude-bg: #2A1A12;  --m-claude-ink: #E4572E;
+  --m-gpt:          #6FD6B0;  --m-gpt-bg:    #10261F;  --m-gpt-ink:    #1F9E78;
+  --m-gemini:       #8FB4FF;  --m-gemini-bg: #131E36;  --m-gemini-ink: #3D6FD9;
+  /* -ink 값은 종이(paper) 위에서 쓰는 버전 */
+
+  /* ── 후보지 (범주형, 최대 8) ── */
+  --c1: #FF7A45; --c2: #8EC5FF; --c3: #5ED3B4; --c4: #B9A4FF;
+  --c5: #E8C36A; --c6: #F28DB2; --c7: #7FD3E8; --c8: #C9D1DF;
+
+  /* ── 평가 기준 (가중치 큰 순서의 톤 단계) ── */
+  --k1: #F5F0E6; --k2: #D8CFBE; --k3: #B9B4AA; --k4: #9AA6BC;
+  --k5: #7C88A3; --k6: #5C6B89; --k7: #3E4A64;
+
+  /* ── 글꼴 ── */
+  --font-display: 'Bricolage Grotesque', 'IBM Plex Sans KR', sans-serif;
+  --font-body:    'IBM Plex Sans KR', sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* ── 반경 ── */
+  --r-input: 12px; --r-chip: 999px; --r-card: 22px; --r-ticket: 24px; --r-tile: 6px;
+
+  /* ── 간격(4 기반) ── */
+  --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 24px; --s6: 28px; --s7: 40px; --s8: 56px;
+
+  /* ── 모션 (DESIGN.md 10장) ── */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
