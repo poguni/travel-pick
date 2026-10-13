@@ -336,3 +336,105 @@
 .crit-panel__toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--sunset-soft); }
 .crit-panel[open] .crit-panel__toggle .icon { transform: rotate(180deg); }
 .crit-panel[open] .crit-panel__names { display: none; }
+
+/* ── 출발 안내판 순위표 (DESIGN 6.3) ── */
+.board { width: 100%; min-width: 520px; border-collapse: separate; border-spacing: 0 8px; }
+.board thead th { padding: 0 12px; font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; color: var(--text-faint); text-align: left; }
+.board td { padding: 14px 12px; background: var(--surface-2); }
+.board tr.is-first td { background: var(--surface-3); }
+.board td:first-child { border-radius: 12px 0 0 12px; }
+.board td:last-child { border-radius: 0 12px 12px 0; }
+.board__rank { font-family: var(--font-mono); font-size: 15px; color: var(--text-muted); }
+.board tr.is-first .board__rank { color: var(--sunset-text); }
+.board__dest { display: flex; flex-direction: column; }
+.board__name { font-size: 15px; font-weight: 600; }
+.board__sub { font-size: 12px; color: var(--text-muted); }
+.board__score { min-width: 170px; }
+.board__score-wrap { display: flex; align-items: center; gap: 10px; }
+.board__num { font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--text-strong); }
+.board__num.is-dim { color: var(--text-2); }
+.board__bar { flex: 1; height: 6px; border-radius: 3px; background: var(--track); }
+.board__bar > span { display: block; height: 100%; border-radius: 3px; }
+.board tr.is-incomplete td { opacity: 0.7; }
+
+/* ── 가중치 나침반 ── */
+.compass { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+.compass__donut { width: 128px; height: 128px; flex: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.compass__hole { width: 84px; height: 84px; border-radius: 50%; background: var(--surface); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.compass__cr-label { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); }
+.compass__cr { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--ok); }
+.compass__cr.is-bad { color: var(--sunset-soft); }
+.compass__cr.is-na { color: var(--text-faint); }
+.compass__legend { list-style: none; margin: 0; padding: 0; flex: 1; min-width: 96px; display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--text-2); }
+.compass__legend li, .contrib__legend li { display: flex; align-items: center; gap: 6px; }
+.compass__swatch { width: 8px; height: 8px; flex: none; border-radius: 2px; }
+
+/* ── 탑승객별 1순위 ── */
+.picks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.pick { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 4px 0; font-size: 14px; }
+.pick__who { display: flex; align-items: center; gap: 10px; }
+.pick__who > span:last-child { display: flex; flex-direction: column; }
+.pick__note { font-size: 12px; color: var(--warn-text); }
+.pick.is-warn { padding: 8px 10px; margin: 0 -10px; border-radius: 12px; background: var(--warn-bg); border: 1px solid var(--warn-line); }
+
+/* ── 상위 3곳 카드 (시안 04) ── */
+.rank-cards { display: flex; flex-wrap: wrap; gap: 18px; }
+.rank-card { flex: 1 1 240px; min-width: 0; padding: 22px 24px; border-radius: var(--r-card); background: var(--surface); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; }
+.rank-card--first { flex: 2 1 380px; background: var(--paper); color: var(--ink); border: 0; border-radius: var(--r-ticket); }
+.rank-card__label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--text-faint); }
+.rank-card--first .rank-card__label { color: var(--ink-muted); }
+.rank-card__body { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.rank-card__score { font-family: var(--font-display); font-weight: 700; font-size: 32px; color: var(--text-strong); }
+.rank-card--first .rank-card__score { font-weight: 800; font-size: 48px; color: var(--sunset-ink); }
+.rank-card__score small { font-family: var(--font-body); font-size: 13px; font-weight: 400; color: var(--ink-muted); }
+.rank-card__name { font-size: 15px; font-weight: 600; }
+.rank-card__why { font-size: 13px; color: var(--text-muted); }
+.rank-card--first .rank-card__why { color: var(--ink-2); }
+
+/* 2열 반반 */
+.two-col--even > .two-col__half { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: var(--s5); }
+
+/* ── 차트 공통 ── */
+.chart-box { position: relative; width: 100%; }
+.chart-box--radar { height: 340px; }
+.chart-box--line { height: 240px; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 8px; }
+.chart-legend__item {
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 36px; padding: 0 12px;
+  border-radius: var(--r-chip); border: 1px solid var(--line-strong);
+  background: transparent; color: var(--text-2); font-size: 13px; cursor: pointer;
+}
+.chart-legend__item[aria-pressed="false"] { opacity: 0.45; text-decoration: line-through; }
+.chart-legend__line { width: 18px; height: 0; border-top: 2.5px solid var(--legend, var(--line)); }
+.chart-legend__line.is-dashed { border-top-style: dashed; }
+.chart-legend--paper .chart-legend__item { border: 0; padding: 0; min-height: 0; color: var(--ink-2); cursor: default; }
+.table-details summary { cursor: pointer; font-size: 13px; color: var(--sunset-soft); min-height: 32px; display: flex; align-items: center; }
+
+/* ── 민감도 (종이) ── */
+.sens__label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-muted); }
+.sens__sentence { font-size: 17px; font-weight: 700; line-height: 1.5; }
+.sens__sentence b { color: var(--sunset-ink); }
+
+/* ── 기여도 누적 막대 ── */
+.contrib { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.contrib__row { display: grid; grid-template-columns: 96px minmax(0, 1fr) 48px; align-items: center; gap: 14px; }
+.contrib__track { display: flex; height: 22px; border-radius: 6px; overflow: hidden; background: var(--surface-3); }
+.contrib__seg { height: 100%; }
+.contrib__seg + .contrib__seg { box-shadow: inset 1px 0 0 var(--surface); }
+.contrib__score { font-family: var(--font-display); font-weight: 700; text-align: right; }
+.contrib__legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 13px; color: var(--text-2); }
+
+/* ── ⑤ 점수표 ── */
+.score-table { border-collapse: separate; border-spacing: 6px; min-width: 100%; }
+.score-table thead th { padding: 0 4px 6px; text-align: center; vertical-align: bottom; }
+.score-table thead th:first-child { text-align: left; }
+.score-table__crit { display: block; font-size: 13px; font-weight: 600; color: var(--text-strong); white-space: nowrap; }
+.score-table__w { display: block; font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); }
+.score-table tbody th { text-align: left; padding-right: 8px; }
+.score-table td { text-align: center; }
+.score-table__cand { display: inline-flex; align-items: center; gap: 10px; padding-left: 10px; border-left: 4px solid var(--cand); font-size: 14px; font-weight: 600; white-space: nowrap; }
+.input--score { width: 64px; text-align: center; font-size: 16px; padding: 10px 4px; }
+.input--score.is-empty { border-style: dashed; background: transparent; }
+.score-table__total { font-family: var(--font-display); font-weight: 700; font-size: 18px; text-align: right; padding-left: 8px; }
+.score-table .num { text-align: right; }

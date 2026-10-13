@@ -1,15 +1,20 @@
-// 01 출발 안내판 (홈) — 프로젝트 탑승권, 프로젝트 목록(F1-2), 저장 공간(F1-4), JSON 백업·불러오기(F13-2)
-// 순위표·가중치 나침반·탑승객별 1순위는 Phase 6.
+// 01 출발 안내판 (홈) — DESIGN.md 7장 01
+// 프로젝트 탑승권(현재 선두), 후보 순위표, 가중치 나침반, 탑승객별 1순위, 다음 게이트,
+// 프로젝트 목록(F1-2), 저장 공간(F1-4), JSON 백업·불러오기(F13-2)
 import { h } from '../ui/dom.js';
 import { screenHeader, emptyState, dashedCard, button, panel, chip } from '../ui/components/basic.js';
 import { boardingPass } from '../ui/components/boardingPass.js';
+import { departureBoard, weightCompass, memberPicks, placeCaption } from '../ui/components/results.js';
 import { originLabel, periodLong, durationText, companionText, familyDetailText, budgetText } from '../ui/format.js';
 import { downloadText, exportFileName } from '../ui/download.js';
-import { hrefFor } from '../router.js';
+import { hrefFor, STEPS } from '../router.js';
+import { resultsFor, groupWeights, memberTopPicks, stepsDone } from '../selectors.js';
 
-/** 프로젝트 데이터 → 탑승권 (DESIGN.md 6.2) */
-export function projectPass(data) {
+/** 프로젝트 데이터 → 탑승권 (DESIGN.md 6.2). 순위가 있으면 스텁에 현재 선두 */
+export function projectPass(data, results = resultsFor(data)) {
   const p = data.project;
+  const [first, second] = results.ranking;
+  const leader = first && data.candidates[first.index];
   const n = data.candidates.length;
   const created = p.createdAt.slice(0, 10).split('-');
   const tbd = (text) => (text === '미정' ? 'TBD · AI가 추천 시기 제시' : null);
@@ -24,7 +29,15 @@ export function projectPass(data) {
       { label: 'PASSENGERS', value: companionText(p.companion, p.travelers), sub: familyDetailText(p.companion) },
       { label: 'BUDGET / PAX', value: budgetText(p.budgetPerPerson) },
     ],
-    stub: { label: 'NOW LEADING · 현재 선두', place: null },
+    stub: leader
+      ? {
+          label: 'NOW LEADING · 현재 선두',
+          place: leader,
+          caption: placeCaption(leader),
+          score: first.score,
+          scoreNote: second ? `/ 100 · 2위와 ${(first.score - second.score).toFixed(1)}점 차` : '/ 100',
+        }
+      : { label: 'NOW LEADING · 현재 선두', place: null, emptyText: n ? '점수를 매기면 선두가 보여요' : '아직 순위가 없어요' },
   });
 }
 
@@ -154,20 +167,33 @@ function storagePanel(ctx) {
   });
 }
 
+/** 다음 게이트: 아직 끝나지 않은 첫 단계 (자료 수집은 AI 단계라 M1에서는 건너뜀) */
+const NEXT_TEXT = {
+  conditions: ['여행 조건부터 정해 볼까요?', '국내·해외, 시기, 동행, 예산을 먼저 정하면 AI 추천도 더 잘 맞아요.', '여행 조건 정하기'],
+  candidates: ['비교할 후보를 2곳 이상 모아 주세요', '직접 추가하거나, AI 3개 모델에게 추천받아요.', '후보 발굴로'],
+  weights: ['탑승객마다 기준의 중요도를 정해 주세요', '슬라이더로 빠르게, 또는 AHP로 엄밀하게.', '기준·가중치로'],
+  scores: ['후보마다 기준별 점수를 매겨 주세요', '1~10점으로 매기면 바로 순위가 나와요.', '점수 매기기로'],
+  panel: ['세 AI가 서로의 의견을 반박한 뒤, 의장 모델이 최종 결론을 정리합니다', '꼼꼼하게 3라운드 · 7회 호출 (AI 심사는 Phase 11)', 'AI 최종 심사 보기'],
+  export: ['결정 리포트를 내보내요', 'JSON·Excel·Word·PDF (Phase 10·12)', '내보내기로'],
+};
+
+export function nextStep(data) {
+  const done = stepsDone(data);
+  return STEPS.find((st) => st.route !== 'research' && st.route !== 'results' && !done[st.route]) ?? null;
+}
+
 function nextCard(data) {
-  if (!data.candidates.length) {
-    return dashedCard({
-      eyebrow: 'NEXT GATE · 01–02',
-      title: '여행 조건을 정하고 후보를 모아 볼까요?',
-      desc: '국내·해외, 시기, 동행, 예산을 먼저 정하면 AI 추천도 더 잘 맞아요.',
-      action: button({ variant: 'outline', label: '여행 조건 정하기', href: hrefFor('conditions') }),
-    });
-  }
-  return dashedCard({
-    eyebrow: 'COMING UP · PHASE 6',
-    title: '후보 순위표, 가중치 나침반, 탑승객별 1순위가 이 자리에 놓입니다',
-    action: button({ variant: 'outline', label: '후보 보기', href: hrefFor('candidates') }),
-  });
+  const st = nextStep(data);
+  if (!st) return null;
+  const [title, desc, label] = NEXT_TEXT[st.route];
+  return dashedCard({ eyebrow: `NEXT GATE · ${st.gate}`, title, desc, action: button({ variant: 'outline', label, href: hrefFor(st.route) }) });
+}
+
+/** 진행 단계별 제목 (DESIGN.md 7장 01) */
+function homeTitle(data, results) {
+  if (!data.candidates.length) return '어디로 떠나 볼까요?';
+  if (results.ranking.length >= 2 && !results.incomplete.length) return '어디로 떠날지, 거의 다 왔어요';
+  return '어디로 떠날지 고르는 중이에요';
 }
 
 export function renderHome(ctx) {
@@ -190,18 +216,32 @@ export function renderHome(ctx) {
       mobileActions: [create()],
     };
   }
+  const results = resultsFor(data);
+  const group = groupWeights(data);
+  const st = nextStep(data);
+  // 같은 요소를 두 곳(머리글·모바일 하단 바)에 넣으면 한쪽으로 옮겨지므로 매번 새로 만든다
+  const go = () => st && button({ variant: 'primary', label: NEXT_TEXT[st.route][2], next: true, href: hrefFor(st.route) });
+  const ranked = results.ranking.length > 0;
   return {
     node: h(
       'div',
       { class: 'screen' },
       screenHeader({
         eyebrow: 'DEPARTURES · 출발 안내판',
-        title: data.candidates.length ? '어디로 떠날지 고르는 중이에요' : '어디로 떠나 볼까요?',
-        actions: [create()],
+        title: homeTitle(data, results),
+        actions: [button({ variant: 'secondary', label: '새 여행 만들기', iconName: 'plus', onClick: () => ctx.createProject() }), go()].filter(Boolean),
       }),
-      projectPass(data),
+      projectPass(data, results),
+      ranked &&
+        h(
+          'div',
+          { class: 'two-col' },
+          h('div', { class: 'two-col__main' }, departureBoard(data, results)),
+          h('div', { class: 'two-col__side' }, weightCompass(data, group), data.members.length > 1 && memberPicks(data, memberTopPicks(data))),
+        ),
       nextCard(data),
       lower,
     ),
+    mobileActions: st ? [go()] : [],
   };
 }

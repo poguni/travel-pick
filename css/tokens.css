@@ -75,6 +75,8 @@
   --text-step:       #8995AE;  /* 6.1 미완료 단계 글자 */
   --paper-warn-bg:   #F9DDD0;  /* 6.5 종이 위 경고 태그 */
   --paper-warn-text: #9A3412;
+  --chart-second:    #2F6DB5;  /* 6.13 민감도 그래프 2위 선 */
+  --chart-flip:      #F2DCCB;  /* 6.13 민감도 그래프 순위 역전 구간 */
   --scrim:           rgba(6,10,18,0.72);   /* 6.15 대화상자 뒤 덮개 */
   --night-bar:       rgba(11,18,32,0.96);  /* 7장 07 모바일 하단 고정 바 */
 

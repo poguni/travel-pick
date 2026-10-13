@@ -83,6 +83,23 @@ export function budgetText(won) {
   return `${(won / 10000).toLocaleString('ko-KR', { maximumFractionDigits: 1 })}만 원`;
 }
 
+/**
+ * 받침에 맞는 조사 붙이기: josa('강릉', '이', '가') → '강릉이'
+ * 한글이 아닌 글자로 끝나면 받침 없는 쪽을 쓴다.
+ */
+export function josa(word, withBatchim, withoutBatchim) {
+  const code = String(word).trim().slice(-1).charCodeAt(0) - 0xac00;
+  const has = code >= 0 && code <= 11171 && code % 28 !== 0;
+  return `${word}${has ? withBatchim : withoutBatchim}`;
+}
+
+/** 방향 조사 로/으로: 받침이 없거나 ㄹ 받침이면 '로' (타이베이로, 강릉으로, 서울로) */
+export function josaRo(word) {
+  const code = String(word).trim().slice(-1).charCodeAt(0) - 0xac00;
+  const batchim = code >= 0 && code <= 11171 ? code % 28 : 0;
+  return `${word}${batchim === 0 || batchim === 8 ? '로' : '으로'}`;
+}
+
 export function formatUsd(usd) {
   if (usd == null) return '$ —';
   return `$ ${usd < 1 && usd > 0 ? usd.toFixed(3) : usd.toFixed(2)}`;

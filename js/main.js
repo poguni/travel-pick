@@ -9,9 +9,19 @@ import { renderHome } from './screens/home.js';
 import { renderConditions } from './screens/conditions.js';
 import { renderCandidates } from './screens/candidates.js';
 import { renderWeights } from './screens/weights.js';
+import { renderScores } from './screens/scores.js';
+import { renderResults } from './screens/results.js';
+import { stepsDone } from './selectors.js';
 import { renderPlaceholder } from './screens/placeholder.js';
 
-const SCREENS = { home: renderHome, conditions: renderConditions, candidates: renderCandidates, weights: renderWeights };
+const SCREENS = {
+  home: renderHome,
+  conditions: renderConditions,
+  candidates: renderCandidates,
+  weights: renderWeights,
+  scores: renderScores,
+  results: renderResults,
+};
 
 const store = createStore(window.localStorage, { session: window.sessionStorage });
 const recent = store.listProjects()[0];
@@ -105,7 +115,7 @@ function view(st) {
       : null;
   return {
     route: st.route,
-    done: {}, // 단계 완료 판정은 Phase 6(selectors)에서
+    done: data ? stepsDone(data) : {},
     project: data && { name: data.project.name, summary: projectSummaryLine(data) },
     cost: data && { usd: totalActualUsd(data), usdKrw: settings.usdKrw, models: settings.models },
     onProject: () => router.navigate('home'),
