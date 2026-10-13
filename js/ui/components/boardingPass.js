@@ -5,7 +5,7 @@ import { codeText } from './flapCode.js';
 const PLANE_PATH = 'M0 6 L14 6 L20 0 L23 0 L19 6 L26 6 L29 3 L31 3 L29 7 L31 11 L29 11 L26 8 L19 8 L23 14 L20 14 L14 8 L0 8 Z';
 
 /** 출발지 → 목적지 사이 점선 호(비율 유지). 해외는 꼭대기에 비행기, 국내는 끝에 원형 점 */
-function routeArc(tripType) {
+export function routeArc(tripType) {
   return s(
     'svg',
     { class: 'bp__arc', width: '220', height: '60', viewBox: '0 0 220 60', fill: 'none', 'aria-hidden': 'true' },

@@ -33,7 +33,7 @@ describe('출발지·시기 짧은 표시 (RouteNav)', () => {
   test('요약 줄: ICN · FEB · 4 PAX / 서울 · 가을 · 2 PAX', () => {
     const p = createProject({ tripType: 'overseas' });
     p.project.period = { mode: 'month', month: 2 };
-    p.members = [1, 2, 3, 4].map((i) => ({ id: `m${i}`, name: `${i}` }));
+    p.project.travelers = 4; // 인원은 동행인(가중치 입력자) 수와 별개
     assert.equal(projectSummaryLine(p), 'ICN · FEB · 4 PAX');
     const d = createProject({ tripType: 'domestic' });
     d.project.period = { mode: 'season', season: 'autumn' };
@@ -92,5 +92,15 @@ describe('라우터', () => {
     assert.equal(STEPS.length, 8);
     assert.deepEqual(STEPS.map((s) => s.gate), ['01', '02', '03', '04', '05', '06', '07', '08']);
     assert.equal(ROUTES.length, 10);
+  });
+});
+
+describe('내보내기 파일 이름 (F13-7)', async () => {
+  const { exportFileName, yyyymmdd } = await import('../js/ui/download.js');
+  test('TravelPick_<이름>_<YYYYMMDD>.<확장자>, 파일명에 못 쓰는 글자는 _', () => {
+    const d = new Date(2026, 9, 13);
+    assert.equal(yyyymmdd(d), '20261013');
+    assert.equal(exportFileName('2027 설 연휴/가족여행', 'xlsx', d), 'TravelPick_2027_설_연휴_가족여행_20261013.xlsx');
+    assert.equal(exportFileName('  ', 'json', d), 'TravelPick_여행_20261013.json');
   });
 });

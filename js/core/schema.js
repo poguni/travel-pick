@@ -32,6 +32,22 @@ export const DEFAULT_CRITERIA = [
 
 export const MAX_CRITERIA = 9;
 
+/** 관심사 태그 기본 목록 (F1-1) */
+export const INTEREST_PRESETS = ['사진', '음식', '휴양', '자연', '도시', '역사', '쇼핑', '액티비티', '온천', '축제'];
+
+/** 국내 후보 시·도 (F3-1) */
+export const REGIONS = ['서울', '부산', '대구', '인천', '광주', '대전', '울산', '세종', '경기', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'];
+
+/** 출발지 입력 제안 */
+export const ORIGIN_SUGGESTIONS = {
+  overseas: ['인천', '김포', '김해', '제주', '대구', '청주', '무안', '양양'],
+  domestic: ['서울', '부산', '대구', '인천', '광주', '대전', '울산', '수원', '청주', '전주'],
+};
+
+/** 후보 권장 수 (F3-2): 9곳 이상이면 비교 부담·AI 비용 안내 */
+export const CANDIDATE_RECOMMENDED = { min: 3, max: 8 };
+export const CANDIDATE_COLORS = 8;
+
 /** 단순 모드 슬라이더 기본값(0~10) */
 export const DEFAULT_SIMPLE_WEIGHT = 5;
 
@@ -63,6 +79,7 @@ export function createProject({ name = '새 여행', tripType = 'overseas', id =
       period: { mode: 'undecided', season: null, month: null, startDate: null, nights: null, dayTrip: false },
       budgetPerPerson: null,
       companion: { type: 'solo', familyDetail: null },
+      travelers: 1,
       interests: [],
       createdAt: now.toISOString(),
       lastBackupAt: null,

@@ -203,9 +203,87 @@
   .mobile-actions { display: none !important; }
 }
 
+/* ── 알림 배너 (11장 저장 공간 경고) ── */
+.app__notices:empty { display: none; }
+.app__notices { display: flex; flex-direction: column; gap: 8px; padding: 16px clamp(16px, 3vw, 44px) 0; }
+.notice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: var(--r-input);
+  font-size: 14px;
+}
+.notice--warn { background: var(--warn-bg); border: 1px solid var(--warn-line); color: var(--warn-text); }
+.notice--ok { background: var(--surface-2); border: 1px solid var(--line-strong); color: var(--text-2); }
+.notice--ok::before { content: ''; width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--ok); }
+@media (max-width: 760px) { .app__notices { padding: 0 16px 12px; } }
+
 /* ── 화면 공통 ── */
 .screen { display: flex; flex-direction: column; gap: var(--s6); }
 .screen-header { display: flex; flex-direction: column; gap: 16px; }
 .screen-header__row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; }
 .screen-header__actions { display: flex; flex-wrap: wrap; gap: 10px; }
 .screen-title { max-width: 760px; outline: none; }
+
+/* ── 2열 배치: 미디어 쿼리 없이 접힘 (DESIGN.md 5.1) ── */
+.two-col { display: flex; flex-wrap: wrap; gap: var(--s5); align-items: flex-start; }
+.two-col__main { flex: 999 1 520px; min-width: 0; display: flex; flex-direction: column; gap: var(--s5); }
+.two-col__side { flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: var(--s5); }
+.stack { display: flex; flex-direction: column; gap: 16px; }
+
+/* ── ① 여행 조건 ── */
+.trip-type { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
+.trip-type__lock { display: inline-flex; align-items: center; gap: 8px; }
+.bp--form .bp__main { gap: 22px; }
+.bp--form .field--name { max-width: 520px; }
+.bp--form .bp__end { gap: 10px; }
+.bp--form .origin-input { margin-top: 4px; }
+.bp__grid--form { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 40px; }
+@media (max-width: 900px) { .bp__grid--form { grid-template-columns: minmax(0, 1fr); } }
+
+.member-list, .project-list, .cand-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.member-row { display: flex; align-items: center; gap: 10px; }
+.member-row .input { flex: 1; }
+
+/* ── ② 후보 목록 ── */
+.cand-row {
+  display: grid;
+  grid-template-columns: 6px auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 12px 12px 0;
+  border-radius: 14px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.cand-row__swatch { align-self: stretch; background: var(--cand); }
+.cand-row__text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.cand-row__name { font-size: 15px; font-weight: 600; }
+.cand-row__meta { font-size: 12px; color: var(--text-muted); }
+.cand-row__note { font-size: 13px; color: var(--text-2); }
+.cand-row .chip { padding: 4px 10px; font-size: 12px; }
+
+/* ── 홈 프로젝트 목록 ── */
+.project-row { display: flex; align-items: center; gap: 10px; padding: 6px 6px 6px 0; border-radius: 14px; }
+.project-row.is-current { background: var(--surface-3); }
+.project-row__open {
+  flex: 1;
+  min-width: 0;
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+  padding: 6px 14px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+}
+.project-row__open:hover { background: var(--surface-2); }
+.project-row__name { font-size: 15px; font-weight: 600; }
+.project-row__meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }

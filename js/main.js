@@ -1,64 +1,173 @@
-// 앱 진입점: 저장소·상태·라우터·셸 연결
+// 앱 진입점: 저장소·상태·라우터·셸 연결, 화면에 넘길 ctx 만들기
 import { createStore } from './core/store.js';
+import { createProject as newProject } from './core/schema.js';
 import { createState, connectAutosave } from './state.js';
 import { createRouter } from './router.js';
 import { createShell } from './ui/shell.js';
 import { projectSummaryLine, totalActualUsd } from './ui/format.js';
 import { renderHome } from './screens/home.js';
+import { renderConditions } from './screens/conditions.js';
+import { renderCandidates } from './screens/candidates.js';
 import { renderPlaceholder } from './screens/placeholder.js';
 
-const SCREENS = { home: renderHome };
+const SCREENS = { home: renderHome, conditions: renderConditions, candidates: renderCandidates };
 
 const store = createStore(window.localStorage, { session: window.sessionStorage });
 const recent = store.listProjects()[0];
 const state = createState({
   data: recent ? store.loadProject(recent.id) : null,
   route: null,
+  flash: null, // { text, tone: 'ok' | 'warn' } — 화면을 옮기면 사라짐
+  saveError: null,
+  tick: 0, // 저장소만 바뀌었을 때(목록 등) 화면을 다시 그리기 위한 값
 });
 
 const autosave = connectAutosave(state, store, {
-  onError: (r) => console.warn('자동 저장 실패:', r.error), // 저장 공간 경고 배너는 Phase 4
+  onError: (r) => state.update((st) => ({ ...st, saveError: r.error })),
 });
 window.addEventListener('pagehide', autosave.flush);
 
 const shell = createShell(document.getElementById('app'));
+const router = createRouter((route) => state.update((st) => ({ ...st, route, flash: st.route === route ? st.flash : null })));
+
+/** 화면에 넘기는 도구 */
+const ctx = {
+  store,
+  state,
+  navigate: (route) => router.navigate(route),
+
+  /**
+   * 현재 프로젝트 데이터 바꾸기. fn(data)는 사본을 고치고 { ok, error }를 돌려준다.
+   * 실패하면 상태를 건드리지 않는다(입력 중인 폼이 다시 그려지지 않음).
+   */
+  update(fn) {
+    const draft = structuredClone(state.getState().data);
+    const result = fn(draft) ?? { ok: true };
+    if (result.ok) state.update((st) => ({ ...st, data: draft, saveError: null }));
+    return result;
+  },
+
+  createProject() {
+    autosave.flush();
+    const data = newProject({ name: '새 여행' });
+    store.saveProject(data);
+    state.update((st) => ({ ...st, data }));
+    router.navigate('conditions');
+  },
+
+  openProject(id, route = 'home') {
+    autosave.flush();
+    state.update((st) => ({ ...st, data: store.loadProject(id) }));
+    router.navigate(route);
+  },
+
+  deleteProject(id) {
+    const current = state.getState().data?.project.id === id;
+    if (current) autosave.flush();
+    store.deleteProject(id);
+    const next = store.listProjects()[0];
+    state.update((st) => ({
+      ...st,
+      data: current ? (next ? store.loadProject(next.id) : null) : st.data,
+      tick: st.tick + 1,
+    }));
+  },
+
+  /** 저장소가 바뀌었으니 다시 그리기 (가져오기·복제 뒤). 현재 프로젝트도 저장소에서 다시 읽는다 */
+  reload() {
+    const id = state.getState().data?.project.id ?? store.listProjects()[0]?.id;
+    state.update((st) => ({ ...st, data: id ? store.loadProject(id) : null, tick: st.tick + 1 }));
+  },
+
+  flush: () => autosave.flush(),
+
+  flash(text, tone = 'ok') {
+    state.update((st) => ({ ...st, flash: { text, tone } }));
+  },
+};
 
 function view(st) {
   const settings = store.loadSettings();
   const data = st.data;
+  const usage = store.usage();
+  const banner = st.saveError
+    ? { tone: 'warn', text: '저장 공간이 가득 차서 마지막 변경을 저장하지 못했어요. 출발 안내판에서 JSON 백업을 받고 오래된 프로젝트를 정리해 주세요.' }
+    : usage.warn
+      ? { tone: 'warn', text: `저장 공간을 ${Math.round(usage.ratio * 100)}% 쓰고 있어요. JSON 백업을 받아 두세요.` }
+      : null;
   return {
     route: st.route,
     done: {}, // 단계 완료 판정은 Phase 6(selectors)에서
     project: data && { name: data.project.name, summary: projectSummaryLine(data) },
     cost: data && { usd: totalActualUsd(data), usdKrw: settings.usdKrw, models: settings.models },
+    onProject: () => router.navigate('home'),
+    banner,
+    flash: st.flash,
   };
 }
 
-let shownRoute = null;
-let shownProjectId;
+let shown = { route: null, projectId: undefined };
 
-function render(st, { focus = false } = {}) {
-  const projectId = st.data?.project.id ?? null;
-  if (st.route !== shownRoute || projectId !== shownProjectId) {
-    const screen = (SCREENS[st.route] ?? renderPlaceholder)({ route: st.route, data: st.data, state, store });
-    shell.main.replaceChildren(screen.node);
-    shell.update({ ...view(st), mobileActions: screen.mobileActions });
-    if (focus) {
-      window.scrollTo(0, 0);
-      shell.main.querySelector('.screen-title')?.focus({ preventScroll: true });
+/**
+ * 포커스가 있던 요소를 id로 기억했다가 다시 그린 뒤 되돌린다.
+ * 아직 저장되지 않은(입력 중인) 글자도 새 요소로 옮긴다.
+ */
+function withFocusKept(paint) {
+  const active = document.activeElement;
+  const id = active?.id;
+  // textInput은 data-committed에 마지막 저장값을 둔다. 그와 다르면 아직 저장 안 된 입력
+  const typing = id && active.tagName === 'INPUT' && 'committed' in active.dataset && active.value !== active.dataset.committed;
+  const draft = typing ? active.value : null;
+  const sel = id && typeof active.selectionStart === 'number' ? safeSelection(active) : null;
+  paint();
+  if (!id) return;
+  const el = document.getElementById(id);
+  if (!el) return;
+  if (typing && el.value !== draft) el.value = draft;
+  el.focus({ preventScroll: true });
+  if (sel && typing) {
+    try {
+      el.setSelectionRange(...sel);
+    } catch {
+      /* number 입력 등은 선택 범위를 지원하지 않음 */
     }
-    shownRoute = st.route;
-    shownProjectId = projectId;
-  } else {
-    shell.update(view(st));
   }
 }
 
-// 첫 화면에서는 포커스를 옮기지 않고, 이후 화면 이동 때만 제목으로 포커스를 옮긴다(스크린 리더 안내)
-let initialized = false;
+function safeSelection(el) {
+  try {
+    return [el.selectionStart, el.selectionEnd];
+  } catch {
+    return null;
+  }
+}
+
+function render(st, { initial }) {
+  const projectId = st.data?.project.id ?? null;
+  const moved = st.route !== shown.route || projectId !== shown.projectId;
+  const paint = () => {
+    const screen = (SCREENS[st.route] ?? renderPlaceholder)({ ...ctx, route: st.route, data: st.data });
+    shell.main.replaceChildren(screen.node);
+    shell.update({ ...view(st), mobileActions: screen.mobileActions });
+  };
+
+  if (moved) {
+    paint();
+    if (!initial) {
+      window.scrollTo(0, 0);
+      shell.main.querySelector('.screen-title')?.focus({ preventScroll: true });
+    }
+    shown = { route: st.route, projectId };
+  } else {
+    withFocusKept(paint);
+  }
+}
+
+let initial = true;
 state.subscribe((st) => {
-  render(st, { focus: initialized });
-  initialized = true;
+  if (!st.route) return;
+  render(st, { initial });
+  initial = false;
 });
 
-createRouter((route) => state.update((st) => ({ ...st, route }))).start();
+router.start();

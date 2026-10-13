@@ -63,6 +63,9 @@ export function migrateProject(data) {
   const base = createProject({ id: d.project?.id, name: d.project?.name, tripType: d.project?.tripType });
   const out = { ...base, ...d, schemaVersion: SCHEMA_VERSION };
   out.project = { ...base.project, ...d.project };
+  // v0.3 이후 추가 필드: 인원(없으면 동행인 수), 후보 색 번호(추가 순서)
+  out.project.travelers = d.project?.travelers ?? out.members.length;
+  out.candidates = out.candidates.map((c, i) => ({ ...c, color: c.color ?? i % 8 }));
   return out;
 }
 

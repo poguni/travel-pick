@@ -39,15 +39,20 @@ export function chip(text, { variant = 'filter' } = {}) {
   return h('span', { class: ['chip', `chip--${variant}`] }, text);
 }
 
-/** 세그먼트 컨트롤 (6.9). 선택이 바뀌면 onChange(value) */
-export function segmented({ label, options, value, onChange, size }) {
+/**
+ * 세그먼트 컨트롤 (6.9). 선택이 바뀌면 onChange(value)
+ * idPrefix: 버튼 id(`${idPrefix}-${value}`, 다시 그린 뒤 포커스 복원용), disabled: 전체 잠금
+ */
+export function segmented({ label, options, value, onChange, size, idPrefix, disabled = false }) {
   const buttons = options.map((opt) =>
     h(
       'button',
       {
         type: 'button',
+        id: idPrefix ? `${idPrefix}-${opt.value}` : null,
         class: 'seg__btn',
         'aria-pressed': String(opt.value === value),
+        disabled,
         onClick: () => {
           buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btnOf(opt.value))));
           onChange?.(opt.value);

@@ -130,8 +130,9 @@ describe('v2 → v3 마이그레이션 (PRD 7.2)', () => {
     assert.equal('companionType' in m.project, false);
     assert.deepEqual(m.candidates[0], {
       id: 'c1', name: '오키나와', country: '일본', source: 'ai', note: '',
-      region: null, code: null, plannedPeriod: null, plannedNights: null,
+      region: null, code: null, plannedPeriod: null, plannedNights: null, color: 0,
     });
+    assert.equal(m.project.travelers, 1, '인원이 없으면 동행인 수');
   });
   test('월 정보가 없던 v2는 시기 미정으로', () => {
     const d = v2();

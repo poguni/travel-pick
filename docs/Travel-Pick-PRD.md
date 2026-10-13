@@ -409,6 +409,7 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
                 "startDate": null, "nights": 5, "dayTrip": false },
     "budgetPerPerson": 1500000,
     "companion": { "type": "family", "familyDetail": "with_kids" },
+    "travelers": 4,
     "interests": ["사진", "휴양", "음식"],
     "createdAt": "2026-10-13T00:00:00Z",
     "lastBackupAt": null
@@ -419,7 +420,7 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
   ],
   "candidates": [
     { "id": "c1", "name": "오키나와", "country": "일본", "region": null, "code": "OKA",
-      "source": "ai", "note": "", "plannedPeriod": null, "plannedNights": null }
+      "source": "ai", "note": "", "plannedPeriod": null, "plannedNights": null, "color": 0 }
   ],
   "criteria": [
     { "id": "cost", "name": "비용", "type": "qualitative", "direction": "higher_better" },
@@ -467,11 +468,13 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
 | `budgetPerPerson` | 1인 총경비(원) 또는 `null`(예산 미정) |
 | `companion.type` | `solo` / `couple`(연인·부부) / `friends` / `family` |
 | `companion.familyDetail` | 가족일 때만: `with_kids` / `with_parents` / `with_kids_and_parents` / `adults_only` |
+| `travelers` | 여행 인원(아이 포함). 동행인(`members`, 가중치를 입력하는 사람) 수와 별개. 혼자 1, 연인·부부 2, 친구·가족 최소 2 |
+| `candidates[].color` | 후보 색 번호 0~7(`--c1`~`--c8`). 추가할 때 비어 있는 가장 작은 번호를 고정 배정하고 순위가 바뀌어도 그대로 |
 | `candidates[].country` / `region` | 해외는 `country`, 국내는 `region`(시·도) |
 | `candidates[].code` | 해외는 공항 코드(IATA 3글자), 국내는 `null`(화면에 한글 지명 표시) |
 | `candidates[].plannedPeriod` / `plannedNights` | 시기·기간이 미정일 때 AI가 제시하고 사용자가 확정한 조사 기준 시기(예: `{ "season": "autumn" }`, `{ "month": 10 }`)와 일정. 시기가 정해진 프로젝트에서는 `null` |
 
-이전 버전(`schemaVersion: 2`) 데이터를 불러오면 `tripType: "overseas"`, `period.mode: "month"`로 채우고, `companionType`을 `companion.type`으로 옮깁니다.
+이전 버전(`schemaVersion: 2`) 데이터를 불러오면 `tripType: "overseas"`, `period.mode: "month"`로 채우고, `companionType`을 `companion.type`으로 옮깁니다. `travelers`가 없으면 동행인 수로, 후보 `color`가 없으면 추가 순서로 채웁니다.
 
 ---
 

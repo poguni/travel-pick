@@ -358,3 +358,78 @@
 .logo__path { stroke: var(--paper); }
 .logo__dot { fill: var(--sunset); }
 .logo__origin { fill: var(--paper); }
+
+/* ── 입력 (DESIGN.md 3장 --r-input 12, 터치 44px) ── */
+.field { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.field__label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--text-faint); }
+.field__hint { font-size: 12px; color: var(--text-muted); }
+.field__note { font-size: 13px; color: var(--text-2); }
+.field__value { font-size: 17px; font-weight: 600; color: var(--text-strong); }
+.field-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.field-row > .field { flex: 1 1 140px; }
+
+.input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 14px;
+  border-radius: var(--r-input);
+  border: 1px solid var(--line-strong);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 15px;
+}
+.input::placeholder { color: var(--text-faint); }
+.input:disabled { opacity: 0.55; cursor: not-allowed; }
+.input--short { width: 88px; }
+.input--mid { width: 160px; }
+.input--code { text-transform: uppercase; font-family: var(--font-mono); letter-spacing: 0.1em; }
+.input--select { appearance: none; padding-right: 36px; background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+.input--title { font-size: 20px; font-weight: 700; }
+input[type="number"].input { font-family: var(--font-mono); }
+
+.inline-input { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.inline-input .input:not(.input--short):not(.input--mid) { flex: 1 1 200px; width: auto; }
+.inline-input__unit, .inline-input__label { font-size: 14px; color: var(--text-2); }
+
+.form-error:empty { display: none; }
+.form-error { font-size: 13px; color: var(--warn-text); }
+
+/* 종이 위 입력 (탑승권 모양 폼) */
+.on-paper .field__label { color: var(--ink-muted); }
+.on-paper .field__hint, .on-paper .field__note { color: var(--ink-muted); }
+.on-paper .field__value { color: var(--ink); }
+.on-paper .input { background: var(--paper); border-color: var(--paper-dash); color: var(--ink); }
+.on-paper .input::placeholder { color: var(--ink-muted); }
+.on-paper .inline-input__unit, .on-paper .inline-input__label { color: var(--ink-2); }
+.on-paper :focus-visible { outline-color: var(--m-gemini-ink); }
+
+/* ── 선택 버튼 묶음 ── */
+.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choice {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: var(--r-chip);
+  border: 1px solid var(--line-strong);
+  background: var(--surface-3);
+  color: var(--text-2);
+  font-size: 14px;
+  cursor: pointer;
+}
+.choice[aria-pressed="true"] { background: var(--paper); border-color: var(--paper); color: var(--ink); font-weight: 700; }
+.choice:disabled { opacity: 0.5; cursor: not-allowed; }
+.on-paper .choice { background: transparent; border-color: var(--paper-dash); color: var(--ink-2); }
+.on-paper .choice[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+/* 탭 모양: 세그먼트처럼 한 줄 */
+.choices--tabs { display: inline-flex; gap: 0; padding: 4px; border-radius: var(--r-chip); background: var(--surface-2); border: 1px solid var(--line-strong); align-self: flex-start; }
+.choices--tabs .choice { border: 0; background: transparent; min-height: 36px; }
+.on-paper .choices--tabs { background: var(--paper-chip); border-color: var(--paper-line); }
+
+.seg__btn:disabled { cursor: not-allowed; opacity: 0.55; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* ── 사용량 막대 ── */
+.meter { height: 8px; border-radius: 4px; background: var(--track); overflow: hidden; }
+.meter__fill { display: block; height: 100%; border-radius: 4px; background: var(--k3); }
+.meter__fill.is-warn { background: var(--sunset); }
+.meter__text { font-family: var(--font-mono); font-size: 13px; color: var(--text-2); }

@@ -33,7 +33,9 @@ export function createShell(root) {
     if (e.target === sheet || e.target.closest('a')) sheet.close();
   });
 
-  const app = h('div', { class: 'app' }, navSlot, h('div', { class: 'app__body' }, topSlot, main, actions));
+  // 저장 공간 경고·알림 (11장 "저장 공간 경고: 상단 얇은 배너"). 스크린 리더에 바로 읽히도록 live region
+  const notices = h('div', { class: 'app__notices', role: 'status', 'aria-live': 'polite' });
+  const app = h('div', { class: 'app' }, navSlot, h('div', { class: 'app__body' }, topSlot, notices, main, actions));
   mount(root, skip, app, sheet);
 
   function renderSheet(view) {
@@ -71,6 +73,12 @@ export function createShell(root) {
             sheet.showModal();
           },
         }),
+      );
+      mount(
+        notices,
+        [view.banner, view.flash].filter(Boolean).map((n) =>
+          h('p', { class: ['notice', `notice--${n.tone}`] }, n.tone === 'warn' && icon('warning', { size: 16 }), n.text),
+        ),
       );
       const list = view.mobileActions ?? [];
       actions.hidden = list.length === 0;

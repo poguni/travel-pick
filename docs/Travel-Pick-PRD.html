@@ -1132,6 +1132,7 @@ li{margin:.2em 0}
                 &quot;startDate&quot;: null, &quot;nights&quot;: 5, &quot;dayTrip&quot;: false },
     &quot;budgetPerPerson&quot;: 1500000,
     &quot;companion&quot;: { &quot;type&quot;: &quot;family&quot;, &quot;familyDetail&quot;: &quot;with_kids&quot; },
+    &quot;travelers&quot;: 4,
     &quot;interests&quot;: [&quot;사진&quot;, &quot;휴양&quot;, &quot;음식&quot;],
     &quot;createdAt&quot;: &quot;2026-10-13T00:00:00Z&quot;,
     &quot;lastBackupAt&quot;: null
@@ -1142,7 +1143,7 @@ li{margin:.2em 0}
   ],
   &quot;candidates&quot;: [
     { &quot;id&quot;: &quot;c1&quot;, &quot;name&quot;: &quot;오키나와&quot;, &quot;country&quot;: &quot;일본&quot;, &quot;region&quot;: null, &quot;code&quot;: &quot;OKA&quot;,
-      &quot;source&quot;: &quot;ai&quot;, &quot;note&quot;: &quot;&quot;, &quot;plannedPeriod&quot;: null, &quot;plannedNights&quot;: null }
+      &quot;source&quot;: &quot;ai&quot;, &quot;note&quot;: &quot;&quot;, &quot;plannedPeriod&quot;: null, &quot;plannedNights&quot;: null, &quot;color&quot;: 0 }
   ],
   &quot;criteria&quot;: [
     { &quot;id&quot;: &quot;cost&quot;, &quot;name&quot;: &quot;비용&quot;, &quot;type&quot;: &quot;qualitative&quot;, &quot;direction&quot;: &quot;higher_better&quot; },
@@ -1215,6 +1216,14 @@ li{margin:.2em 0}
 <td>가족일 때만: <code>with_kids</code> / <code>with_parents</code> / <code>with_kids_and_parents</code> / <code>adults_only</code></td>
 </tr>
 <tr>
+<td><code>travelers</code></td>
+<td>여행 인원(아이 포함). 동행인(<code>members</code>, 가중치를 입력하는 사람) 수와 별개. 혼자 1, 연인·부부 2, 친구·가족 최소 2</td>
+</tr>
+<tr>
+<td><code>candidates[].color</code></td>
+<td>후보 색 번호 0<del>7(<code>--c1</code></del><code>--c8</code>). 추가할 때 비어 있는 가장 작은 번호를 고정 배정하고 순위가 바뀌어도 그대로</td>
+</tr>
+<tr>
 <td><code>candidates[].country</code> / <code>region</code></td>
 <td>해외는 <code>country</code>, 국내는 <code>region</code>(시·도)</td>
 </tr>
@@ -1227,7 +1236,7 @@ li{margin:.2em 0}
 <td>시기·기간이 미정일 때 AI가 제시하고 사용자가 확정한 조사 기준 시기(예: <code>{ &quot;season&quot;: &quot;autumn&quot; }</code>, <code>{ &quot;month&quot;: 10 }</code>)와 일정. 시기가 정해진 프로젝트에서는 <code>null</code></td>
 </tr>
 </tbody></table>
-<p>이전 버전(<code>schemaVersion: 2</code>) 데이터를 불러오면 <code>tripType: &quot;overseas&quot;</code>, <code>period.mode: &quot;month&quot;</code>로 채우고, <code>companionType</code>을 <code>companion.type</code>으로 옮깁니다.</p>
+<p>이전 버전(<code>schemaVersion: 2</code>) 데이터를 불러오면 <code>tripType: &quot;overseas&quot;</code>, <code>period.mode: &quot;month&quot;</code>로 채우고, <code>companionType</code>을 <code>companion.type</code>으로 옮깁니다. <code>travelers</code>가 없으면 동행인 수로, 후보 <code>color</code>가 없으면 추가 순서로 채웁니다.</p>
 <hr>
 <h2 id="8-기술-스택">8. 기술 스택</h2>
 <table>
