@@ -626,6 +626,8 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
 | 국내 여행지 표시 (v0.3) | 공항 코드 대신 한글 지명을 크게 표시(DESIGN.md 6.4) |
 
 ### 14.2 개발 시작 시 확인할 사항
+
+> 1~4번과 브라우저 직접 호출(CORS) 여부는 2026-10-13에 확인해 [`docs/OpenRouter-Notes.md`](OpenRouter-Notes.md)에 정리했습니다. 슬러그: `anthropic/claude-sonnet-5.5`, `openai/gpt-6-luna`, `google/gemini-3.8-flash`. 응답의 `usage.cost`로 실제 비용을 받습니다. 6번(환율)은 설정 기본값 1,400원으로 두고 설정 화면에서 바꿉니다.
 1. 세 모델의 OpenRouter 슬러그와 현재 단가
 2. 웹 검색 방식(`:online` 또는 web 플러그인)과 요금, 세 모델 모두에서 동작하는지 여부
 3. 응답의 usage에 비용이 포함되는지, 포함되지 않으면 토큰 수 × 단가로 계산

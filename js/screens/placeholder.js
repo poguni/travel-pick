@@ -8,7 +8,6 @@ const PHASE_OF = {
   research: 9,
   panel: 11,
   export: 12,
-  settings: 7,
 };
 
 const headerFor = (route) => {

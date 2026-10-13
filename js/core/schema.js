@@ -111,21 +111,30 @@ export function createProject({ name = '새 여행', tripType = 'overseas', id =
   };
 }
 
+/** 단가 기본값: 2026-10-13 OpenRouter 모델 목록 기준 (토큰당 USD, 웹 검색은 1회당). docs/OpenRouter-Notes.md */
+const PRICE_2026_10_13 = {
+  claude: { prompt: 2e-6, completion: 1e-5, webSearch: 0.01 },
+  gpt: { prompt: 1e-7, completion: 5e-7, webSearch: 0.01 },
+  gemini: { prompt: 7.5e-7, completion: 3.75e-6, webSearch: 0.014 },
+};
+
 /**
- * 앱 설정 기본값 (API 키 제외). 모델 슬러그·단가·웹 검색 요금은
- * Phase 7에서 OpenRouter 문서를 확인한 뒤 채운다(PRD 14.2).
+ * 앱 설정 기본값 (API 키 제외). 슬러그·단가는 설정 화면에서 바꾸거나 모델 목록 API로 갱신한다(PRD F0-3·4).
+ * pricing.fetchedAt이 null이면 위 기본값을 쓰는 중이라는 뜻.
  */
 export function createDefaultSettings() {
+  const model = (key, name, slug) => ({ key, name, slug, enabled: true, pricing: { ...PRICE_2026_10_13[key], fetchedAt: null } });
   return {
     schemaVersion: SCHEMA_VERSION,
     models: [
-      { key: 'claude', name: 'Claude Sonnet 5.5', slug: '', enabled: true, pricing: null },
-      { key: 'gpt', name: 'GPT-6 Luna', slug: '', enabled: true, pricing: null },
-      { key: 'gemini', name: 'Gemini 3.8 Flash', slug: '', enabled: true, pricing: null },
+      model('claude', 'Claude Sonnet 5.5', 'anthropic/claude-sonnet-5.5'),
+      model('gpt', 'GPT-6 Luna', 'openai/gpt-6-luna'),
+      model('gemini', 'Gemini 3.8 Flash', 'google/gemini-3.8-flash'),
     ],
     chairModel: 'claude',
     webSearch: true,
     usdKrw: 1400,
+    tokenRatio: { ko: 0.8, other: 0.25 }, // 한글 1글자·그 밖 1글자당 토큰 추정 (5.7-1)
     apiKeyStorage: 'local',
   };
 }

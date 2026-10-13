@@ -12,6 +12,11 @@ import { renderWeights } from './screens/weights.js';
 import { renderScores } from './screens/scores.js';
 import { renderResults } from './screens/results.js';
 import { stepsDone } from './selectors.js';
+import { renderSettings } from './screens/settings.js';
+import { createClient } from './ai/openrouter.js';
+import { planRun, executeRun } from './ai/runner.js';
+import { lastRunDelta } from './core/cost.js';
+import { openReceipt } from './ui/components/costReceipt.js';
 import { renderPlaceholder } from './screens/placeholder.js';
 
 const SCREENS = {
@@ -21,6 +26,7 @@ const SCREENS = {
   weights: renderWeights,
   scores: renderScores,
   results: renderResults,
+  settings: renderSettings,
 };
 
 const store = createStore(window.localStorage, { session: window.sessionStorage });
@@ -40,6 +46,7 @@ const autosave = connectAutosave(state, store, {
 window.addEventListener('pagehide', autosave.flush);
 
 const shell = createShell(document.getElementById('app'));
+const client = createClient({ getKey: () => store.getApiKey() });
 const router = createRouter((route) => state.update((st) => ({ ...st, route, flash: st.route === route ? st.flash : null })));
 
 /** 화면에 넘기는 도구 */
@@ -92,6 +99,51 @@ const ctx = {
   },
 
   flush: () => autosave.flush(),
+
+  /** 설정 바꾸기: fn(settings)가 사본을 고친다. API 키는 store가 따로 다룬다 */
+  saveSettings(fn) {
+    const next = structuredClone(store.loadSettings());
+    fn(next);
+    store.saveSettings(next);
+    state.update((st) => ({ ...st, tick: st.tick + 1 }));
+  },
+
+  ai: {
+    client,
+    /**
+     * AI 실행: 계획 → 비용 확인 창 → 병렬 실행 → aiRuns 기록 → 실패분 다시 시도.
+     * request.record === false면 프로젝트 비용 기록에 남기지 않는다(설정의 시험 호출).
+     * 취소하면 null, 아니면 { results, runs } (다시 시도한 결과는 같은 index로 덮어씀)
+     */
+    async run(request) {
+      const settings = store.loadSettings();
+      const data = state.getState().data;
+      const plan = planRun(request, settings, data?.aiRuns ?? []);
+      if (!plan.calls.length) {
+        ctx.flash('사용할 수 있는 모델이 없어요. 설정에서 모델을 켜고 슬러그를 확인해 주세요.', 'warn');
+        return null;
+      }
+      const receipt = openReceipt(plan, { usdKrw: settings.usdKrw, delta: lastRunDelta(data?.aiRuns ?? [], request.feature) });
+      const only = await receipt.confirm();
+      if (!only) return null;
+      receipt.start();
+      const byIndex = new Map();
+      const allRuns = [];
+      let pending = plan;
+      for (;;) {
+        const out = await executeRun(client, pending, { only, onProgress: receipt.progress });
+        out.results.forEach((r) => byIndex.set(r.index, r));
+        allRuns.push(...out.runs);
+        if (request.record !== false && state.getState().data) ctx.update((d) => (d.aiRuns.push(...out.runs), { ok: true }));
+        const choice = await receipt.finish();
+        const failed = [...byIndex.values()].filter((r) => !r.ok).map((r) => r.index);
+        if (choice !== 'retry' || !failed.length) break;
+        receipt.retry(failed);
+        pending = { ...plan, calls: plan.calls.filter((c) => failed.includes(c.index)) };
+      }
+      return { results: [...byIndex.values()].sort((a, b) => a.index - b.index), runs: allRuns };
+    },
+  },
 
   /** 저장하지 않는 화면 상태 읽기·바꾸기 (자동 저장 대상 아님) */
   ui: () => state.getState().ui,
