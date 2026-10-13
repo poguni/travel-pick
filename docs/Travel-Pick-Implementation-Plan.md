@@ -192,7 +192,7 @@ Phase 0에서 프로젝트 루트에 아래 내용으로 `CLAUDE.md`를 만듭�
 | `weightedSum(scores, weights)` | 후보별 최종 점수(0~100 환산) | 6.2 |
 | `ahpWeights(matrix)` | 행 기하평균 가중치 | 6.3 |
 | `ahpConsistency(matrix, weights)` | λmax, CI, RI, CR | 6.3 |
-| `mostInconsistentPair(matrix, weights)` | `a_ij`와 `w_i/w_j` 차이가 가장 큰 쌍 + 권장값과 그 값으로 바꿨을 때의 CR | 6.3, DESIGN 6.11 |
+| `mostInconsistentPair(matrix)` | `a_ij`와 `w_i/w_j` 차이가 가장 큰 쌍 + 그 칸에 넣었을 때 CR이 가장 낮아지는 척도 값과 그때의 CR | 6.3, DESIGN 6.11 |
 | `sliderToPairwise(v)` / `pairwiseToSlider(a)` | 슬라이더 −8~8 ↔ 1/9~9 | DESIGN 6.11 |
 | `fillPairwiseFromWeights(weights)` | 단순 가중치로 쌍대비교 초깃값 채우기(1/9~9로 반올림) | F6-4 |
 | `aggregateSimple(vectors, influence)` | 가중 산술평균 | 6.4 |
@@ -510,7 +510,7 @@ Phase 0에서 프로젝트 루트에 아래 내용으로 `CLAUDE.md`를 만듭�
 ## 9. 진행 체크리스트
 
 - [x] Phase 0 프로젝트 준비 (2026-10-13, 커밋 4d9f991)
-- [ ] Phase 1 계산 엔진
+- [x] Phase 1 계산 엔진 (2026-10-13)
 - [ ] Phase 2 데이터 저장
 - [ ] Phase 3 디자인 시스템과 앱 셸
 - [ ] Phase 4 여행 조건·후보·동행인
