@@ -432,8 +432,9 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
     { "id": "hygiene", "name": "위생", "type": "qualitative", "direction": "higher_better" }
   ],
   "weights": {
-    "m1": { "mode": "ahp", "pairwise": [[1, 3], [0.333, 1]], "vector": [0.75, 0.25], "cr": 0.0 },
-    "m2": { "mode": "simple", "raw": { "cost": 7, "weather": 4 }, "vector": [0.636, 0.364] }
+    "m1": { "mode": "ahp", "raw": { "cost": 5, "weather": 5 },
+            "pairs": { "cost|weather": 3 }, "judged": ["cost|weather"], "touched": false },
+    "m2": { "mode": "simple", "raw": { "cost": 7, "weather": 4 }, "pairs": {}, "judged": [], "touched": true }
   },
   "research": {
     "c1": {
@@ -455,7 +456,7 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
   "decision": { "chosen": "c1", "memo": "" }
 }
 ```
-(가중치 예시는 기준 2개로 줄여 표기했습니다.)
+(가중치 예시는 기준 2개로 줄여 표기했습니다. `pairs` 값 3은 "비용이 날씨보다 3배 중요"를 뜻합니다.)
 
 **v0.3 필드 설명**
 
@@ -470,6 +471,9 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
 | `companion.familyDetail` | 가족일 때만: `with_kids` / `with_parents` / `with_kids_and_parents` / `adults_only` |
 | `travelers` | 여행 인원(아이 포함). 동행인(`members`, 가중치를 입력하는 사람) 수와 별개. 혼자 1, 연인·부부 2, 친구·가족 최소 2 |
 | `candidates[].color` | 후보 색 번호 0~7(`--c1`~`--c8`). 추가할 때 비어 있는 가장 작은 번호를 고정 배정하고 순위가 바뀌어도 그대로 |
+| `weights[id].pairs` | AHP 판단. 키는 기준 id를 사전순으로 정렬한 쌍(`"cost\|weather"`), 값은 "앞쪽 기준이 뒤쪽보다 몇 배 중요한가"(1/9~9). 기준을 추가·삭제·순서 변경해도 다른 판단이 밀리지 않도록 행렬 대신 쌍으로 저장 |
+| `weights[id].judged` / `touched` | 사용자가 비교한 쌍 목록(AHP 진행률·완료 판정), 단순 모드를 조정했는지 여부 |
+| 가중치 벡터·CR | 저장하지 않고 입력값(`raw`, `pairs`)으로 매번 계산(`js/selectors.js`). 내보내기 때 계산값을 함께 기록 |
 | `candidates[].country` / `region` | 해외는 `country`, 국내는 `region`(시·도) |
 | `candidates[].code` | 해외는 공항 코드(IATA 3글자), 국내는 `null`(화면에 한글 지명 표시) |
 | `candidates[].plannedPeriod` / `plannedNights` | 시기·기간이 미정일 때 AI가 제시하고 사용자가 확정한 조사 기준 시기(예: `{ "season": "autumn" }`, `{ "month": 10 }`)와 일정. 시기가 정해진 프로젝트에서는 `null` |

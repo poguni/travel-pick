@@ -59,10 +59,26 @@ export function newId() {
   return globalThis.crypto.randomUUID();
 }
 
-/** 동행인 1명의 기본 가중치: 단순 모드, 모든 기준 같은 값 */
+/** 기본 기준 설명 (F5-5 툴팁). 거리는 여행 종류에 따라 뜻이 다르다 */
+export const CRITERION_INFO = {
+  cost: '항공·교통·숙박·현지 물가를 합친 비용 부담. 부담이 적을수록 높은 점수',
+  weather: '여행 시기의 기온·강수·날씨',
+  distance: { overseas: '비행시간·환승 등 이동 부담. 가까울수록 높은 점수', domestic: '출발 도시에서의 이동시간·이동 수단 부담. 가까울수록 높은 점수' },
+  food: '현지 음식의 만족도와 선택지',
+  photo: '사진 촬영 명소, 풍경, 좋은 시간대',
+  safety: '치안, 여행경보 단계, 자연재해 위험',
+  hygiene: '식수·식품 위생, 감염병, 의료 접근성',
+};
+
+export function criterionInfo(criterion, tripType) {
+  const info = CRITERION_INFO[criterion.id];
+  return typeof info === 'object' ? info[tripType] : info ?? null;
+}
+
+/** 동행인 1명의 기본 가중치: 단순 모드, 모든 기준 같은 값 (형태는 core/weights.js 참고) */
 export function defaultMemberWeights(criteria) {
   const raw = Object.fromEntries(criteria.map((c) => [c.id, DEFAULT_SIMPLE_WEIGHT]));
-  return { mode: 'simple', raw, vector: criteria.map(() => 1 / criteria.length) };
+  return { mode: 'simple', raw, pairs: {}, judged: [], touched: false };
 }
 
 /** 새 프로젝트 데이터 (스키마 v3) */

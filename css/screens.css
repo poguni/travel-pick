@@ -287,3 +287,52 @@
 .project-row__open:hover { background: var(--surface-2); }
 .project-row__name { font-size: 15px; font-weight: 600; }
 .project-row__meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+
+/* ── ④ 기준·가중치 ── */
+.crit-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px 18px; }
+.crit-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 8px; }
+.crit-row__info { grid-column: 1 / -1; font-size: 12px; color: var(--text-muted); }
+
+.simple-row { display: grid; grid-template-columns: 96px minmax(0, 1fr) 72px; align-items: center; gap: 18px; padding: 10px 0; border-top: 1px solid var(--line); }
+.simple-row__name { font-size: 15px; text-align: right; }
+.simple-row__value { font-family: var(--font-mono); font-size: 13px; color: var(--text-2); }
+
+/* 쌍대비교 행 (DESIGN 6.11): 기준명 | 슬라이더 | 기준명 */
+.pairs { display: flex; flex-direction: column; }
+.pair { display: grid; grid-template-columns: 96px minmax(0, 1fr) 96px; align-items: center; gap: 4px 18px; padding: 16px 0; border-top: 1px solid var(--line); }
+.pair__name { font-size: 15px; color: var(--text-muted); }
+.pair__name--left { text-align: right; }
+.pair__name.is-win { font-weight: 700; color: var(--sunset-soft); }
+.pair__name--right.is-win { color: var(--info); }
+.pair__ticks { display: flex; justify-content: space-between; padding: 0 4px; font-family: var(--font-mono); font-size: 11px; color: var(--k6); }
+.pair__result { font-size: 12px; color: var(--text-muted); }
+.pair__result[data-side="left"] { color: var(--sunset-soft); }
+.pair__result[data-side="right"] { color: var(--info); }
+.pair.is-warn { padding: 16px 14px; margin: 4px -14px; border-radius: 14px; background: var(--warn-bg); border: 1px solid var(--warn-line); }
+.pair__warn { grid-column: 2 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding-top: 6px; font-size: 13px; color: var(--warn-text); }
+.pair__warn .icon { color: var(--sunset-text); }
+.pair__warn .btn { min-height: 36px; padding: 0 14px; font-size: 13px; }
+
+/* 탑승객별 가중치 표 */
+.wtable { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 14px; }
+.wtable th, .wtable td { padding: 10px 8px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+.wtable thead th { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--text-faint); }
+.wtable .num { font-family: var(--font-mono); text-align: right; }
+.wtable .is-bad { color: var(--sunset-soft); }
+.wtable tr.is-group th, .wtable tr.is-group td { background: var(--surface-3); font-weight: 700; color: var(--text-strong); }
+
+@media (max-width: 760px) {
+  .pair, .simple-row { grid-template-columns: 72px minmax(0, 1fr) 72px; gap: 4px 10px; }
+  .simple-row { grid-template-columns: 72px minmax(0, 1fr) 64px; }
+  .pair__name, .simple-row__name { font-size: 13px; }
+}
+
+/* 기준 편집: 접었다 펴기 */
+.crit-panel { gap: 0; }
+.crit-panel[open] { gap: var(--s4); }
+.crit-panel__summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; min-height: 44px; cursor: pointer; list-style: none; }
+.crit-panel__summary::-webkit-details-marker { display: none; }
+.crit-panel__names { flex: 1 1 240px; font-size: 14px; color: var(--text-2); }
+.crit-panel__toggle { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--sunset-soft); }
+.crit-panel[open] .crit-panel__toggle .icon { transform: rotate(180deg); }
+.crit-panel[open] .crit-panel__names { display: none; }

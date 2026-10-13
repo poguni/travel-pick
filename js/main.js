@@ -8,9 +8,10 @@ import { projectSummaryLine, totalActualUsd } from './ui/format.js';
 import { renderHome } from './screens/home.js';
 import { renderConditions } from './screens/conditions.js';
 import { renderCandidates } from './screens/candidates.js';
+import { renderWeights } from './screens/weights.js';
 import { renderPlaceholder } from './screens/placeholder.js';
 
-const SCREENS = { home: renderHome, conditions: renderConditions, candidates: renderCandidates };
+const SCREENS = { home: renderHome, conditions: renderConditions, candidates: renderCandidates, weights: renderWeights };
 
 const store = createStore(window.localStorage, { session: window.sessionStorage });
 const recent = store.listProjects()[0];
@@ -20,6 +21,7 @@ const state = createState({
   flash: null, // { text, tone: 'ok' | 'warn' } — 화면을 옮기면 사라짐
   saveError: null,
   tick: 0, // 저장소만 바뀌었을 때(목록 등) 화면을 다시 그리기 위한 값
+  ui: {}, // 저장하지 않는 화면 상태 (선택한 동행인, 쌍대비교 쪽 번호 등)
 });
 
 const autosave = connectAutosave(state, store, {
@@ -80,6 +82,12 @@ const ctx = {
   },
 
   flush: () => autosave.flush(),
+
+  /** 저장하지 않는 화면 상태 읽기·바꾸기 (자동 저장 대상 아님) */
+  ui: () => state.getState().ui,
+  setUi(patch) {
+    state.update((st) => ({ ...st, ui: { ...st.ui, ...patch } }));
+  },
 
   flash(text, tone = 'ok') {
     state.update((st) => ({ ...st, flash: { text, tone } }));

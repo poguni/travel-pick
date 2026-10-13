@@ -147,7 +147,7 @@ describe('동행인 (F8-1)', () => {
     assert.equal(r.ok, true);
     assert.equal(d.members.length, 2);
     assert.ok(d.weights[r.id]);
-    assert.equal(d.weights[r.id].vector.length, d.criteria.length);
+    assert.equal(Object.keys(d.weights[r.id].raw).length, d.criteria.length);
     addMember(d, '첫째');
     assert.equal(d.project.travelers, 3);
   });

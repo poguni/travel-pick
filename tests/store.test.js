@@ -31,8 +31,8 @@ describe('스키마 기본값', () => {
     assert.deepEqual(p.members.map((m) => m.name), ['나']);
     const w = p.weights.m1;
     assert.equal(w.mode, 'simple');
-    assert.equal(w.vector.length, 7);
-    assert.ok(Math.abs(w.vector.reduce((a, b) => a + b) - 1) < 1e-12);
+    assert.deepEqual(Object.values(w.raw), [5, 5, 5, 5, 5, 5, 5]);
+    assert.deepEqual([w.pairs, w.judged, w.touched], [{}, [], false]);
   });
   test('국내 프로젝트: 출발지 서울', () => {
     assert.equal(createProject({ tripType: 'domestic' }).project.origin, '서울');
@@ -182,11 +182,11 @@ describe('용량 초과 처리 (10장 저장 용량)', () => {
     store.cacheSet('old', 'x'.repeat(4000), { now: T0 });
     store.cacheSet('new', 'y'.repeat(4000), { now: T1 });
     const p = createProject({ id: 'p', now: T0 });
-    p.project.memo = 'z'.repeat(2500);
+    p.project.memo = 'z'.repeat(4500); // 캐시 2개 + 프로젝트가 한도를 넘도록
     assert.deepEqual(store.saveProject(p, { now: T2 }), { ok: true });
     assert.equal(store.cacheGet('old'), null, '오래된 캐시가 먼저 지워져야 함');
     assert.ok(store.cacheGet('new'), '필요한 만큼만 지워야 함');
-    assert.equal(store.loadProject('p').project.memo.length, 2500);
+    assert.equal(store.loadProject('p').project.memo.length, 4500);
   });
   test('그래도 넘치면 오류를 돌려주고, 이전에 저장된 데이터는 그대로', () => {
     const { store } = setup({ quota: 8_000 });

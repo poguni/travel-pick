@@ -1155,8 +1155,9 @@ li{margin:.2em 0}
     { &quot;id&quot;: &quot;hygiene&quot;, &quot;name&quot;: &quot;위생&quot;, &quot;type&quot;: &quot;qualitative&quot;, &quot;direction&quot;: &quot;higher_better&quot; }
   ],
   &quot;weights&quot;: {
-    &quot;m1&quot;: { &quot;mode&quot;: &quot;ahp&quot;, &quot;pairwise&quot;: [[1, 3], [0.333, 1]], &quot;vector&quot;: [0.75, 0.25], &quot;cr&quot;: 0.0 },
-    &quot;m2&quot;: { &quot;mode&quot;: &quot;simple&quot;, &quot;raw&quot;: { &quot;cost&quot;: 7, &quot;weather&quot;: 4 }, &quot;vector&quot;: [0.636, 0.364] }
+    &quot;m1&quot;: { &quot;mode&quot;: &quot;ahp&quot;, &quot;raw&quot;: { &quot;cost&quot;: 5, &quot;weather&quot;: 5 },
+            &quot;pairs&quot;: { &quot;cost|weather&quot;: 3 }, &quot;judged&quot;: [&quot;cost|weather&quot;], &quot;touched&quot;: false },
+    &quot;m2&quot;: { &quot;mode&quot;: &quot;simple&quot;, &quot;raw&quot;: { &quot;cost&quot;: 7, &quot;weather&quot;: 4 }, &quot;pairs&quot;: {}, &quot;judged&quot;: [], &quot;touched&quot;: true }
   },
   &quot;research&quot;: {
     &quot;c1&quot;: {
@@ -1178,7 +1179,7 @@ li{margin:.2em 0}
   &quot;decision&quot;: { &quot;chosen&quot;: &quot;c1&quot;, &quot;memo&quot;: &quot;&quot; }
 }
 </code></pre>
-<p>(가중치 예시는 기준 2개로 줄여 표기했습니다.)</p>
+<p>(가중치 예시는 기준 2개로 줄여 표기했습니다. <code>pairs</code> 값 3은 &quot;비용이 날씨보다 3배 중요&quot;를 뜻합니다.)</p>
 <p><strong>v0.3 필드 설명</strong></p>
 <table>
 <thead>
@@ -1222,6 +1223,18 @@ li{margin:.2em 0}
 <tr>
 <td><code>candidates[].color</code></td>
 <td>후보 색 번호 0<del>7(<code>--c1</code></del><code>--c8</code>). 추가할 때 비어 있는 가장 작은 번호를 고정 배정하고 순위가 바뀌어도 그대로</td>
+</tr>
+<tr>
+<td><code>weights[id].pairs</code></td>
+<td>AHP 판단. 키는 기준 id를 사전순으로 정렬한 쌍(<code>&quot;cost|weather&quot;</code>), 값은 &quot;앞쪽 기준이 뒤쪽보다 몇 배 중요한가&quot;(1/9~9). 기준을 추가·삭제·순서 변경해도 다른 판단이 밀리지 않도록 행렬 대신 쌍으로 저장</td>
+</tr>
+<tr>
+<td><code>weights[id].judged</code> / <code>touched</code></td>
+<td>사용자가 비교한 쌍 목록(AHP 진행률·완료 판정), 단순 모드를 조정했는지 여부</td>
+</tr>
+<tr>
+<td>가중치 벡터·CR</td>
+<td>저장하지 않고 입력값(<code>raw</code>, <code>pairs</code>)으로 매번 계산(<code>js/selectors.js</code>). 내보내기 때 계산값을 함께 기록</td>
 </tr>
 <tr>
 <td><code>candidates[].country</code> / <code>region</code></td>
