@@ -45,8 +45,10 @@
   - 자료 수집 스키마가 null 허용 항목 때문에 해외 20·국내 19개라 Claude만 실패했습니다. 지금은 모르는 값을 빈 문자열·0으로 받아 union type이 0개입니다.
   - `tests/schema-limits.test.js`가 모든 AI 스키마를 이 한도로 검사합니다. 스키마를 바꿀 때 함께 확인하세요.
   - 400·403·5xx 오류는 OpenRouter가 보낸 원문을 비용 확인 창과 모델 상태 칸에 함께 보여 줍니다. 제공사 오류는 `message`가 "Provider returned error"뿐이므로 `error.metadata.raw`(제공사 원문)와 `metadata.provider_name`을 꺼내 붙입니다.
-- **Claude는 웹 검색 + JSON 스키마를 함께 쓰면 400** (2026-10-14 실제 사용 중 발견, 유력 원인): Anthropic 문서상 구조화 출력은 인용(Citations)과 함께 쓸 수 없고, OpenRouter는 Claude의 웹 검색을 Anthropic 자체 검색(인용을 붙임)으로 처리합니다. 그래서 Claude에 스키마를 요청하면서 검색할 때는 `plugins: [{ id: 'web', engine: 'exa' }]`로 Exa 검색을 씁니다(OpenRouter가 검색 결과를 프롬프트에 넣어 줌). GPT·Gemini는 자체 검색 그대로입니다.
-  - 비용 확인 창의 웹 검색 요금은 모델 목록의 자체 검색 단가(Claude $0.01/회)로 계산하므로, Claude는 실제 Exa 요금과 조금 다를 수 있습니다. 실제 비용은 응답의 `usage.cost`로 기록됩니다.
+- **Claude에는 구조화 출력을 쓰지 않습니다** (2026-10-14 실제 사용 중 확인): union 한도를 고친 뒤에도 자료 수집이 400으로 실패했고, 제공사 원문은 `Google: The compiled grammar is too large, which would cause performance issues. Simplify your tool schemas or reduce the number of strict tools.`였습니다. OpenRouter가 Claude 요청을 Google Vertex로 보냈고, 구조화 출력이 스키마를 문법으로 컴파일하다 너무 크다고 거절한 것입니다(`strict: false`여도 같음). 이 밖에도 인용(Citations)과 함께 못 쓰는 등 제약이 많습니다.
+  - 그래서 `js/ai/openrouter.js`는 `anthropic/` 모델에 스키마를 요청하면 `response_format`을 보내지 않고, 마지막 user 메시지 끝에 "출력 형식" 안내와 JSON 스키마를 붙입니다(`withSchemaInPrompt`). 응답은 위의 검증·1회 재요청이 그대로 처리합니다. GPT·Gemini는 구조화 출력 그대로입니다.
+  - 웹 검색은 세 모델 모두 자체 검색입니다. 스키마가 프롬프트로 가므로 Claude 자체 검색의 인용이 충돌하지 않습니다.
+  - union·선택 매개변수 한도 검사(`tests/schema-limits.test.js`)는 나중에 다시 구조화 출력을 쓰거나 다른 모델에서 같은 한도를 만날 때를 위해 남겨 둡니다.
 
 ## 5. 브라우저 직접 호출 (CORS)·헤더·키 확인
 

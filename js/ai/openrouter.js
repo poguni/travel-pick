@@ -55,6 +55,14 @@ export function errorMessage(data) {
   return [err.message, meta.provider_name && `${meta.provider_name}: ${inner || '이유 없음'}`].filter(Boolean).join(' — ') || null;
 }
 
+/** 마지막 user 메시지 뒤에 JSON 스키마를 붙인다 (구조화 출력을 쓰지 않는 모델용) */
+export function withSchemaInPrompt(messages, schema) {
+  const i = messages.findLastIndex((m) => m.role === 'user');
+  const note = `\n\n출력 형식: 아래 JSON 스키마를 따르는 JSON 하나만 출력한다. 코드 블록이나 설명은 붙이지 않는다.\n${JSON.stringify(schema.schema)}`;
+  if (i < 0) return [...messages, { role: 'user', content: note.trim() }];
+  return messages.map((m, j) => (j === i ? { ...m, content: `${m.content}${note}` } : m));
+}
+
 /** 동시 실행 개수 제한 */
 function semaphore(max) {
   let active = 0;
@@ -135,11 +143,13 @@ export function createClient({
      */
     chat({ model, messages, webSearch = false, schema, maxTokens, searchResults = 5 }) {
       return limit(async () => {
-        const body = { model, messages };
-        // Anthropic 자체 웹 검색은 인용(citation)을 붙이는데, 인용은 JSON 스키마 출력과 함께 쓸 수 없어 400이 난다.
-        // 그래서 Claude에 스키마를 요청할 때는 OpenRouter의 Exa 검색(결과를 프롬프트에 넣어 줌)을 쓴다.
-        if (webSearch) body.plugins = [{ id: 'web', max_results: searchResults, ...(schema && model.startsWith('anthropic/') ? { engine: 'exa' } : {}) }];
-        if (schema) body.response_format = { type: 'json_schema', json_schema: { name: schema.name, strict: false, schema: schema.schema } };
+        // Claude는 구조화 출력이 스키마를 문법으로 컴파일하는데, 자료 수집 스키마는 "grammar is too large"로 거절된다
+        // (union 16개 한도, 인용과 함께 못 씀 등 제약도 많다). 그래서 Claude에는 스키마를 프롬프트에 넣고,
+        // 응답은 chatJson이 검증한다(틀리면 1회 재요청).
+        const inPrompt = schema && model.startsWith('anthropic/');
+        const body = { model, messages: inPrompt ? withSchemaInPrompt(messages, schema) : messages };
+        if (webSearch) body.plugins = [{ id: 'web', max_results: searchResults }];
+        if (schema && !inPrompt) body.response_format = { type: 'json_schema', json_schema: { name: schema.name, strict: false, schema: schema.schema } };
         if (maxTokens) body.max_tokens = maxTokens;
         const r = await request('/chat/completions', { method: 'POST', body });
         if (!r.ok) return r;
