@@ -31,9 +31,29 @@ const DETAIL_KINDS = new Set(['bad_request', 'forbidden', 'server']);
 export function describeError(kind, detail, fallback = '응답을 받지 못했어요.') {
   const base = ERROR_TEXT[kind] ?? fallback;
   const raw = String(detail ?? '').trim();
-  return raw && raw !== base && DETAIL_KINDS.has(kind) ? `${base} (${raw.slice(0, 200)})` : base;
+  return raw && raw !== base && DETAIL_KINDS.has(kind) ? `${base} (${raw.slice(0, 300)})` : base;
 }
 
+
+/**
+ * OpenRouter 오류 문구. 제공사 오류는 message가 "Provider returned error"뿐이고
+ * 제공사의 원문은 error.metadata.raw(문자열 또는 객체)에 있으므로 거기서 실제 이유를 꺼내 붙인다.
+ */
+export function errorMessage(data) {
+  const err = data?.error;
+  if (!err) return null;
+  const meta = err.metadata ?? {};
+  let raw = meta.raw;
+  if (typeof raw === 'string') {
+    try {
+      raw = JSON.parse(raw);
+    } catch {
+      /* 그냥 문자열 */
+    }
+  }
+  const inner = typeof raw === 'string' ? raw : raw?.error?.message ?? raw?.message ?? (raw ? JSON.stringify(raw) : '');
+  return [err.message, meta.provider_name && `${meta.provider_name}: ${inner || '이유 없음'}`].filter(Boolean).join(' — ') || null;
+}
 
 /** 동시 실행 개수 제한 */
 function semaphore(max) {
@@ -92,7 +112,7 @@ export function createClient({
         const data = await res.json().catch(() => null);
         if (res.ok) return { ok: true, data };
         const kind = kindOf(res.status);
-        last = { kind, status: res.status, message: data?.error?.message ?? ERROR_TEXT[kind] };
+        last = { kind, status: res.status, message: errorMessage(data) ?? ERROR_TEXT[kind] };
         if (!RETRY_STATUS.has(res.status)) return { ok: false, error: last };
         retryAfter = Number(res.headers?.get?.('retry-after')) || null;
       } catch (err) {
@@ -116,7 +136,9 @@ export function createClient({
     chat({ model, messages, webSearch = false, schema, maxTokens, searchResults = 5 }) {
       return limit(async () => {
         const body = { model, messages };
-        if (webSearch) body.plugins = [{ id: 'web', max_results: searchResults }];
+        // Anthropic 자체 웹 검색은 인용(citation)을 붙이는데, 인용은 JSON 스키마 출력과 함께 쓸 수 없어 400이 난다.
+        // 그래서 Claude에 스키마를 요청할 때는 OpenRouter의 Exa 검색(결과를 프롬프트에 넣어 줌)을 쓴다.
+        if (webSearch) body.plugins = [{ id: 'web', max_results: searchResults, ...(schema && model.startsWith('anthropic/') ? { engine: 'exa' } : {}) }];
         if (schema) body.response_format = { type: 'json_schema', json_schema: { name: schema.name, strict: false, schema: schema.schema } };
         if (maxTokens) body.max_tokens = maxTokens;
         const r = await request('/chat/completions', { method: 'POST', body });

@@ -34,6 +34,28 @@ const client = (responses, opts = {}) => {
   return { fetch, c: createClient({ getKey: () => 'sk-test', fetch, sleep: noSleep, referer: 'https://me.github.io/travelpick/', ...opts }) };
 };
 
+describe('Claude 웹 검색 엔진과 제공사 오류 원문', () => {
+  test('스키마가 없거나 Claude가 아니면 자체 검색 그대로', async () => {
+    const { fetch, c } = client([completion('x'), completion('{}')]);
+    await c.chat({ model: 'anthropic/claude-sonnet-5.5', messages: [{ role: 'user', content: 'hi' }], webSearch: true });
+    await c.chat({ model: 'openai/gpt-6-luna', messages: [{ role: 'user', content: 'hi' }], webSearch: true, schema: { name: 'x', schema: { type: 'object' } } });
+    assert.deepEqual(fetch.calls[0].body.plugins, [{ id: 'web', max_results: 5 }]);
+    assert.deepEqual(fetch.calls[1].body.plugins, [{ id: 'web', max_results: 5 }]);
+  });
+  test('제공사 오류는 metadata.raw의 실제 이유를 붙인다', async () => {
+    const raw = JSON.stringify({ type: 'error', error: { type: 'invalid_request_error', message: 'citations cannot be used with output_config.format' } });
+    const { c } = client([json(400, { error: { code: 400, message: 'Provider returned error', metadata: { provider_name: 'Anthropic', raw } } })]);
+    const r = await c.chat({ model: 'anthropic/claude-sonnet-5.5', messages: [{ role: 'user', content: 'hi' }] });
+    assert.equal(r.error.kind, 'bad_request');
+    assert.equal(r.error.message, 'Provider returned error — Anthropic: citations cannot be used with output_config.format');
+  });
+  test('metadata가 없으면 message만', async () => {
+    const { c } = client([json(400, { error: { code: 400, message: 'Invalid model' } })]);
+    const r = await c.chat({ model: 'x/y', messages: [] });
+    assert.equal(r.error.message, 'Invalid model');
+  });
+});
+
 describe('OpenRouter 호출기 (5.1, 5.8)', () => {
   test('요청 형식: 엔드포인트, 헤더, 웹 검색 플러그인, JSON 스키마', async () => {
     const { fetch, c } = client([completion('{"a":1}')]);
@@ -44,7 +66,7 @@ describe('OpenRouter 호출기 (5.1, 5.8)', () => {
     assert.equal(req.init.headers.Authorization, 'Bearer sk-test');
     assert.equal(req.init.headers['X-Title'], 'Travel Pick');
     assert.equal(req.init.headers['HTTP-Referer'], 'https://me.github.io/travelpick/');
-    assert.deepEqual(req.body.plugins, [{ id: 'web', max_results: 5 }]);
+    assert.deepEqual(req.body.plugins, [{ id: 'web', max_results: 5, engine: 'exa' }], 'Claude + 스키마는 Exa 검색(자체 검색의 인용이 JSON 출력과 충돌)');
     assert.equal(req.body.response_format.type, 'json_schema');
     assert.equal(req.body.model, 'anthropic/claude-sonnet-5.5');
   });

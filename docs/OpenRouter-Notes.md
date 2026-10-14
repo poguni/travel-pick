@@ -44,7 +44,9 @@
 - **Claude(Anthropic) 스키마 제한** (2026-10-14 실제 사용 중 발견): union type(`"type": ["string", "null"]` 같은 타입 배열이나 `anyOf`) 매개변수는 요청당 **16개**, 선택 매개변수(required에 없는 속성)는 **24개**까지입니다. 객체는 `additionalProperties: false`여야 하고 `minimum`·`maxLength` 같은 제약 키워드는 지원하지 않습니다. 넘으면 400(앱 문구: "요청 형식에 문제가 있어요")이 나고, GPT에서는 같은 요청이 통과합니다.
   - 자료 수집 스키마가 null 허용 항목 때문에 해외 20·국내 19개라 Claude만 실패했습니다. 지금은 모르는 값을 빈 문자열·0으로 받아 union type이 0개입니다.
   - `tests/schema-limits.test.js`가 모든 AI 스키마를 이 한도로 검사합니다. 스키마를 바꿀 때 함께 확인하세요.
-  - 400·403·5xx 오류는 OpenRouter가 보낸 원문을 비용 확인 창과 모델 상태 칸에 함께 보여 줍니다.
+  - 400·403·5xx 오류는 OpenRouter가 보낸 원문을 비용 확인 창과 모델 상태 칸에 함께 보여 줍니다. 제공사 오류는 `message`가 "Provider returned error"뿐이므로 `error.metadata.raw`(제공사 원문)와 `metadata.provider_name`을 꺼내 붙입니다.
+- **Claude는 웹 검색 + JSON 스키마를 함께 쓰면 400** (2026-10-14 실제 사용 중 발견, 유력 원인): Anthropic 문서상 구조화 출력은 인용(Citations)과 함께 쓸 수 없고, OpenRouter는 Claude의 웹 검색을 Anthropic 자체 검색(인용을 붙임)으로 처리합니다. 그래서 Claude에 스키마를 요청하면서 검색할 때는 `plugins: [{ id: 'web', engine: 'exa' }]`로 Exa 검색을 씁니다(OpenRouter가 검색 결과를 프롬프트에 넣어 줌). GPT·Gemini는 자체 검색 그대로입니다.
+  - 비용 확인 창의 웹 검색 요금은 모델 목록의 자체 검색 단가(Claude $0.01/회)로 계산하므로, Claude는 실제 Exa 요금과 조금 다를 수 있습니다. 실제 비용은 응답의 `usage.cost`로 기록됩니다.
 
 ## 5. 브라우저 직접 호출 (CORS)·헤더·키 확인
 
@@ -80,4 +82,6 @@
 - 오류: <https://openrouter.ai/docs/api-reference/errors>
 - 키·한도: <https://openrouter.ai/docs/api-reference/limits>
 - 모델 목록(직접 호출): <https://openrouter.ai/api/v1/models>
-- Anthropic 구조화 출력 제한: <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
+- Anthropic 구조화 출력 제한·호환 기능: <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
+- 웹 검색 엔진 지정(`engine`): <https://openrouter.ai/docs/features/web-search>
+- 오류 응답 형식(`metadata.raw`): <https://openrouter.ai/docs/api-reference/errors>
