@@ -12,7 +12,11 @@ export function exportFileName(name, ext, date = new Date()) {
 }
 
 export function downloadText(filename, text, mime = 'application/json') {
-  const url = URL.createObjectURL(new Blob([text], { type: `${mime};charset=utf-8` }));
+  downloadBlob(filename, new Blob([text], { type: `${mime};charset=utf-8` }));
+}
+
+export function downloadBlob(filename, blob) {
+  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
   a.download = filename;

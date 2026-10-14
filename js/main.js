@@ -13,7 +13,9 @@ import { renderWeights } from './screens/weights.js';
 import { renderScores } from './screens/scores.js';
 import { renderResults } from './screens/results.js';
 import { renderPanel } from './screens/panel.js';
+import { renderExport } from './screens/export.js';
 import { stepsDone } from './selectors.js';
+import { backupDue, BACKUP_DAYS } from './core/project.js';
 import { renderSettings } from './screens/settings.js';
 import { createClient } from './ai/openrouter.js';
 import { planRun, executeRun } from './ai/runner.js';
@@ -30,6 +32,7 @@ const SCREENS = {
   scores: renderScores,
   results: renderResults,
   panel: renderPanel,
+  export: renderExport,
   settings: renderSettings,
 };
 
@@ -212,7 +215,9 @@ function view(st) {
     ? { tone: 'warn', text: '저장 공간이 가득 차서 마지막 변경을 저장하지 못했어요. 출발 안내판에서 JSON 백업을 받고 오래된 프로젝트를 정리해 주세요.' }
     : usage.warn
       ? { tone: 'warn', text: `저장 공간을 ${Math.round(usage.ratio * 100)}% 쓰고 있어요. JSON 백업을 받아 두세요.` }
-      : null;
+      : data && backupDue(data.project)
+        ? { tone: 'warn', text: `마지막 JSON 백업 후 ${BACKUP_DAYS}일이 지났어요. 브라우저 데이터가 지워지면 복구할 수 없으니 내보내기에서 JSON 백업을 받아 두세요.` }
+        : null;
   return {
     route: st.route,
     done: data ? stepsDone(data) : {},

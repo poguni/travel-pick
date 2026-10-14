@@ -1,12 +1,7 @@
-// 아직 만들지 않은 화면의 자리 표시 (각 Phase에서 실제 화면으로 교체)
+// 프로젝트가 없을 때의 안내(emptyRedirect)와 알 수 없는 주소의 대체 화면
 import { h } from '../ui/dom.js';
 import { screenHeader, dashedCard, emptyState, button } from '../ui/components/basic.js';
 import { stepOf, hrefFor } from '../router.js';
-
-/** 화면별로 구현할 Phase (docs/Travel-Pick-Implementation-Plan.md 1장) */
-const PHASE_OF = {
-  export: 12,
-};
 
 const headerFor = (route) => {
   const st = stepOf(route);
@@ -29,19 +24,15 @@ export function emptyRedirect(route) {
   };
 }
 
+/** 등록되지 않은 화면 (모든 단계 화면이 생긴 뒤에는 잘못된 주소일 때만) */
 export function renderPlaceholder({ route, data }) {
   if (stepOf(route) && !data) return emptyRedirect(route);
-  const title = stepOf(route)?.label ?? '설정';
   return {
     node: h(
       'div',
       { class: 'screen' },
       headerFor(route),
-      dashedCard({
-        eyebrow: `COMING UP · PHASE ${PHASE_OF[route]}`,
-        title: `${title} 화면은 Phase ${PHASE_OF[route]}에서 만듭니다`,
-        desc: '앱 셸과 단계 이동은 지금 동작합니다.',
-      }),
+      dashedCard({ eyebrow: 'NOT FOUND · 없는 화면', title: '이 주소의 화면을 찾지 못했어요', action: button({ variant: 'outline', label: '출발 안내판으로', href: hrefFor('home') }) }),
     ),
   };
 }

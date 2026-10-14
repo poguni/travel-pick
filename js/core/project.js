@@ -261,3 +261,13 @@ export function addRecommended(data, item) {
     { source: 'ai' },
   );
 }
+
+// ── 백업 권유 (F13-8) ────────────────────────────────────
+
+export const BACKUP_DAYS = 7;
+
+/** 마지막 JSON 백업(없으면 만든 날) 뒤로 days일이 지났는가 */
+export function backupDue(project, now = new Date(), days = BACKUP_DAYS) {
+  const last = Date.parse(project.lastBackupAt ?? project.createdAt);
+  return Number.isFinite(last) && now.getTime() - last >= days * 86400000;
+}
