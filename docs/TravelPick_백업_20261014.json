@@ -1,0 +1,2357 @@
+{
+  "app": "travelpick",
+  "backupVersion": 1,
+  "exportedAt": "2026-10-14T14:32:06.620Z",
+  "settings": {
+    "schemaVersion": 3,
+    "models": [
+      {
+        "key": "claude",
+        "name": "Claude Sonnet 5.5",
+        "slug": "anthropic/claude-sonnet-5.5",
+        "enabled": true,
+        "pricing": {
+          "prompt": 0.000002,
+          "completion": 0.00001,
+          "webSearch": 0.01,
+          "fetchedAt": null
+        }
+      },
+      {
+        "key": "gpt",
+        "name": "GPT-6 Luna",
+        "slug": "openai/gpt-6-luna",
+        "enabled": true,
+        "pricing": {
+          "prompt": 1e-7,
+          "completion": 5e-7,
+          "webSearch": 0.01,
+          "fetchedAt": null
+        }
+      },
+      {
+        "key": "gemini",
+        "name": "Gemini 3.8 Flash",
+        "slug": "google/gemini-3.8-flash",
+        "enabled": false,
+        "pricing": {
+          "prompt": 7.5e-7,
+          "completion": 0.00000375,
+          "webSearch": 0.014,
+          "fetchedAt": null
+        }
+      }
+    ],
+    "chairModel": "claude",
+    "webSearch": true,
+    "usdKrw": 1400,
+    "tokenRatio": {
+      "ko": 0.8,
+      "other": 0.25
+    },
+    "apiKeyStorage": "session"
+  },
+  "projects": [
+    {
+      "schemaVersion": 3,
+      "project": {
+        "id": "bfaad3f0-121d-4a05-a148-6f513e2af91a",
+        "name": "2027 겨울 여행",
+        "tripType": "overseas",
+        "origin": "인천",
+        "period": {
+          "mode": "month",
+          "season": "winter",
+          "month": 1,
+          "startDate": null,
+          "nights": null,
+          "dayTrip": false
+        },
+        "budgetPerPerson": 1500000,
+        "companion": {
+          "type": "family",
+          "familyDetail": "adults_only"
+        },
+        "travelers": 3,
+        "interests": [
+          "음식",
+          "도시",
+          "쇼핑",
+          "액티비티",
+          "사진"
+        ],
+        "exclude": "",
+        "createdAt": "2026-10-14T13:32:29.989Z",
+        "lastBackupAt": "2026-10-14T14:32:06.620Z"
+      },
+      "members": [
+        {
+          "id": "m1",
+          "name": "나",
+          "influence": 1
+        },
+        {
+          "id": "m2",
+          "name": "진숙",
+          "influence": 1
+        },
+        {
+          "id": "m3",
+          "name": "지운",
+          "influence": 1
+        }
+      ],
+      "candidates": [
+        {
+          "id": "c-7b007299-f068-4664-b60f-1151657f3a21",
+          "name": "후쿠오카",
+          "country": "일본",
+          "region": null,
+          "code": "FUK",
+          "source": "ai",
+          "note": "",
+          "plannedPeriod": null,
+          "plannedNights": 3,
+          "color": 0
+        },
+        {
+          "id": "c-b1de0995-9f69-4689-bb53-3cc6c71f9160",
+          "name": "타이베이",
+          "country": "대만",
+          "region": null,
+          "code": "TPE",
+          "source": "ai",
+          "note": "",
+          "plannedPeriod": null,
+          "plannedNights": 4,
+          "color": 1
+        },
+        {
+          "id": "c-e0dff3cd-b92d-4b40-bdb4-e0a35b46dd84",
+          "name": "싱가포르",
+          "country": "싱가포르",
+          "region": null,
+          "code": "SIN",
+          "source": "ai",
+          "note": "",
+          "plannedPeriod": null,
+          "plannedNights": 3,
+          "color": 2
+        }
+      ],
+      "criteria": [
+        {
+          "id": "cost",
+          "name": "비용",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "weather",
+          "name": "날씨",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "distance",
+          "name": "거리",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "food",
+          "name": "음식",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "photo",
+          "name": "사진 촬영",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "safety",
+          "name": "안전",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "k-9c54405b",
+          "name": "쇼핑",
+          "type": "qualitative",
+          "direction": "higher_better"
+        }
+      ],
+      "weights": {
+        "m1": {
+          "mode": "simple",
+          "raw": {
+            "cost": 5,
+            "weather": 6,
+            "distance": 4,
+            "food": 7,
+            "photo": 4,
+            "safety": 5,
+            "k-9c54405b": 7
+          },
+          "pairs": {},
+          "judged": [],
+          "touched": true
+        },
+        "m2": {
+          "mode": "simple",
+          "raw": {
+            "cost": 3,
+            "weather": 7,
+            "distance": 3,
+            "food": 7,
+            "photo": 2,
+            "safety": 7,
+            "k-9c54405b": 10
+          },
+          "pairs": {},
+          "judged": [],
+          "touched": true
+        },
+        "m3": {
+          "mode": "simple",
+          "raw": {
+            "cost": 4,
+            "weather": 5,
+            "distance": 2,
+            "food": 9,
+            "photo": 6,
+            "safety": 4,
+            "k-9c54405b": 6
+          },
+          "pairs": {},
+          "judged": [],
+          "touched": true
+        }
+      },
+      "research": {
+        "c-7b007299-f068-4664-b60f-1151657f3a21": {
+          "confirmed": {},
+          "notes": {},
+          "claude": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"후쿠오카\",\"FUK\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":\"adults_only\"},3]",
+            "at": "2026-10-14T14:22:05.508Z",
+            "items": {
+              "weather": {
+                "value": "최저 약 3~4℃·최고 약 10℃, 연중 가장 추운 달이지만 비는 적은 편",
+                "summary": "1월 평년 일 최저 3.9℃·최고 10.2℃, 강수량 약 74mm로 서울보다 덜 추우나 바람이 불고 가끔 눈·진눈깨비가 올 수 있습니다. 두꺼운 롱패딩보다 경량 패딩·코트에 머플러, 휴대용 우산을 챙기세요.",
+                "sources": [
+                  "https://namu.wiki/w/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4/%EA%B8%B0%ED%9B%84",
+                  "https://ko.weatherspark.com/y/142927/일본-후쿠오카-시에서-년중-평균-날씨",
+                  "https://www.tripstore.kr/blog/fukuoka-monthly-weather-clothing-guide"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "하카타 돈코츠 라멘·모츠나베·야타이, 겨울엔 복어 가이세키까지",
+                "summary": "라멘은 1,000엔 안팎(잇소우 특제 약 1,100엔)이고 모츠나베는 하카타역 주변 전문점(1인 약 1,700엔부터, 저녁 코스는 약 5,000엔대)이 많습니다. 하카타 잇푸도는 가족 단위로 가기 편하고, 야타이는 저녁 8시 이후가 분위기가 좋지만 현금 위주입니다. 복어 가이세키는 12~3월에 맛볼 수 있습니다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EB%A7%9B%EC%A7%91-%EC%B6%94%EC%B2%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8",
+                  "https://kr.savorjapan.com/contents/discover-oishii-japan/hakata-ramen-recommended-restaurants-in-fukuoka",
+                  "https://kr.savorjapan.com/contents/discover-oishii-japan/10-best-restaurants-in-fukuoka-japan-discover-an-abundance-of-regional-specialties-like-ramen-and-mo",
+                  "https://kr.trip.com/guide/food/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4+%EB%9D%BC%EB%A9%98.html"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "후쿠오카 타워 일몰~야경, 모모치 해변, 오호리 공원 낮 산책",
+                "summary": "후쿠오카 타워(전망대 123m)는 일몰에서 야경으로 바뀌는 시간대가 가장 인기이고, 조명은 일몰부터 23시까지 켜집니다. 모모치 해변 뒤쪽에서 타워를 찍는 야경 샷도 추천되며, 해변은 1월에 바람이 세니 방풍 옷이 필요합니다. 오호리 공원 일본정원은 낮 시간(9~18시, 월요일 휴관)에 가세요.",
+                "sources": [
+                  "https://gofukuoka.jp/ko/articles/detail/e29076b2-af6c-4bf3-98eb-abf903dc5098",
+                  "https://www.triptojapan.com/ko/places/fukuoka-tower/FxMy1S3DRtyc_QtNqgCJyg",
+                  "https://kr.trip.com/moments/poi-ohori-park-japanese-garden-55981807/",
+                  "https://kr.trip.com/moments/theme/poi-ohori-park-96838-attraction-993137/"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "성인 가족 3명 3박 4일 일정에 잘 맞음. 음식·쇼핑·도시·야경 중심",
+                "summary": "비행 1시간 반 안팎에 공항~하카타역 지하철 약 5분이라 이동 부담이 적고, 하카타 쪽은 3~4인용 트리플·쿼드룸을 갖춘 호텔이 많아 성인 3명이 묵기 좋습니다. 1월은 춥고 야외 액티비티는 제한적이라 쇼핑·미식·실내 위주로 짜는 것이 좋으며, 3인 3박 4일 1인당 경비 추정치는 항공 포함 약 68~112만 원으로 1인 예산 150만 원 안에 들어옵니다.",
+                "sources": [
+                  "https://travel.ambitstock.com/flight-time/icn-fuk/",
+                  "https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EC%88%99%EC%86%8C-%EC%9C%84%EC%B9%98-%EB%B9%84%EA%B5%90-%EC%B6%94%EC%B2%9C",
+                  "https://tripop.app/destinations/fukuoka/cost",
+                  "https://cucuoka.com/weather"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 약 18~35만 원 (1인, 직항 LCC 기준)",
+                "summary": "인천~후쿠오카 왕복은 최저가 약 14~17만 원대부터 평균 약 27만 원 수준이며, 1월은 인기 시즌이고 연말연시 전후는 더 비쌉니다. 1월 구체 날짜 요금은 확인하지 못해 대략적인 범위이니 예약 시점에 재확인하세요.",
+                "sources": [
+                  "https://www.hotelscombined.co.kr/flight-routes/Incheon-Intl-ICN/Fukuoka-FUK.ksp",
+                  "https://www.kayak.co.kr/%ED%95%AD%EA%B3%B5%EA%B6%8C/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD-KR0/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4%EA%B3%B5%ED%95%AD-FUK",
+                  "https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EC%97%AC%ED%96%89-%EB%B9%84%EC%9A%A9-%EC%B4%9D%EC%A0%95%EB%A6%AC-3362",
+                  "https://www.skyscanner.com/routes/icn/fuk/incheon-international-to-fukuoka.html"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 180000,
+                  "max": 350000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 1시간 20분~1시간 35분, 직항 있음",
+                "summary": "인천~후쿠오카 직항은 진에어·에어서울·제주항공·이스타항공·트리니티항공(구 티웨이) 등이 운항하며 편도 1시간 20~35분대입니다. 시차는 없고 공항에서 하카타역까지 지하철로 약 5분입니다.",
+                "sources": [
+                  "https://www.kayak.com/flight-routes/Seoul-Incheon-Intl-ICN/Fukuoka-FUK",
+                  "https://www.hotelscombined.co.kr/flight-routes/Incheon-Intl-ICN/Fukuoka-FUK.ksp",
+                  "https://travel.ambitstock.com/flight-time/icn-fuk/"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 1.3,
+                  "max": 1.6
+                }
+              },
+              "lodging": {
+                "value": "중급 호텔 1박 약 10~20만 원 (객실 기준, 3인은 트리플룸 또는 2실 필요)",
+                "summary": "아고다 기준 1박 2인 대표가는 약 16만 원이고 지역별로는 텐진 8~15만 원, 하카타 15~25만 원, 나카스 5~9만 원입니다. 주말은 평일보다 비싸며 성인 3명이면 트리플룸이나 객실 2개로 비용이 늘 수 있습니다.",
+                "sources": [
+                  "https://stayranker.com/japan/fukuoka",
+                  "https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EC%88%99%EC%86%8C-%EC%9C%84%EC%B9%98-%EB%B9%84%EA%B5%90-%EC%B6%94%EC%B2%9C",
+                  "https://www.kkday.com/ko/blog/37109/asia-japan-fukuoka-threefourcourse"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 100000,
+                  "max": 200000
+                }
+              },
+              "prices": {
+                "value": "한국과 비슷하거나 소폭 저렴. 1인 1일 현지 경비 약 7~14만 원(숙박 제외)",
+                "summary": "하루 식비 4~6만 원, 교통 1~2만 원, 액티비티 1~2만 원, 쇼핑 2~4만 원 선이며 숙박 포함 시 1인 1일 15~20만 원이라는 추정도 있습니다. 환율은 100엔당 약 890~930원 안팎으로 소개되며, 야타이와 일부 소형 가게는 현금이 필요합니다.",
+                "sources": [
+                  "https://tripop.app/destinations/fukuoka/cost",
+                  "https://www.kkday.com/ko/blog/37109/asia-japan-fukuoka-threefourcourse",
+                  "https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EC%97%AC%ED%96%89-%EB%B9%84%EC%9A%A9-%EC%B4%9D%EC%A0%95%EB%A6%AC-3362",
+                  "https://info.fandit.net/travel/fukuoka-2n3d-budget/"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "visa": {
+                "value": "관광 90일 이내 무비자, 여권 지참 (Visit Japan Web 사전 등록 권장)",
+                "summary": "한국 국적자는 관광·친지 방문 목적으로 최대 90일까지 비자 없이 입국할 수 있습니다. Visit Japan Web은 비자가 아닌 입국·세관 신고용 사전 등록으로, 필수는 아니지만 등록하면 입국 심사가 빨라지고 동반 가족 3명도 함께 등록할 수 있습니다. 여권 유효기간은 출발 전에 확인하세요.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/%EC%9D%BC%EB%B3%B8-%EB%B9%84%EC%9E%90-%EB%AC%B4%EB%B9%84%EC%9E%90-%EC%9E%85%EA%B5%AD-%EC%A1%B0%EA%B1%B4",
+                  "https://www.tripstore.kr/blog/2026%EB%85%84-%EC%9D%BC%EB%B3%B8-%EC%97%AC%ED%96%89-%EA%B7%9C%EC%A0%95-%EC%9E%85%EA%B5%AD-%EC%8B%AC%EC%82%AC-%EB%A9%B4%EC%84%B8-%EC%B4%9D%EC%A0%95%EB%A6%AC",
+                  "https://www.make2t.kr/2026/10/visit-japan-web-official-site-login-qr.html"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "외교부 여행경보 미발령(후쿠시마 원전 30km 이내만 출국권고). 지진 유의",
+                "summary": "외교부는 2024년 7월 일본의 여행경보 1단계를 해제했고 후쿠시마 원전 반경 30km 이내와 피난지시구역만 출국권고입니다. 2026년 7월 구마모토현에서 진도 7 지진이 있어 주 후쿠오카 총영사관이 안전공지를 냈으니 출발 전 지진 행동요령과 공지를 확인하세요. 태풍은 7~9월에 집중되어 1월에는 거의 없습니다.",
+                "sources": [
+                  "https://0404.go.kr/ntnSafetyInfo/183/detail",
+                  "https://0404.go.kr/bbs/travelAlertAjmt/ATC0000000048019/detail",
+                  "https://mofa.go.kr/jp-ko/brd/m_26893/list.do?company_cd=&company_nm=&itm_seq_1=0&itm_seq_2=0&multi_itm_seq=0&page=196&srchFr=&srchTo=&srchTp=&srchWord=",
+                  "https://soultrip7.kr/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-1%EC%9B%94-%EB%82%A0%EC%94%A8-%EB%B0%8F-%EC%97%AC%ED%96%89%EC%98%B7%EC%B0%A8%EB%A6%BC-%ED%83%9C%ED%92%8D%EA%B0%95%EC%88%98%EB%9F%89-%EB%B0%8F-%EA%B8%B0%ED%9B%84/"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "홍역·인플루엔자 유행 주의. 출국 전 MMR 2회 접종 확인 권고",
+                "summary": "질병관리청은 일본의 2026년 홍역 환자가 8월 말 기준 549명으로 최근 10년 중 최다이고 독감 유행도 예년보다 일찍 시작됐다고 밝혔으며, MMR 2회 미접종·불확실 시 접종을 권고했습니다. 1월은 독감 시즌과 겹치니 손 씻기와 마스크를 준비하세요. 식수·식품 안전과 후쿠오카 의료 접근성은 이번 검색에서 공식 근거를 확인하지 못해 별도 확인이 필요합니다.",
+                "sources": [
+                  "https://m.inews24.com/v/2007539",
+                  "https://www.newsis.com/view/NISX20260819_0003753744",
+                  "https://www.jungbunews.com/news/articleView.html?idxno=2720485"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": true,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.372324
+          },
+          "gpt": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"후쿠오카\",\"FUK\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":\"adults_only\"},3]",
+            "at": "2026-10-14T13:56:55.760Z",
+            "items": {
+              "weather": {
+                "value": "1월 평년 최저 3.9℃·최고 10.2℃, 월 강수량 74.4mm",
+                "summary": "일본 기상청의 1991~2020년 후쿠오카 평년값입니다. 춥고 흐리거나 비 오는 날이 있을 수 있어 따뜻한 겉옷과 우산을 준비하세요.",
+                "sources": [
+                  "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?block_no=47807&prec_no=82"
+                ],
+                "asOf": "2020-12",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "하카타 라멘·모츠나베·해산물·야타이 추천",
+                "summary": "성인 가족 3명은 하카타·텐진의 좌석 있는 라멘·모츠나베 식당이나 해산물 식당이 편리하고, 야타이는 분위기를 즐기는 짧은 방문으로 곁들이기 좋습니다. 야타이는 좌석이 좁고 날씨가 나쁘면 쉬는 곳이 많아 당일 영업을 확인하세요.",
+                "sources": [
+                  "https://yokanavi.com/gourmet",
+                  "https://yokanavi.com/spots/yatai"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "오호리공원은 오전, 모모치 해변·후쿠오카타워는 해 질 무렵과 야경",
+                "summary": "도심 산책 사진은 오호리공원, 바다와 타워 풍경은 모모치 해변에서 촬영하기 좋습니다. 겨울에는 해가 일찍 지고 날씨에 따라 전망이 달라질 수 있으니 당일 일몰 시각과 운영 정보를 확인하세요.",
+                "sources": [
+                  "https://yokanavi.com/spots/26798",
+                  "https://yokanavi.com/features/29316"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "적합도 높음—성인 가족의 음식·도시·쇼핑·사진 관심에 잘 맞음",
+                "summary": "하카타와 텐진 중심의 식사·쇼핑에 해변 야경과 공원 산책을 더할 수 있어 3박 4일 일정에 어울립니다. 도심 위주로 이동하면 세 명이 함께 다니기 수월하고, 액티비티는 다자이후 방문이나 전망대 관람 등을 선택할 수 있습니다.",
+                "sources": [
+                  "https://yokanavi.com/appeal/",
+                  "https://yokanavi.com/features/29316"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 28만~55만 원",
+                "summary": "인천 출발 2027년 1월 3박 4일 검색에서 확인된 최저가는 성인 1인 약 32만 원대였습니다. 날짜·항공사·수하물 조건에 따라 달라지는 참고 범위이며, 쇼핑 성수기나 주말에는 더 비쌀 수 있습니다.",
+                "sources": [
+                  "https://farepage.com/ko/flights/icn-fuk"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 280000,
+                  "max": 550000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 1시간 20분~1시간 40분, 직항편 운항",
+                "summary": "인천(ICN)~후쿠오카(FUK) 노선에는 직항편이 있습니다. 실제 비행시간과 운항 여부는 선택한 날짜·항공편에 따라 확인하세요.",
+                "sources": [
+                  "https://www.fukuoka-airport.jp/en/flight/airline/bx.html",
+                  "https://www.flightconnections.com/flights-from-fuk-to-icn"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 1.3,
+                  "max": 1.7
+                }
+              },
+              "lodging": {
+                "value": "중급 숙소 1박 약 10만~28만 원(객실 기준)",
+                "summary": "하카타역 주변 3성급 숙소의 1월 요금은 평일과 주말 차이가 크게 확인됩니다. 위 범위는 참고용이며 성인 3명 투숙 가능 객실·침대 구성과 실제 날짜 요금은 예약 전 확인이 필요합니다.",
+                "sources": [
+                  "https://farepage.com/ko/hotels/fukuoka/hotel-cocoo-hakata-shinkansenguchi"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 100000,
+                  "max": 280000
+                }
+              },
+              "prices": {
+                "value": "현지 경비 1인 1일 약 6만~10만 원(숙박·항공·쇼핑 제외)",
+                "summary": "식사와 시내 교통, 소액 입장료 중심의 계획용 추정치로, 한국과 비슷한 수준에서 식사 선택에 따라 달라질 수 있습니다. 쇼핑·유료 체험·고급 식사를 추가하면 1인 예산 150만 원을 넘을 수 있으니 구매 예산을 별도로 잡는 편이 좋습니다.",
+                "sources": [
+                  "https://where2nxt.com/destination/fukuoka",
+                  "https://japanactivity.com/fukuoka-travel-budget-and-daily-costs-2026"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "visa": {
+                "value": "한국 일반여권 소지자: 관광 목적 90일 이내 무비자",
+                "summary": "단기 관광은 사증면제 대상이며, 취업 등 보수를 받는 활동이나 90일 초과 체류에는 별도 조건이 적용됩니다. 여권 유효기간과 입국 요건은 출발 전 공식 안내에서 재확인하세요.",
+                "sources": [
+                  "https://www.busan.kr.emb-japan.go.jp/itpr_ko/nsm_021.html",
+                  "https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "외교부 일본 여행경보 미발령; 지진은 연중 대비 필요",
+                "summary": "외교부는 일본 여행경보를 2024년 7월 1일부터 미발령으로 조정했으며, 후쿠오카도 여행 전 최신 공지를 확인하세요. 일본은 지진이 언제든 발생할 수 있고 1월에는 추위·눈·도로 결빙에 유의해야 하므로 재난 안내와 교통 상황을 살피세요.",
+                "sources": [
+                  "https://0404.go.kr/bbs/travelAlertAjmt/ATC0000000048019/detail",
+                  "https://www.jma.go.jp/jma/kishou/know/faq/faq7.html",
+                  "https://www.bousai.pref.fukuoka.jp/knowledge/snowstorm"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "수돗물 음용 가능; 통상 예방접종 확인, 의료시설은 도심에서 이용 가능",
+                "summary": "일본 수돗물은 마실 수 있고, 질병관리청·CDC 안내상 정기접종 및 홍역·유행성이하선염·풍진(MMR) 접종 상태를 확인하는 것이 좋습니다. A형간염 접종은 여행 형태에 따라 상담하고, 단기 도심 여행의 일본뇌염 접종은 일반적으로 권고되지 않지만 길거리 음식 이용 시 위생 상태를 살피세요.",
+                "sources": [
+                  "https://www.japan.travel/en/plan/drinking-water/",
+                  "https://wwwnc.cdc.gov/travel/destinations/traveler/children.vfr/japan",
+                  "https://travel.state.gov/en/international-travel/travel-advisories/japan.html"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.1097923
+          }
+        },
+        "c-b1de0995-9f69-4689-bb53-3cc6c71f9160": {
+          "confirmed": {},
+          "notes": {},
+          "claude": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"타이베이\",\"TPE\",{\"month\":1},4,false,{\"type\":\"family\",\"familyDetail\":\"adults_only\"},3]",
+            "at": "2026-10-14T14:22:05.508Z",
+            "items": {
+              "weather": {
+                "value": "최저 12℃·최고 19℃ 안팎, 비 잦고 습함",
+                "summary": "1월은 타이베이에서 가장 추운 달로, 평균 기온은 약 13~19℃이고 월 강수량은 60~100mm 정도입니다. 습도가 높고 실내 난방이 없는 건물이 많아 체감 온도가 낮으니, 겹쳐 입을 옷과 우산을 챙기세요.",
+                "sources": [
+                  "https://ko.weatherspark.com/y/137170/대만-타이베이에서-년중-평균-날씨",
+                  "https://triple.guide/articles/f45288cc-a5af-48fb-a698-9ea86102ca9c",
+                  "https://www.tripool.app/ko/articles/weather-and-clothes-in-taiepi"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "우육면·샤오롱바오·야시장 먹거리, 3인 가족은 야시장+식당 혼합",
+                "summary": "스린·라오허제·닝샤 야시장이 대표적이며, 쌀쌀한 1월에는 따뜻한 우육면과 샤오롱바오가 잘 어울립니다. 야시장은 1인 1만 원 안팎, 딘타이펑 같은 유명 식당은 1인 약 3만 원대(예전 자료)여서 3명이 함께 먹기에 부담이 적습니다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/타이베이-1월-날씨-미식-가이드-비용-총정리",
+                  "https://www.tripstore.kr/blog/타이베이-야시장-정복-가이드-현지인-추천-BEST-5-필수-먹거리-총정리",
+                  "https://www.tripstore.kr/blog/대만-물가-여행-경비-예산",
+                  "https://taipeipiggy.com/taiwan-taipei-3d2n-itinerary/"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "샹산 일몰~야경, 타이베이 101, 지우펀 홍등, 단수이 일몰",
+                "summary": "101 야경은 전망대 안에서는 찍을 수 없고 샹산에서 찍어야 하며, 일몰 1~2시간 전에 올라가면 좋습니다. 지우펀 홍등 야경은 날씨 영향이 커서 1월에 비가 오면 어려울 수 있습니다. 1월 일몰은 17시 15분경입니다.",
+                "sources": [
+                  "https://triple.guide/articles/8e834f18-bad0-422c-ab72-293887caad21",
+                  "https://tool.kr-story.com/97",
+                  "https://triple.guide/articles/4bf61175-f0a1-430a-b20f-2db0e15c78b9",
+                  "https://travelahn.com/대만-월별-날씨-및-4계절별-옷차림-타이베이/"
+                ],
+                "asOf": "2026-08",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "성인 가족 3명에게 매우 적합 (음식·도시·쇼핑·사진 중심)",
+                "summary": "비행이 2시간 반 안팎이고 야시장·쇼핑·근교 투어가 모두 가능하며, 4박 5일 1인 예산은 대략 65~110만 원으로 150만 원 안에 들어올 가능성이 큽니다(항공권·객실 구성에 따라 달라짐). 3인실이나 2실 구성은 따로 확인해야 하고, 샹산 같은 계단 코스는 체력에 맞춰 고르세요.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/대만-물가-여행-경비-예산",
+                  "https://ko.skyticket.com/guide/42364",
+                  "https://tool.kr-story.com/97"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 약 25~50만 원",
+                "summary": "저가항공 최저가는 왕복 10만 원대부터 검색되지만, 실제 성수기·주말 예약은 20만 원대 중반 이상이 많고 쑹산공항 노선은 1월 평균이 약 53만 원으로 비싼 편입니다. 요금은 날짜에 따라 크게 달라지므로 확인이 필요합니다.",
+                "sources": [
+                  "https://www.kayak.co.kr/항공권/서울-인천국제공항-ICN/타이베이-TW1",
+                  "https://www.kayak.co.kr/항공권/서울-인천국제공항-ICN/타이베이-쑹산공항-TSA",
+                  "https://www.hotelscombined.co.kr/flight-routes/Incheon-Intl-ICN/Taipei-City-Taiwan-Taoyuan-Intl-TPE.ksp"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 250000,
+                  "max": 500000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 2시간 30분~2시간 50분, 직항 다수",
+                "summary": "인천~타오위안 직항이 하루 여러 편 있고, 노선 평균 비행시간은 약 2시간 45분입니다. 항공사별로 2시간 30분~2시간 50분 정도입니다.",
+                "sources": [
+                  "https://www.hotelscombined.co.kr/flight-routes/Incheon-Intl-ICN/Taipei-City-Taiwan-Taoyuan-Intl-TPE.ksp",
+                  "https://aviability.com/ko/route/icn-seoul-incheon/tpe-taipei-taoyuan",
+                  "https://www.kayak.co.kr/항공권/대한민국-KR0/타이베이-TW1"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 2.5,
+                  "max": 2.9
+                }
+              },
+              "lodging": {
+                "value": "중급 호텔 1박 약 9만~17만 원(객실 기준)",
+                "summary": "예약 플랫폼 기준 표준~프리미엄급 평균이 1박 약 72~113달러이고 3성급 평일 평균은 약 116달러입니다. 3명이 묵는 트리플룸·2실 요금은 별도로 확인이 필요하며, 환율에 따라 원화 금액이 달라집니다.",
+                "sources": [
+                  "https://www.klook.com/en-US/destination/c19-taipei/3-hotel/",
+                  "https://us.trip.com/hotels/taipei-hotels-list-617/",
+                  "https://www.hotelscombined.com/Place/Taipei.htm"
+                ],
+                "asOf": "2026-07",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 90000,
+                  "max": 170000
+                }
+              },
+              "prices": {
+                "value": "한국보다 약 10~20% 저렴, 1인 1일 약 5만~9만 원(숙박 제외)",
+                "summary": "로컬 식당과 야시장, 대중교통이 특히 저렴하고, 식비 1일 3~4만 원·교통 1만 원 안팎에 관광비가 더해집니다. 대만 3박 4일 1인 총경비는 약 85만 원(항공 포함)으로 소개돼 있어 4박 5일도 150만 원 안에서 가능해 보입니다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/대만-물가-여행-경비-예산",
+                  "https://ko.skyticket.com/guide/42364"
+                ],
+                "asOf": "2026-08",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "visa": {
+                "value": "무비자 90일(관광), 여권 6개월 이상·왕복항공권 필요",
+                "summary": "한국인은 관광 목적이면 90일간 무비자로 체류할 수 있고, 입국 시 여권 유효기간이 6개월 이상 남아 있어야 하며 왕복(또는 다음 행선지) 항공권을 소지해야 합니다. 온라인 입국신고서 작성은 별도로 확인하세요.",
+                "sources": [
+                  "https://overseas.mofa.go.kr/tw-ko/brd/m_11926/view.do?seq=1331925",
+                  "https://overseas.mofa.go.kr/tw-ko/brd/m_11926/view.do?seq=1331926",
+                  "https://www.tripstore.kr/blog/대만-비자-조건-준비물"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "치안 양호, 소매치기·지진 주의 (여행경보 지정 없음, 공식 재확인 필요)",
+                "summary": "주타이베이 대표부는 치안이 아시아에서 비교적 안전한 편이나 관광객 증가로 외국인 대상 소매치기가 늘고 있고 오토바이 사고도 유의하라고 안내합니다. 태풍철(6~10월)은 1월과 겹치지 않지만 지진은 연중 가능하며, 여행경보 단계는 외교부 해외안전여행(0404.go.kr)에서 출발 전 확인하세요.",
+                "sources": [
+                  "https://overseas.mofa.go.kr/tw-ko/brd/m_11926/view.do?seq=1331926&amp%3Bmulti_itm_seq=0&amp%3Bitm_seq_1=0&amp%3Bitm_seq_2=0",
+                  "https://overseas.mofa.go.kr/tw-ko/brd/m_1452/view.do?seq=1347499",
+                  "https://namu.wiki/w/여행경보제도",
+                  "https://0404.go.kr/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "예방접종 권고: A형간염·홍역·파상풍·독감 / 식수·의료 접근성은 확인 필요",
+                "summary": "해외감염병NOW는 대만 여행자에게 A형간염, 홍역(MMR), 파상풍, 인플루엔자(10~4월) 접종을 권고하며, 대만 CDC는 2026년 6월 일본뇌염 환자 발생을 알렸습니다(모기 주의). 수돗물 음용 가능 여부와 의료 접근성은 이번 조사에서 공식 자료로 확인하지 못했으니 생수 이용과 여행자보험 가입을 권합니다.",
+                "sources": [
+                  "http://xn--now-po7lf48dlsm0ya109f.kr/nqs/oidnow/search/searchResult.do?search_nm=%EB%8C%80%EB%A7%8C&disease_no=&infect_no=",
+                  "https://www.kdca.go.kr/bbs/gyeongnam/147/308171/download.do",
+                  "https://www.kdca.go.kr/kdca/4915/subview.do"
+                ],
+                "asOf": "2026-06",
+                "needsCheck": true,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.44106
+          },
+          "gpt": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"타이베이\",\"TPE\",{\"month\":1},4,false,{\"type\":\"family\",\"familyDetail\":\"adults_only\"},3]",
+            "at": "2026-10-14T13:56:55.760Z",
+            "items": {
+              "weather": {
+                "value": "1월 평년 최저 약 12℃·최고 약 19℃, 선선하고 흐리거나 이슬비가 올 수 있음",
+                "summary": "월별 기후 자료상 평균기온은 약 16℃이며 겨울철 북동계절풍 영향으로 흐리고 습한 날이 있습니다. 실제 기온·강수는 해마다 달라질 수 있어 출발 전 예보를 확인하고 우산과 겹쳐 입을 옷을 준비하세요.",
+                "sources": [
+                  "https://data.gov.tw/en/datasets/145785",
+                  "https://www.taipeitourism.org/taipei-travel-guide/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "우육면·샤오롱바오·루러우판·야시장 간식 추천",
+                "summary": "성인 가족 3명은 메뉴를 나눠 맛보기 좋은 식당과 라오허제·스린 등 야시장을 조합하면 편리합니다. 인기 식당은 대기할 수 있고, 야시장은 간식과 기념품 쇼핑을 함께 즐기기 좋습니다.",
+                "sources": [
+                  "https://www-ws.gov.taipei/001/Upload/302/relfile/9769/67342/4cddf359-2e77-4930-80b4-aadfc7f0a892.pdf",
+                  "https://eng.taiwan.net.tw/m1.aspx?sNo=00020901024"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "타이베이 101·코끼리산 전망대·야시장, 해질녘과 야간 추천",
+                "summary": "타이베이 101 전망대와 신이구는 도시 풍경 촬영에 좋고, 야시장은 저녁에 활기찬 거리 사진을 찍기 좋습니다. 코끼리산은 계단과 오르막이 있으므로 동행자의 보행 편의와 날씨를 고려하세요.",
+                "sources": [
+                  "https://www.taiwan.net.tw/m1.aspx?id=7927&sno=0001016",
+                  "https://www.taipeitourism.org/best-things-to-do-in-taipei/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "적합도 높음 — 성인 가족의 음식·도시·쇼핑·사진 관심에 잘 맞음",
+                "summary": "MRT로 주요 도심 명소와 야시장을 둘러보고, 타이베이 101·신이구에서 전망과 쇼핑을 함께 즐기기 좋습니다. 4박 5일이면 시내 명소와 근교 하루 일정을 섞을 수 있지만, 1인 150만 원 예산에는 쇼핑비를 별도로 잡아야 여유롭습니다.",
+                "sources": [
+                  "https://eng.taiwan.net.tw/m1.aspx?sNo=00020901024",
+                  "https://www-ws.gov.taipei/001/Upload/302/relfile/9769/67342/4cddf359-2e77-4930-80b4-aadfc7f0a892.pdf"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 약 30만~60만 원",
+                "summary": "인천–타오위안 노선은 직항편이 있으며, 운임은 요일·예약 시점·수하물 포함 여부에 따라 달라집니다. 1월 일정이 확정되지 않아 계획용 대략 범위이며 연휴 전후에는 더 비쌀 수 있습니다.",
+                "sources": [
+                  "https://www.google.com/travel/flights/flights-from-seoul-to-taipei-city.html",
+                  "https://www.flightsfrom.com/ICN-TPE"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 300000,
+                  "max": 600000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 2.5~3.1시간, 직항 가능",
+                "summary": "인천(ICN)에서 타오위안(TPE)까지 직항편이 운항하며, 항공편별 소요시간은 대략 2시간 30분~3시간 5분입니다. 날짜별 운항편과 실제 시간은 예약 전에 확인하세요.",
+                "sources": [
+                  "https://www.flightsfrom.com/ICN-TPE",
+                  "https://www.originfacts.com/flight-routes/icn-to-tpe"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 2.5,
+                  "max": 3.1
+                }
+              },
+              "lodging": {
+                "value": "3인 투숙 가능한 중급 객실 1박 약 9만~18만 원",
+                "summary": "1월 타이베이 숙소는 날짜와 객실 정원에 따라 차이가 큽니다. 검색된 3성급 숙소 예시 가격을 참고한 계획용 범위이며, 3인실·조식·세금 포함 여부를 예약 화면에서 확인하세요.",
+                "sources": [
+                  "https://www.google.com.tw/travel/hotels/",
+                  "https://www.traveldeals.com/prices/taipei"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 90000,
+                  "max": 180000
+                }
+              },
+              "prices": {
+                "value": "현지 음식·대중교통은 한국보다 저렴하거나 비슷한 편, 1인 하루 약 7만~12만 원",
+                "summary": "야시장과 현지 식당 위주로 식사하고 MRT를 이용하면 경비를 조절하기 쉽습니다. 이 일일 경비는 현지 식사·교통·일부 입장료의 대략치로, 숙박·항공·쇼핑은 별도이므로 150만 원 예산에서는 항공권과 숙소를 먼저 낮은 범위로 확보하는 편이 좋습니다.",
+                "sources": [
+                  "https://www.taipeitourism.org/taipei-travel-cost/",
+                  "https://www.taipeitourism.org/taipei-food-guide/",
+                  "https://www.budgetyourtrip.com/taiwan/taipei"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "visa": {
+                "value": "한국 일반여권은 최대 90일 무비자",
+                "summary": "입국일 기준 여권 유효기간 6개월 이상과 확정된 귀국 또는 다음 목적지 항공권이 요구됩니다. 입국 규정은 출발 전에 다시 확인하세요.",
+                "sources": [
+                  "https://www.boca.gov.tw/fp-149-4486-7785a-2.html"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "여행경보 단계 확인 필요; 지진 대비와 기본 소지품 주의 권장",
+                "summary": "외교부 해외안전여행 사이트에서 대만의 최신 여행경보 단계를 출발 직전에 확인하세요. 대만은 지진 위험이 있으며, 대만 기상청은 지진이 계절과 직접 관련 있다는 과학적 근거는 확인되지 않았다고 안내합니다.",
+                "sources": [
+                  "https://0404.go.kr/app/main/mainPage",
+                  "https://scweb.cwa.gov.tw/en-us/guidance/faqdetail/191"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "타이베이 수돗물은 수질 기준을 충족하지만, 식품·감염병 예방수칙 준수 권장",
+                "summary": "타이베이 수도국은 수돗물이 음용 가능한 수질이라고 안내하지만, 숙소 배관 상태가 우려되면 정수대나 끓인 물을 이용할 수 있습니다. 손 씻기와 충분히 익힌 음식 섭취를 지키고, 정기 예방접종을 점검하세요. 타이베이에는 주요 병원과 의료기관이 있습니다.",
+                "sources": [
+                  "https://english.water.gov.taipei/cp.aspx?n=3CCEA0A29EEA6820",
+                  "https://www.cdc.gov.tw/Category/MPage/dD0xcwJor_qG8nlP5UiL4g",
+                  "https://www.taiwan.net.tw/m1.aspx?sNo=0001064"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.09815339
+          }
+        },
+        "c-e0dff3cd-b92d-4b40-bdb4-e0a35b46dd84": {
+          "confirmed": {},
+          "notes": {},
+          "claude": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"싱가포르\",\"SIN\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":\"adults_only\"},3]",
+            "at": "2026-10-14T14:22:05.508Z",
+            "items": {
+              "weather": {
+                "value": "최저 24℃·최고 31℃, 우기 말미라 비 잦음(월 강수 약 200~220mm)",
+                "summary": "1월은 북동 몬순 영향으로 습하고 오후 스콜이 잦지만 바람이 불어 다른 달보다 덜 덥습니다. 우산과 얇은 겉옷(실내 냉방용)을 챙기고 야외 일정은 오전에 두는 편이 좋습니다.",
+                "sources": [
+                  "https://triple.guide/articles/09cf67cb-3c32-4c35-a132-d667ef937b30",
+                  "https://www.data.jma.go.jp/cpd/monitor/nrmlist/NrmMonth.php?stn=48698",
+                  "https://polargom86.com/entry/%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4-1%EC%9B%94-%EB%82%A0%EC%94%A8-%EA%B0%80%EB%93%A0%EC%8A%A4%EB%B0%94%EC%9D%B4%EB%8D%94%EB%B2%A0%EC%9D%B4-%EC%84%BC%ED%86%A0%EC%82%AC-%EC%84%AC"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "호커센터(칠리크랩·치킨라이스·락사)와 에어컨 시푸드 레스토랑을 함께 이용",
+                "summary": "맥스웰 푸드센터 등 호커센터에는 미쉐린 빕 구르망 노점이 많고, 주로 현금을 받습니다. 점보 시푸드 같은 실내 레스토랑은 호커센터보다 비싸며(6명 약 40만 원이라는 후기), 성인 3명이면 크랩 1마리에 사이드를 곁들이는 식으로 나눠 먹기 좋습니다.",
+                "sources": [
+                  "https://kr.trip.com/guide/food/%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4+%EB%A7%9B%EC%A7%91.html",
+                  "https://mytravelcode.com/entry/%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4-%EC%B0%A8%EC%9D%B4%EB%82%98%ED%83%80%EC%9A%B4-%ED%98%B8%EC%BB%A4%EC%84%BC%ED%84%B0-%EB%A7%9B%EC%A7%91-%EC%B6%94%EC%B2%9C-%EB%A1%9C%EC%BB%AC-%ED%98%84%EC%A7%80-%EC%8B%9D%EB%8B%B9%EB%B6%80%ED%84%B0-%EB%AF%B8%EC%8A%90%EB%9E%AD-%EB%A0%88%EC%8A%A4%ED%86%A0%EB%9E%91%EA%B9%8C%EC%A7%80-%EA%B0%80%EB%B3%BC-%EB%A7%8C%ED%95%9C-%EA%B3%B3",
+                  "https://pappa.nblogos.com/27",
+                  "https://www.myrealtrip.com/community/posts/19874"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "마리나 베이 일몰~야간(헬릭스 브릿지·머라이언 파크·가든스 슈퍼트리)",
+                "summary": "헬릭스 브릿지는 일몰과 조명이 켜진 저녁에 사진이 잘 나오고, 머라이언 파크는 저녁 야경이 좋습니다. 1월 일몰은 오후 7시 15분 전후이며, MBS 분수·레이저 쇼는 저녁 8시와 9시 30분으로 소개되지만 시간이 바뀔 수 있어 현지 확인이 필요합니다.",
+                "sources": [
+                  "https://wanderlog.com/list/geoCategory/160162/best-photo-spots-in-singapore",
+                  "https://triple.guide/articles/0fd7987b-1c1b-4a83-8c22-552a91610bf7",
+                  "https://ko.skyticket.com/guide/39752",
+                  "https://wanderlog.com/weather/5015/1/changi-weather-in-january"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "성인 가족 3명 3박 4일에 잘 맞음 (예산은 빠듯)",
+                "summary": "음식·도시·쇼핑(오차드 로드)·액티비티(센토사)·사진 관심사를 모두 채우고, 직항 약 6.5시간에 치안과 위생이 좋아 성인 가족에게 무난합니다. 3박 4일 1인 총비용이 약 120~150만 원으로 소개돼 예산 150만 원에 간신히 들어오며, 1월은 항공 성수기이고 3인 객실이나 2개 객실 비용이 추가될 수 있습니다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4-%EC%97%AC%ED%96%89-%EA%B2%BD%EB%B9%84-%EC%98%88%EC%82%B0-%EC%B4%9D%EC%A0%95%EB%A6%AC",
+                  "https://kr.trip.com/moments/theme/destination-chinatown-2040722-comprehensive-guides-993136",
+                  "https://www.kayak.co.kr/%ED%95%AD%EA%B3%B5%EA%B6%8C/%EC%84%9C%EC%9A%B8-%EC%9D%B8%EC%B2%9C%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD-ICN/%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4-SG0"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 약 40~65만 원 (1월 성수기, 직항 LCC~대형사)",
+                "summary": "1월은 이 노선의 성수기이며 평균 요금이 약 23% 오른다는 자료가 있고, LCC 왕복은 45~55만 원대, 대형 항공사는 60~80만 원대로 소개됩니다. 검색 사이트에는 1월 직항 약 37만 원대 특가도 보이지만 실시간 변동이 크므로 발권 전 재확인이 필요합니다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/singapore-flight-ticket-tips-guide",
+                  "https://www.kayak.co.kr/%ED%95%AD%EA%B3%B5%EA%B6%8C/%EC%84%9C%EC%9A%B8-%EC%9D%B8%EC%B2%9C%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD-ICN/%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4-SG0",
+                  "https://www.hotelscombined.co.kr/flight-routes/Incheon-Intl-ICN/Singapore-SG0.ksp"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 400000,
+                  "max": 650000
+                }
+              },
+              "flightTime": {
+                "value": "편도 직항 약 6시간 30분~7시간",
+                "summary": "인천~싱가포르는 대한항공, 싱가포르항공, 티웨이, 스쿠트 등이 직항을 운항하며 평균 6시간 30분 안팎입니다. 경유하면 8시간 이상 걸리는 경우가 많습니다.",
+                "sources": [
+                  "https://www.skyscanner.com/routes/icn/sins/incheon-international-to-singapore.html",
+                  "https://namu.wiki/w/%EC%9D%B8%EC%B2%9C-%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4%20%ED%95%AD%EA%B3%B5%EB%85%B8%EC%84%A0",
+                  "https://www.kayak.com/flight-routes/Seoul-Incheon-Intl-ICN/Singapore-Changi-SIN"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 6.4,
+                  "max": 7
+                }
+              },
+              "lodging": {
+                "value": "중급 호텔 1박 약 15~30만 원 (객실 기준)",
+                "summary": "3~4성급 비즈니스 호텔은 1박 15~25만 원대, 수영장이 있는 4성급은 25~35만 원 수준으로 소개됩니다. 요금은 대부분 2인 객실 기준이라 3명이면 트리플룸이나 2개 객실이 필요해 총액이 더 들 수 있고, 얼리버드 예약이 유리합니다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4-%EC%97%AC%ED%96%89-%EA%B2%BD%EB%B9%84-%EC%98%88%EC%82%B0-%EC%B4%9D%EC%A0%95%EB%A6%AC",
+                  "https://www.tripstore.kr/blog/%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4-4%EB%B0%95-5%EC%9D%BC-%EC%97%AC%ED%96%89-%EA%B2%BD%EB%B9%84-%EC%B4%9D%EC%A0%95%EB%A6%AC",
+                  "https://kr.trip.com/guide/info/singapore-cost-of-living.html"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 150000,
+                  "max": 300000
+                }
+              },
+              "prices": {
+                "value": "한국보다 높음, 1인 1일 약 15~45만 원(숙박 포함, 호커센터 위주~중간 가격대)",
+                "summary": "숙박비가 가장 큰 부담이며, 호커센터와 MRT 중심이면 하루 15~19만 원, 중간 가격대 여행은 40~45만 원 정도로 소개됩니다. 입장료도 S.E.A. 아쿠아리움 약 4만 5천 원, 싱가포르 플라이어 약 4만 원 수준이라 액티비티는 미리 예산에 넣어야 합니다.",
+                "sources": [
+                  "https://kr.trip.com/guide/info/singapore-cost-of-living.html",
+                  "https://www.tripstore.kr/blog/%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4-%EC%97%AC%ED%96%89-%EA%B2%BD%EB%B9%84-%EC%98%88%EC%82%B0-%EC%B4%9D%EC%A0%95%EB%A6%AC"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "visa": {
+                "value": "90일 미만 무비자, 입국 3일 전부터 SG Arrival Card 온라인 제출 필수",
+                "summary": "외교부 안내상 관광 목적 90일 미만은 비자 없이 입국할 수 있고, 도착 전 3일 이내에 SG Arrival Card를 무료로 제출해야 합니다. 동행자도 각자 제출해야 하며, 여권 잔여 유효기간은 6개월 이상을 권장하는 안내가 많으니 출발 전 공식 안내로 다시 확인하세요.",
+                "sources": [
+                  "https://www.mofa.go.kr/sg-ko/brd/m_11935/view.do?seq=1346977",
+                  "https://miso-rich.co.kr/219",
+                  "https://www.boolub.com/?pn=board.view&_menu=cityguide&_uid=1368&_PVSC=JnBuPWJvYXJkLmxpc3QmX21lbnU9Y2l0eWd1aWRl"
+                ],
+                "asOf": "2026-07",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "치안 양호, 여행경보 발령 없는 것으로 파악(공식 단계 재확인 필요), 1월 우기 국지 침수 가능",
+                "summary": "한국 외교부 해외안전여행(0404.go.kr)의 현재 경보 단계는 직접 확인하지 못했고, 2차 자료에는 싱가포르가 여행경보 없는 국가로 분류돼 있습니다. 주싱가포르 대사관은 2026년에도 피싱·마약 운반 연루 주의를 공지했고, 대중교통 내 음식물 섭취 등 엄격한 법규와 벌금에 유의해야 하며, 우기에는 저지대에서 국지적인 홍수가 날 수 있습니다.",
+                "sources": [
+                  "https://sg.mofa.go.kr/sg-ko/brd/m_2524/list.do",
+                  "https://namu.wiki/w/%EC%97%AC%ED%96%89%EA%B2%BD%EB%B3%B4%EC%A0%9C%EB%8F%84",
+                  "https://entrip.net/singapore-weather/",
+                  "https://esim.holafly.com/ko/travel-tips/singapore-travel-rules/"
+                ],
+                "asOf": "2026-07",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "수돗물·호커센터 위생 양호, 뎅기열·지카 모기 주의(질병청 검역관리지역)",
+                "summary": "수돗물은 마실 수 있는 수준으로 소개되고, 질병관리청은 2026년 3분기 싱가포르를 뎅기열·지카바이러스감염증 검역관리지역으로 지정해 모기기피제를 3~4시간 간격으로 쓰도록 안내했습니다. A형 간염 항체가 없으면 접종이 권고되며, 현지 의료 접근성은 이번 검색에서 확인하지 못해 여행자 보험을 권장합니다.",
+                "sources": [
+                  "https://www.k-health.com/news/articleView.html?idxno=100353",
+                  "https://www.sisajournal.com/news/articleView.html?idxno=381532",
+                  "https://esim.holafly.com/ko/travel-tips/singapore-travel-rules/",
+                  "http://xn--now-po7lf48dlsm0ya109f.kr/nqs/oidnow/search/searchResult.do?search_nm=%EC%8B%B1%EA%B0%80%ED%8F%AC%EB%A5%B4"
+                ],
+                "asOf": "2026-07",
+                "needsCheck": true,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.516294
+          },
+          "gpt": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"싱가포르\",\"SIN\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":\"adults_only\"},3]",
+            "at": "2026-10-14T13:56:55.760Z",
+            "items": {
+              "weather": {
+                "value": "최저 평균 24.3℃·최고 평균 30.6℃, 비 오는 날 월평균 13일",
+                "summary": "싱가포르의 1월 평년 강수량은 221.6mm로 비가 잦고, 고온다습하며 소나기·뇌우가 올 수 있습니다. 우산과 통풍이 잘되는 옷을 준비하세요.",
+                "sources": [
+                  "https://www.weather.gov.sg/climate-climate-of-singapore/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "치킨라이스·락사·칠리크랩·사테를 호커센터와 식당에서 즐기기 좋음",
+                "summary": "맥스웰 푸드센터·차이나타운 컴플렉스 등 호커센터는 다양한 메뉴를 나눠 먹기 편해 성인 가족 3명에게 실용적입니다. 칠리크랩은 호커 음식보다 비용이 높을 수 있어 예산을 따로 잡으세요.",
+                "sources": [
+                  "https://www.visitsingapore.com/things-to-do/dining/local-food-and-drinks/",
+                  "https://www.visitsingapore.com/neighbourhood/featured-neighbourhood/chinatown/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "마리나베이·가든스 바이 더 베이, 해질녘부터 야간 추천",
+                "summary": "마리나베이 스카이라인은 일몰 무렵과 야간에 촬영하기 좋고, 가든스 바이 더 베이의 슈퍼트리 조명 쇼도 사진 명소입니다. 비가 오면 야외 촬영 일정을 유연하게 조정하세요.",
+                "sources": [
+                  "https://www.visitsingapore.com/content/dam/desktop/global/about-singapore/traveller-information/guides/mv_main_en.pdf",
+                  "https://www.visitsingapore.com/see-do-singapore/nature-wildlife/parks-gardens/gardens-by-the-bay/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "적합도 높음—도시·음식·쇼핑·액티비티·사진을 짧은 일정에 두루 즐길 수 있음",
+                "summary": "대중교통으로 주요 도심 명소를 연결하기 편하고, 실내 정원·쇼핑몰·호커센터를 함께 묶을 수 있어 성인 가족 3명의 취향을 맞추기 좋습니다. 다만 숙박·유료 액티비티·쇼핑 비용이 높아 1인 150만 원 예산에서는 항공권과 숙박을 먼저 예약하고 쇼핑 지출을 제한하는 편이 좋습니다.",
+                "sources": [
+                  "https://www.visitsingapore.com/content/mice/en/tools-and-resources/plan-your-trip/",
+                  "https://www.visitsingapore.com/see-do-singapore/nature-wildlife/parks-gardens/gardens-by-the-bay/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 약 38만~65만 원",
+                "summary": "2027년 1월 검색된 항공권 자료에는 왕복 평균 약 46만 원, 직항은 약 50만 원부터로 제시되어 있습니다. 날짜·수하물·항공사에 따라 달라지는 대략적인 범위이며 예약 시 재확인이 필요합니다.",
+                "sources": [
+                  "https://hotel.stubbyplanner.com/singapore/2027-01",
+                  "https://www.singaporeair.com/mv/en/plan-travel/destinations/flights-from-seoul-to-singapore/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 380000,
+                  "max": 650000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 6.25~7시간, 직항편 있음",
+                "summary": "인천–싱가포르 직항 노선이 운항하며 항공사·편명에 따라 비행시간이 다릅니다. 실제 운항일과 소요시간은 예약 단계에서 확인하세요.",
+                "sources": [
+                  "https://www.singaporeair.com/sg/en/plan-travel/destinations/flights-from-singapore-to-seoul/",
+                  "https://www.flyscoot.com/flights/en/flights-from-singapore-to-seoul"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 6.25,
+                  "max": 7
+                }
+              },
+              "lodging": {
+                "value": "중급 숙소 1박 약 13만~30만 원(객실 기준)",
+                "summary": "싱가포르 관광청 안내에 따르면 중급 호텔은 좋은 입지 기준 1박 120싱가포르달러부터입니다. 3인 투숙 객실·추가 침대·세금과 날짜에 따라 가격이 더 오를 수 있어 실시간 요금 확인이 필요합니다.",
+                "sources": [
+                  "https://www.visitsingapore.com/content/mice/en/tools-and-resources/plan-your-trip/",
+                  "https://helloaxel.com/en/hotels/destinations/singapore"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 130000,
+                  "max": 300000
+                }
+              },
+              "prices": {
+                "value": "한국보다 전반적으로 비싼 편; 현지 경비 하루 약 8만~14만 원/인",
+                "summary": "2026년 물가 지표에서 싱가포르는 한국보다 생활비·외식 물가 지수가 높습니다. 하루 예산은 호커센터 식사와 대중교통 중심으로 계산한 대략치이며 유료 액티비티·쇼핑·숙박·항공료는 별도입니다.",
+                "sources": [
+                  "https://www.numbeo.com/cost-of-living/rankings_by_country.jsp?region=142&title=2026",
+                  "https://www.ptc.gov.sg/fares/public-transport-fares-and-passes/",
+                  "https://www.visitsingapore.com/content/mice/en/tools-and-resources/plan-your-trip/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "visa": {
+                "value": "한국 일반여권은 관광 목적 최대 90일 무비자",
+                "summary": "여권 유효기간은 입국일 기준 최소 6개월이어야 하며, 도착일 포함 입국 전 3일 이내에 SG Arrival Card를 제출해야 합니다. SG Arrival Card는 비자가 아니며 무료입니다.",
+                "sources": [
+                  "https://seoul.mfa.gov.sg/consular-services/visa-information/",
+                  "https://www.ica.gov.sg/enter-transit-depart/entering-singapore"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "외교부 여행경보 1단계(여행유의)로 확인; 기본적인 소지품·법규 주의 필요",
+                "summary": "외교부 자료에는 싱가포르가 1단계로 분류되어 있으나 여행경보와 현지 안전 공지는 출국 전 다시 확인하세요. 1월은 우기 영향으로 강한 비·뇌우에 유의하고, 외교부는 2026년 10월 연무 관련 안전 유의 공지도 게시했습니다.",
+                "sources": [
+                  "https://www.0404.go.kr/bbs/travelAlertAjmt/ATC0000000048089/detail",
+                  "https://www.0404.go.kr/bbs/embsyNtc/list?ntnCd=134",
+                  "https://www.weather.gov.sg/climate-climate-of-singapore/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "수돗물 음용 가능; 기본 예방접종 확인 및 모기·식품 위생 주의",
+                "summary": "싱가포르 수돗물은 음용 기준에 적합하다고 수자원청이 안내합니다. CDC는 미접종 여행자의 A형간염 예방접종을 권고하며, 모기 물림을 피하고 음식은 충분히 익혀 먹으세요; 진료 전 여행자보험 보장 범위도 확인하는 편이 안전합니다.",
+                "sources": [
+                  "https://www.pub.gov.sg/Public/WaterLoop/Water-Quality",
+                  "https://wwwnc.cdc.gov/travel/destinations/traveler/none/singapore"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.006943799999999999
+          }
+        }
+      },
+      "scores": {
+        "c-7b007299-f068-4664-b60f-1151657f3a21": {
+          "cost": {
+            "ai": {
+              "claude": 8,
+              "gpt": 9
+            },
+            "rationale": {
+              "claude": "항공 18~35만에 근거리라 총액이 예산 안에 여유 있음",
+              "gpt": "항공·숙박·현지 물가가 비교적 낮아 150만 원 예산에 가장 여유롭다."
+            },
+            "final": 9
+          },
+          "weather": {
+            "ai": {
+              "claude": 5,
+              "gpt": 6
+            },
+            "rationale": {
+              "claude": "최저 3~4℃로 춥지만 강수가 적어 활동엔 무난",
+              "gpt": "비는 적지만 1월 평균 최고 10℃ 안팎으로 쌀쌀해 야외 일정은 추울 수 있다."
+            },
+            "final": 6
+          },
+          "distance": {
+            "ai": {
+              "claude": 10,
+              "gpt": 10
+            },
+            "rationale": {
+              "claude": "직항 약 1시간 20분으로 이동 부담이 가장 작음",
+              "gpt": "직항 약 1시간 20분부터로 세 곳 중 가장 가까워 이동 부담이 작다."
+            },
+            "final": 10
+          },
+          "food": {
+            "ai": {
+              "claude": 9,
+              "gpt": 9
+            },
+            "rationale": {
+              "claude": "하카타 라멘·모츠나베·야타이·복어 등 선택지 풍부",
+              "gpt": "돈코츠 라멘·모츠나베·해산물과 야타이 등 음식 선택지가 풍부하다."
+            },
+            "final": 9
+          },
+          "photo": {
+            "ai": {
+              "claude": 7,
+              "gpt": 7
+            },
+            "rationale": {
+              "claude": "후쿠오카타워 야경, 모모치 해변, 오호리공원 등 무난",
+              "gpt": "타워 야경과 모모치 해변이 좋지만 사진 명소의 규모와 다양성은 다소 제한적이다."
+            },
+            "final": 7
+          },
+          "safety": {
+            "ai": {
+              "claude": 8,
+              "gpt": 9
+            },
+            "rationale": {
+              "claude": "여행경보 미발령, 지진 대비만 필요",
+              "gpt": "여행경보가 없고 도심 치안이 양호하나 지진 대비는 필요하다."
+            },
+            "final": 9
+          },
+          "k-9c54405b": {
+            "ai": {
+              "claude": 8,
+              "gpt": 7
+            },
+            "rationale": {
+              "claude": "텐진·캐널시티 등 도심 쇼핑 집약, 이동 편리",
+              "gpt": "하카타·텐진 쇼핑은 편리하지만 쇼핑 규모와 선택지는 타이베이·싱가포르보다 작다."
+            },
+            "final": 8
+          }
+        },
+        "c-b1de0995-9f69-4689-bb53-3cc6c71f9160": {
+          "cost": {
+            "ai": {
+              "claude": 7,
+              "gpt": 7
+            },
+            "rationale": {
+              "claude": "물가·숙박은 저렴하나 4박 5일이라 총액은 중간",
+              "gpt": "현지 물가는 합리적이나 4박 일정과 항공료를 합치면 예산 여유가 크지 않다."
+            },
+            "final": 7
+          },
+          "weather": {
+            "ai": {
+              "claude": 6,
+              "gpt": 8
+            },
+            "rationale": {
+              "claude": "12~19℃로 선선하지만 비 잦고 흐린 편",
+              "gpt": "1월에도 12~19℃로 걷기 좋지만 흐리거나 이슬비가 잦을 수 있다."
+            },
+            "final": 7
+          },
+          "distance": {
+            "ai": {
+              "claude": 8,
+              "gpt": 8
+            },
+            "rationale": {
+              "claude": "직항 약 2시간 30분~3시간으로 부담 적음",
+              "gpt": "직항 약 2시간 반으로 가깝고 편수도 많지만 후쿠오카보다는 이동이 길다."
+            },
+            "final": 8
+          },
+          "food": {
+            "ai": {
+              "claude": 8,
+              "gpt": 10
+            },
+            "rationale": {
+              "claude": "우육면·샤오롱바오·야시장 먹거리가 다양하고 저렴",
+              "gpt": "우육면·샤오롱바오·루러우판과 야시장 먹거리까지 음식 선택이 매우 다양하다."
+            },
+            "final": 9
+          },
+          "photo": {
+            "ai": {
+              "claude": 8,
+              "gpt": 9
+            },
+            "rationale": {
+              "claude": "101타워·샹산 야경·지우펀 홍등 등 명소 다양",
+              "gpt": "101 야경·샹산·지우펀 홍등과 단수이 일몰 등 촬영 명소가 다채롭다."
+            },
+            "final": 9
+          },
+          "safety": {
+            "ai": {
+              "claude": 7,
+              "gpt": 8
+            },
+            "rationale": {
+              "claude": "치안 양호, 지진·소매치기 주의, 경보 재확인 필요",
+              "gpt": "치안은 대체로 양호하지만 지진과 소매치기에 유의하고 경보를 확인해야 한다."
+            },
+            "final": 8
+          },
+          "k-9c54405b": {
+            "ai": {
+              "claude": 7,
+              "gpt": 8
+            },
+            "rationale": {
+              "claude": "야시장·번화가 쇼핑이 저렴하나 브랜드 폭은 보통",
+              "gpt": "야시장·백화점·상점가가 다양해 쇼핑하기 좋지만 고급 쇼핑 선택은 싱가포르에 뒤진다."
+            },
+            "final": 8
+          }
+        },
+        "c-e0dff3cd-b92d-4b40-bdb4-e0a35b46dd84": {
+          "cost": {
+            "ai": {
+              "claude": 4,
+              "gpt": 4
+            },
+            "rationale": {
+              "claude": "항공 40~65만, 물가·숙박 높아 예산 초과 위험",
+              "gpt": "항공·숙박·현지 물가가 높아 식비와 입장료까지 고려하면 예산이 빠듯하다."
+            },
+            "final": 4
+          },
+          "weather": {
+            "ai": {
+              "claude": 4,
+              "gpt": 5
+            },
+            "rationale": {
+              "claude": "고온다습하고 우기라 비 오는 날이 많음",
+              "gpt": "따뜻한 날씨는 장점이나 1월 우기라 비가 잦고 덥고 습할 수 있다."
+            },
+            "final": 5
+          },
+          "distance": {
+            "ai": {
+              "claude": 4,
+              "gpt": 5
+            },
+            "rationale": {
+              "claude": "직항 6.5~7시간으로 세 후보 중 가장 멂",
+              "gpt": "직항은 있지만 편도 6시간 반 이상으로 세 곳 중 이동 부담이 가장 크다."
+            },
+            "final": 5
+          },
+          "food": {
+            "ai": {
+              "claude": 7,
+              "gpt": 8
+            },
+            "rationale": {
+              "claude": "호커센터·칠리크랩 등 다양하나 외식비가 높음",
+              "gpt": "치킨라이스·락사·칠리크랩 등 호커 음식이 훌륭하나 비용 부담이 있다."
+            },
+            "final": 8
+          },
+          "photo": {
+            "ai": {
+              "claude": 9,
+              "gpt": 10
+            },
+            "rationale": {
+              "claude": "마리나베이·가든스 슈퍼트리 일몰~야경 명소 집중",
+              "gpt": "마리나베이와 슈퍼트리의 야경 등 상징적인 도시 사진 명소가 특히 뛰어나다."
+            },
+            "final": 10
+          },
+          "safety": {
+            "ai": {
+              "claude": 8,
+              "gpt": 10
+            },
+            "rationale": {
+              "claude": "치안 우수, 여행유의 1단계, 뎅기열·침수 유의",
+              "gpt": "치안이 매우 양호하고 안전한 편이나 우기 침수와 엄격한 현지 법규는 유의해야 한다."
+            },
+            "final": 9
+          },
+          "k-9c54405b": {
+            "ai": {
+              "claude": 6,
+              "gpt": 9
+            },
+            "rationale": {
+              "claude": "오차드 등 쇼핑 인프라는 좋지만 가격 부담 큼",
+              "gpt": "대형 쇼핑몰과 브랜드 선택이 강점이나 물가가 높아 실제 구매 부담이 크다."
+            },
+            "final": 8
+          }
+        }
+      },
+      "scoreDraft": {
+        "key": "[[\"c-7b007299-f068-4664-b60f-1151657f3a21\",\"c-b1de0995-9f69-4689-bb53-3cc6c71f9160\",\"c-e0dff3cd-b92d-4b40-bdb4-e0a35b46dd84\"],[\"cost\",\"weather\",\"distance\",\"food\",\"photo\",\"safety\",\"k-9c54405b\"]]",
+        "at": "2026-10-14T14:27:57.598Z",
+        "byModel": {
+          "claude": {
+            "status": "done",
+            "count": 21,
+            "usd": 0.031116,
+            "at": "2026-10-14T14:27:57.598Z"
+          },
+          "gpt": {
+            "status": "done",
+            "count": 21,
+            "usd": 0.001145425,
+            "at": "2026-10-14T14:27:57.598Z"
+          }
+        }
+      },
+      "recommend": {
+        "key": "[\"overseas\",\"인천\",{\"mode\":\"month\",\"season\":\"winter\",\"month\":1,\"startDate\":null,\"nights\":null,\"dayTrip\":false},1500000,{\"type\":\"family\",\"familyDetail\":\"adults_only\"},3,[\"도시\",\"사진\",\"쇼핑\",\"액티비티\",\"음식\"],\"\"]",
+        "at": "2026-10-14T13:47:56.532Z",
+        "byModel": {
+          "claude": {
+            "status": "done",
+            "items": [
+              {
+                "name": "방콕",
+                "nameEn": "Bangkok",
+                "country": "태국",
+                "region": null,
+                "code": "BKK",
+                "travel": "직항 약 5h 30m",
+                "reason": "음식·쇼핑·야시장·왕궁 같은 사진 명소와 마사지·요트 같은 액티비티까지 한 도시에서 해결되어 성인 3인 가족에게 잘 맞고, [kr.trip.com](https://kr.trip.com/guide/theme/%EA%B0%80%EC%84%B1%EB%B9%84+%ED%95%B4%EC%99%B8%EC%97%AC%ED%96%89.html) 기준 3박 4일 약 80~100만 원이라 1인 150만 원 예산에 여유가 있습니다. 1월은 건기 성수기라 항공권과 숙박이 오를 수 있지만, 파인다이닝이나 요트 같은 활동을 넣어도 예산 안에서 조절할 수 있습니다.",
+                "trendEvidence": [
+                  "여행 경비 시뮬레이터가 방콕을 국내외 인기 여행지로 우선 반영함(연도·증가 수치는 확인하지 못함)"
+                ],
+                "sources": [
+                  "https://info.fandit.net/tool/travel-budget-simulator/",
+                  "https://kr.trip.com/guide/theme/%EA%B0%80%EC%84%B1%EB%B9%84+%ED%95%B4%EC%99%B8%EC%97%AC%ED%96%89.html"
+                ],
+                "tags": [
+                  "미식·쇼핑",
+                  "야시장",
+                  "스파·요트 액티비티"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "다낭",
+                "nameEn": "Da Nang",
+                "country": "베트남",
+                "region": null,
+                "code": "DAD",
+                "travel": "직항 약 4h 30m",
+                "reason": "해변, 마블마운틴, 호이안 올드타운의 야경 사진과 현지 음식을 즐기기 좋고, [kr.trip.com](https://kr.trip.com/guide/theme/%EA%B0%80%EC%84%B1%EB%B9%84+%ED%95%B4%EC%99%B8%EC%97%AC%ED%96%89.html)에서 3박 4일 약 80~100만 원으로 소개합니다. 쇼핑 선택지는 방콕보다 적고, 1월은 흐리거나 쌀쌀한 날이 있어 해양 액티비티는 날씨에 따라 제한될 수 있습니다.",
+                "trendEvidence": [
+                  "트립닷컴 가이드가 다낭을 '지금도 여전히 저렴한 여행지'로 소개함(증가 수치는 확인하지 못함)"
+                ],
+                "sources": [
+                  "https://kr.trip.com/guide/theme/%EA%B0%80%EC%84%B1%EB%B9%84+%ED%95%B4%EC%99%B8%EC%97%AC%ED%96%89.html",
+                  "https://info.fandit.net/tool/travel-budget-simulator/"
+                ],
+                "tags": [
+                  "가성비 리조트",
+                  "호이안 야경",
+                  "현지 먹거리"
+                ],
+                "motif": "sea",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "후쿠오카",
+                "nameEn": "Fukuoka",
+                "country": "일본",
+                "region": null,
+                "code": "FUK",
+                "travel": "직항 약 1h 30m",
+                "reason": "비행이 짧아 이동 부담이 적고, 텐진 지하상가·나카스 포장마차·캐널시티를 도보로 돌 수 있어 음식·쇼핑·도시 사진 관심사에 맞습니다([kr.trip.com](https://kr.trip.com/guide/theme/%EA%B0%80%EC%84%B1%EB%B9%84+%ED%95%B4%EC%99%B8%EC%97%AC%ED%96%89.html)). 1월은 연초 성수기라 항공권과 숙박이 오를 수 있고, 엔화 환율에 따라 식비·쇼핑비가 늘 수 있습니다.",
+                "trendEvidence": [
+                  "트립닷컴 가이드가 후쿠오카를 저렴한 해외 여행지로 '꾸준히 인기 있는 도시'라고 소개함(수치는 확인하지 못함)"
+                ],
+                "sources": [
+                  "https://kr.trip.com/guide/theme/%EA%B0%80%EC%84%B1%EB%B9%84+%ED%95%B4%EC%99%B8%EC%97%AC%ED%96%89.html",
+                  "https://info.fandit.net/tool/travel-budget-simulator/"
+                ],
+                "tags": [
+                  "포장마차 미식",
+                  "도보 쇼핑",
+                  "짧은 비행"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": true
+              },
+              {
+                "name": "쿠알라룸푸르",
+                "nameEn": "Kuala Lumpur",
+                "country": "말레이시아",
+                "region": null,
+                "code": "KUL",
+                "travel": "직항 약 6h 40m",
+                "reason": "트윈타워 야경, 바투동굴, 스트리트푸드 투어, 저렴한 쇼핑을 한 번에 즐길 수 있고, [kr.trip.com](https://kr.trip.com/guide/theme/%EA%B0%80%EC%84%B1%EB%B9%84+%ED%95%B4%EC%99%B8%EC%97%AC%ED%96%89.html) 기준 3박 4일 약 90~110만 원으로 예산 안에 들어옵니다. 1월 항공권이 비싸게 잡히면 예산이 빠듯해질 수 있으니 일정은 3~4박이 적당합니다.",
+                "trendEvidence": [
+                  "최근 3년간 인기 상승을 뒷받침하는 수치는 확인하지 못함"
+                ],
+                "sources": [
+                  "https://kr.trip.com/guide/theme/%EA%B0%80%EC%84%B1%EB%B9%84+%ED%95%B4%EC%99%B8%EC%97%AC%ED%96%89.html"
+                ],
+                "tags": [
+                  "스트리트푸드",
+                  "트윈타워 야경",
+                  "저렴한 쇼핑"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "타이베이",
+                "nameEn": "Taipei",
+                "country": "대만",
+                "region": null,
+                "code": "TPE",
+                "travel": "직항 약 2h 40m",
+                "reason": "야시장 먹거리, 도시 야경, 근교 당일 투어까지 가능해 음식·사진·도시 관심사에 맞고 비행 시간도 짧습니다. 이번 검색에서는 구체적인 경비 근거를 확인하지 못했고, 1월은 성수기라 항공권이 오르면 예산을 넘길 수 있습니다.",
+                "trendEvidence": [
+                  "여행 경비 시뮬레이터가 타이베이를 국내외 인기 여행지로 우선 반영함(연도·증가 수치는 확인하지 못함)"
+                ],
+                "sources": [
+                  "https://info.fandit.net/tool/travel-budget-simulator/"
+                ],
+                "tags": [
+                  "야시장 미식",
+                  "도시 야경",
+                  "근교 당일 투어"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": true
+              },
+              {
+                "name": "싱가포르",
+                "nameEn": "Singapore",
+                "country": "싱가포르",
+                "region": null,
+                "code": "SIN",
+                "travel": "직항 약 6h 30m",
+                "reason": "가든스바이더베이, 마리나 베이 샌즈, 센토사 유니버설 스튜디오, 리버크루즈 야경으로 도시·액티비티·사진 관심사를 모두 채울 수 있고, [traveljoong.com](https://traveljoong.com/journeys/singapore/3days-course/)은 3인 가족 3박 4일 경비를 350~400만 원으로 제시합니다. 1인 약 117~133만 원으로 예산 안이지만 숙박과 식비가 비싸 일정이 길어지면 150만 원을 넘길 수 있고, MRT와 호커센터를 이용해야 안전합니다.",
+                "trendEvidence": [
+                  "내셔널 갤러리 싱가포르가 BTS 진의 <Don't Say You Love Me> 뮤직비디오 촬영지로 알려져 포토 스폿으로 주목받음(촬영 연도와 방문객 수치는 확인하지 못함)"
+                ],
+                "sources": [
+                  "https://traveljoong.com/journeys/singapore/3days-course/"
+                ],
+                "tags": [
+                  "도시 야경 촬영",
+                  "테마파크 액티비티",
+                  "쇼핑몰"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": true
+              }
+            ],
+            "citations": 5,
+            "usd": 0.064188,
+            "at": "2026-10-14T13:47:56.532Z"
+          },
+          "gpt": {
+            "status": "done",
+            "items": [
+              {
+                "name": "후쿠오카",
+                "nameEn": "Fukuoka",
+                "country": "일본",
+                "region": null,
+                "code": "FUK",
+                "travel": "직항 약 1h 25m",
+                "reason": "먹거리와 쇼핑을 즐기면서 도심을 편하게 둘러보기 좋은 가까운 여행지입니다. 성인 3명이 숙박비를 나누면 150만 원 안에 맞추기 비교적 수월합니다.",
+                "trendEvidence": [
+                  "2024년 12월 인천∼후쿠오카 노선 이용객은 약 30만 6천 명으로 국제선 노선 상위 3위였습니다.",
+                  "일본을 방문한 한국인은 2024년 약 882만 명으로 2023년보다 26.7% 늘었습니다. 이는 일본 전체 통계이며 후쿠오카만의 수치는 아닙니다."
+                ],
+                "sources": [
+                  "https://gtn.co.kr/mobile/news_view.asp?news_seq=81474",
+                  "https://www.yanolja-research.com/brief/view/166?lang=en%3Fsub_confirmation%3D1",
+                  "https://www.flightconnections.com/flights-from-icn-to-fuk"
+                ],
+                "tags": [
+                  "먹거리 탐방",
+                  "도심 쇼핑",
+                  "근거리 여행"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "오사카",
+                "nameEn": "Osaka",
+                "country": "일본",
+                "region": null,
+                "code": "KIX",
+                "travel": "직항 약 2h 5m",
+                "reason": "먹거리·쇼핑·도시 사진 촬영에 더해 테마파크 등 액티비티를 일정에 넣기 좋습니다. 세 명이 숙박비를 분담하고 쇼핑 지출을 정해두면 150만 원 안에서 계획할 수 있습니다.",
+                "trendEvidence": [
+                  "2024년 12월 인천∼오사카 노선 이용객은 약 39만 9천 명으로 국제선 노선 상위 2위였습니다.",
+                  "일본을 방문한 한국인은 2024년 약 882만 명으로 2023년보다 26.7% 늘었습니다. 이는 일본 전체 통계이며 오사카만의 수치는 아닙니다."
+                ],
+                "sources": [
+                  "https://gtn.co.kr/mobile/news_view.asp?news_seq=81474",
+                  "https://www.yanolja-research.com/brief/view/166?lang=en%3Fsub_confirmation%3D1",
+                  "https://www.flightconnections.com/flights-from-icn-to-kix"
+                ],
+                "tags": [
+                  "먹거리 탐방",
+                  "쇼핑",
+                  "테마파크"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "타이베이",
+                "nameEn": "Taipei",
+                "country": "대만",
+                "region": null,
+                "code": "TPE",
+                "travel": "직항 약 2h 35m",
+                "reason": "야시장 음식과 도심 쇼핑을 즐기고 근교 온천이나 풍경 촬영을 더할 수 있습니다. 3명이 숙소를 나눠 쓰면 예산에 맞추기 좋지만, 성수기 항공권과 쇼핑 지출은 미리 관리하는 편이 좋습니다.",
+                "trendEvidence": [
+                  "대만의 2024년 전체 방문객은 약 786만 명으로 2023년보다 21.13% 증가했습니다.",
+                  "대만 관광 당국은 2024년 한국 시장 방문객이 100만 명을 넘었다고 집계했습니다."
+                ],
+                "sources": [
+                  "https://admin.taiwan.net.tw/upload/contentFile/auser/b/annual_2024_htm/en/2024_Tourism_Snapshot.html",
+                  "https://admin.taiwan.net.tw/english/info/News?a=1329&id=33426",
+                  "https://www.flightconnections.com/flights-from-icn-to-tpe"
+                ],
+                "tags": [
+                  "야시장 먹거리",
+                  "도심 쇼핑",
+                  "근교 온천"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "다낭",
+                "nameEn": "Da Nang",
+                "country": "베트남",
+                "region": null,
+                "code": "DAD",
+                "travel": "직항 약 4h 45m",
+                "reason": "해변과 시내를 함께 즐기며 음식·사진·가벼운 액티비티를 섞기 좋습니다. 숙소와 현지 식비 부담이 비교적 낮아 3명이 객실을 나누면 예산에 맞추기 수월합니다.",
+                "trendEvidence": [
+                  "베트남을 찾은 한국인은 2024년 약 450만 명으로 최대 방문객 시장이었고, 2023년보다 27.1% 증가했습니다. 이는 베트남 전체 통계이며 다낭만의 수치는 아닙니다.",
+                  "베트남 전체 외국인 방문객은 2024년 1,750만 명을 넘어 2023년보다 39.5% 늘었습니다."
+                ],
+                "sources": [
+                  "https://en.baochinhphu.vn/foreign-arrivals-to-viet-nam-up-nearly-40-in-2024-111250107094838837.htm",
+                  "https://vietnamtourism.gov.vn/en/post/20764",
+                  "https://www.flightconnections.com/flights-from-icn-to-dad"
+                ],
+                "tags": [
+                  "해변 휴양",
+                  "베트남 음식",
+                  "근교 액티비티"
+                ],
+                "motif": "sea",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "방콕",
+                "nameEn": "Bangkok",
+                "country": "태국",
+                "region": null,
+                "code": "BKK",
+                "travel": "직항 약 6h",
+                "reason": "야시장과 태국 음식, 대형 쇼핑몰, 사원 촬영을 두루 즐길 수 있는 도시입니다. 1월은 따뜻한 야외 일정을 짜기 좋지만 비행시간과 숙소 선택에 따라 150만 원을 넘을 수 있어 항공권을 일찍 비교하는 것을 권합니다.",
+                "trendEvidence": [
+                  "태국을 방문한 한국인은 2024년 약 186만 9천 명으로 2023년보다 12.6% 증가했습니다. 이는 태국 전체 통계이며 방콕만의 수치는 아닙니다."
+                ],
+                "sources": [
+                  "https://www.nso.go.th/public/e-book/Bulletin-of-Statistics/bulletin-1-68/25/",
+                  "https://www.flightconnections.com/flights-from-icn-to-bkk"
+                ],
+                "tags": [
+                  "야시장 먹거리",
+                  "대형 쇼핑몰",
+                  "사원 사진"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": true
+              },
+              {
+                "name": "홍콩",
+                "nameEn": "Hong Kong",
+                "country": "홍콩",
+                "region": null,
+                "code": "HKG",
+                "travel": "직항 약 3h 40m",
+                "reason": "딤섬과 길거리 음식, 쇼핑가, 야경 촬영을 짧은 일정에 밀도 있게 담기 좋습니다. 숙박비가 높은 편이라 3명이 함께 묵어도 150만 원을 넘을 가능성이 있어 숙소와 쇼핑 예산을 특히 신중히 잡아야 합니다.",
+                "trendEvidence": [
+                  "홍콩을 방문한 한국인은 2024년 854,873명으로 2023년 402,999명보다 108.6% 증가했습니다."
+                ],
+                "sources": [
+                  "https://partnernet.hktb.com/filemanager/researchpub/common/pdf/Market%20Update_SouthKorea.pdf",
+                  "https://www.flightconnections.com/flights-from-icn-to-hkg"
+                ],
+                "tags": [
+                  "야경 촬영",
+                  "딤섬·길거리 음식",
+                  "도심 쇼핑"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": true
+              }
+            ],
+            "citations": 0,
+            "usd": 0.078947125,
+            "at": "2026-10-14T13:47:56.532Z"
+          }
+        }
+      },
+      "panel": {
+        "depth": "fast",
+        "anonymized": true,
+        "chair": "claude",
+        "key": "[[\"c-7b007299-f068-4664-b60f-1151657f3a21\",81.9],[\"c-b1de0995-9f69-4689-bb53-3cc6c71f9160\",80.5],[\"c-e0dff3cd-b92d-4b40-bdb4-e0a35b46dd84\",72.2]]",
+        "at": "2026-10-14T14:31:39.066Z",
+        "rounds": {
+          "r1": {
+            "claude": {
+              "status": "done",
+              "value": {
+                "first": "c-7b007299-f068-4664-b60f-1151657f3a21",
+                "second": "c-b1de0995-9f69-4689-bb53-3cc6c71f9160",
+                "reason": "후쿠오카는 직항 1시간대에 항공·현지 경비가 낮아 150만 원 안에서 여유가 있고, 음식·쇼핑·야경 중심의 성인 가족 일정에 잘 맞는다. 타이베이는 날씨와 사진 면에서 앞서지만 비용과 거리에서 근소하게 밀려, 계산 순위와 같이 후쿠오카를 1위로 본다.",
+                "concerns": "1월 후쿠오카는 최저 3~4℃, 최고 약 10℃로 추워서 야외 사진·액티비티 만족도가 떨어질 수 있다. 3인 객실(트리플룸 또는 2실) 요금과 성수기 항공권이 상한 쪽이면 예산 여유가 줄어드니 확인이 필요하다."
+              },
+              "usd": 0.016178,
+              "at": "2026-10-14T14:31:26.987Z"
+            },
+            "gpt": {
+              "status": "done",
+              "value": {
+                "first": "c-7b007299-f068-4664-b60f-1151657f3a21",
+                "second": "c-b1de0995-9f69-4689-bb53-3cc6c71f9160",
+                "reason": "1인 예산 150만 원에서 항공·현지 물가가 상대적으로 낮고 비행시간도 짧아, 성인 가족의 음식·도시·쇼핑 여행에 부담이 적다. 사진과 온화한 날씨를 더 중시한다면 c2가 근소한 대안이다.",
+                "concerns": "여행 기간과 실제 항공·숙박 요금이 미정이라 150만 원 예산 충족 여부, 특히 3인 객실 확보 비용을 예약 전 확인해야 한다."
+              },
+              "usd": 0.00049505,
+              "at": "2026-10-14T14:31:26.987Z"
+            }
+          },
+          "r3": {
+            "claude": {
+              "status": "done",
+              "value": {
+                "markdown": "**최종 추천은 c1 후쿠오카입니다.** 계산 1위와 같고, 동행인 3명 중 2명도 후쿠오카를 1위로 골랐습니다. 직항 1시간대라 이동 부담이 작고, 항공권과 현지 경비가 낮아 1인 150만 원 안에서 3인 객실 비용을 감당할 여유가 있습니다. 음식·쇼핑·야경 중심의 성인 가족 여행에도 잘 맞습니다.\n\n다만 c2 타이베이와는 1.4점 차라 사실상 동점입니다. 1월 후쿠오카는 최고 약 10℃로 춥고, 사진과 날씨는 타이베이가 낫습니다. 야외 활동과 사진을 더 중시하면 타이베이가 좋은 대안입니다. 기간과 실제 요금이 미정이므로 예약 전 총액을 꼭 확인하세요.",
+                "chosen": "c-7b007299-f068-4664-b60f-1151657f3a21",
+                "consensus": 2,
+                "agreements": [
+                  "후쿠오카는 짧은 직항과 낮은 항공·현지 경비 덕분에 150만 원 예산에 가장 여유가 있다.",
+                  "음식·쇼핑·도시 중심의 성인 가족 3명 여행에 후쿠오카가 잘 맞는다.",
+                  "타이베이는 날씨와 사진에서 앞서는 근소한 차선책이다.",
+                  "싱가포르는 비용과 거리 부담이 커서 3위가 타당하다."
+                ],
+                "openIssues": [
+                  "후쿠오카 1월의 추위(최고 약 10℃)가 야외 사진·액티비티 만족도를 떨어뜨릴 수 있다.",
+                  "동행인 중 1명이 타이베이를 1위로 꼽아 의견이 갈린다.",
+                  "기간이 미정이라 3인 객실 비용을 포함한 실제 총액을 아직 알 수 없다."
+                ],
+                "checklist": [
+                  "1월 출발 날짜별 인천–후쿠오카 직항 왕복 항공권 3인 총액 검색",
+                  "트리플룸 1실과 2실 요금을 비교해 숙박비 확인",
+                  "후쿠오카와 타이베이의 항공+숙박 총액을 같은 일정으로 비교",
+                  "외교부 해외안전여행 사이트에서 여행경보 단계 재확인",
+                  "방한복 준비와 홍역 접종 확인, Visit Japan Web 사전 등록"
+                ],
+                "reasonIfDifferent": null
+              },
+              "usd": 0.023438,
+              "at": "2026-10-14T14:31:39.066Z"
+            }
+          }
+        },
+        "checks": [
+          false
+        ]
+      },
+      "aiRuns": [
+        {
+          "id": "8e189e1c-65ba-4405-b55c-14f08edd4d00",
+          "runId": "295a96ed-253d-47e7-bf59-f147aa615641",
+          "feature": "recommend",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 3192,
+            "outTokens": 2000,
+            "usd": 0.036384
+          },
+          "actual": {
+            "inTokens": 6399,
+            "outTokens": 4439,
+            "usd": 0.064188
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T13:47:11.949Z"
+        },
+        {
+          "id": "38fd079e-e9a5-4d06-a66a-8d5294a47d65",
+          "runId": "295a96ed-253d-47e7-bf59-f147aa615641",
+          "feature": "recommend",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 3192,
+            "outTokens": 2000,
+            "usd": 0.0113192
+          },
+          "actual": {
+            "inTokens": 63336,
+            "outTokens": 4971,
+            "usd": 0.078947125
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T13:47:52.522Z"
+        },
+        {
+          "id": "02e71d76-c57c-48e3-ac93-8d421a256e38",
+          "runId": "554139b8-664e-4720-b5ec-ce67375cb2b4",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4143,
+            "outTokens": 1500,
+            "usd": 0.033286
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T13:51:14.666Z"
+        },
+        {
+          "id": "44db691f-ae9a-4fc3-8493-6bd02e260f16",
+          "runId": "554139b8-664e-4720-b5ec-ce67375cb2b4",
+          "feature": "research",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 4143,
+            "outTokens": 1500,
+            "usd": 0.0111643
+          },
+          "actual": {
+            "inTokens": 72352,
+            "outTokens": 4823,
+            "usd": 0.1097923
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T13:52:19.285Z"
+        },
+        {
+          "id": "ed0752fd-6860-4fe4-96bb-d377064b2b07",
+          "runId": "554139b8-664e-4720-b5ec-ce67375cb2b4",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4143,
+            "outTokens": 1500,
+            "usd": 0.033286
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T13:51:12.910Z"
+        },
+        {
+          "id": "cc21f4b0-c0db-40f6-9aba-5a006c11c530",
+          "runId": "554139b8-664e-4720-b5ec-ce67375cb2b4",
+          "feature": "research",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 4143,
+            "outTokens": 1500,
+            "usd": 0.0111643
+          },
+          "actual": {
+            "inTokens": 70438,
+            "outTokens": 3233,
+            "usd": 0.09815339
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T13:52:21.230Z"
+        },
+        {
+          "id": "617cd289-3fc4-444e-bf0e-7d4807153408",
+          "runId": "554139b8-664e-4720-b5ec-ce67375cb2b4",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4144,
+            "outTokens": 1500,
+            "usd": 0.033288000000000005
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T13:51:18.353Z"
+        },
+        {
+          "id": "f83516b0-be0e-4055-8c03-284f55e063ac",
+          "runId": "554139b8-664e-4720-b5ec-ce67375cb2b4",
+          "feature": "research",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 4144,
+            "outTokens": 1500,
+            "usd": 0.0111644
+          },
+          "actual": {
+            "inTokens": 51713,
+            "outTokens": 3545,
+            "usd": 0.006943799999999999
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T13:53:42.935Z"
+        },
+        {
+          "id": "b79c7ebb-062a-4032-9932-15d92c6b943d",
+          "runId": "0de3c765-f1e0-433e-88c5-810aef2adb4e",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4143,
+            "outTokens": 1500,
+            "usd": 0.033286
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T13:54:07.624Z"
+        },
+        {
+          "id": "82275595-86a5-466d-b104-b3232246dd29",
+          "runId": "0de3c765-f1e0-433e-88c5-810aef2adb4e",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4143,
+            "outTokens": 1500,
+            "usd": 0.033286
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T13:53:58.203Z"
+        },
+        {
+          "id": "bbbd7663-f51c-4101-806a-c1bf7481886b",
+          "runId": "0de3c765-f1e0-433e-88c5-810aef2adb4e",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4144,
+            "outTokens": 1500,
+            "usd": 0.033288000000000005
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T13:53:53.190Z"
+        },
+        {
+          "id": "d97a82da-e1a0-4b74-a216-2682dfee902b",
+          "runId": "c791cc4b-fb51-48d2-befe-97a93449de96",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4143,
+            "outTokens": 1500,
+            "usd": 0.033286
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T13:55:02.522Z"
+        },
+        {
+          "id": "81bb05f9-5cc7-4c3a-8b38-33256e703b05",
+          "runId": "c791cc4b-fb51-48d2-befe-97a93449de96",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4143,
+            "outTokens": 1500,
+            "usd": 0.033286
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T13:55:21.559Z"
+        },
+        {
+          "id": "54da7e46-fc6c-4a67-a429-fc2182baf9c6",
+          "runId": "c791cc4b-fb51-48d2-befe-97a93449de96",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4144,
+            "outTokens": 1500,
+            "usd": 0.033288000000000005
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T13:55:02.409Z"
+        },
+        {
+          "id": "6bde14ae-d4e6-497a-807d-60ed0edd3a6c",
+          "runId": "807d98d5-83d8-4a01-92d2-b8e4bf3ad541",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4105,
+            "outTokens": 3867,
+            "usd": 0.05688000000000001
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T14:06:40.708Z"
+        },
+        {
+          "id": "8932033f-92f9-46ad-93a8-6de34230399f",
+          "runId": "807d98d5-83d8-4a01-92d2-b8e4bf3ad541",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4105,
+            "outTokens": 3867,
+            "usd": 0.05688000000000001
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T14:06:41.822Z"
+        },
+        {
+          "id": "455204d1-e428-4346-8b91-bd0ff5cc5726",
+          "runId": "807d98d5-83d8-4a01-92d2-b8e4bf3ad541",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4106,
+            "outTokens": 3867,
+            "usd": 0.056882
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T14:06:41.505Z"
+        },
+        {
+          "id": "8f68bd8a-aa1c-4fa2-86a9-63a8dea7fcfe",
+          "runId": "7ea02c8a-2a18-4471-bd2f-6cbf3262863c",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4105,
+            "outTokens": 3867,
+            "usd": 0.05688000000000001
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T14:07:10.393Z"
+        },
+        {
+          "id": "bb03800f-d5e2-4c29-a9a6-3ee9fe960815",
+          "runId": "7ea02c8a-2a18-4471-bd2f-6cbf3262863c",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4105,
+            "outTokens": 3867,
+            "usd": 0.05688000000000001
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T14:06:57.657Z"
+        },
+        {
+          "id": "ab3b8507-92cc-4b77-9ae4-bc6aae6f19db",
+          "runId": "7ea02c8a-2a18-4471-bd2f-6cbf3262863c",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4106,
+            "outTokens": 3867,
+            "usd": 0.056882
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T14:06:58.541Z"
+        },
+        {
+          "id": "4b8485ff-007f-40a1-a8b6-c2cd583a08b3",
+          "runId": "6d576e3d-2d1a-4ce7-9ea6-ee712688e83b",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4105,
+            "outTokens": 3867,
+            "usd": 0.05688000000000001
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T14:13:41.664Z"
+        },
+        {
+          "id": "85abf927-8bd2-4126-b4f4-fefde787f12c",
+          "runId": "6d576e3d-2d1a-4ce7-9ea6-ee712688e83b",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4105,
+            "outTokens": 3867,
+            "usd": 0.05688000000000001
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T14:13:41.065Z"
+        },
+        {
+          "id": "2baacf23-1aea-4310-8673-554f9120bfee",
+          "runId": "6d576e3d-2d1a-4ce7-9ea6-ee712688e83b",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4106,
+            "outTokens": 3867,
+            "usd": 0.056882
+          },
+          "actual": null,
+          "status": "failed",
+          "error": "bad_request",
+          "at": "2026-10-14T14:13:56.461Z"
+        },
+        {
+          "id": "0db14026-bb23-4a5d-9748-43f25f35e658",
+          "runId": "08ded225-ea3f-485e-a97e-3e6f73643b81",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4105,
+            "outTokens": 3867,
+            "usd": 0.05688000000000001
+          },
+          "actual": {
+            "inTokens": 99617,
+            "outTokens": 7309,
+            "usd": 0.372324
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T14:21:53.417Z"
+        },
+        {
+          "id": "4ecaacfd-8652-4f69-9b6a-a037f4475062",
+          "runId": "08ded225-ea3f-485e-a97e-3e6f73643b81",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4105,
+            "outTokens": 3867,
+            "usd": 0.05688000000000001
+          },
+          "actual": {
+            "inTokens": 144595,
+            "outTokens": 6187,
+            "usd": 0.44106
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T14:21:47.787Z"
+        },
+        {
+          "id": "96399ab4-98f6-451a-bfc5-ee633bc623f6",
+          "runId": "08ded225-ea3f-485e-a97e-3e6f73643b81",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4106,
+            "outTokens": 3867,
+            "usd": 0.056882
+          },
+          "actual": {
+            "inTokens": 168842,
+            "outTokens": 7861,
+            "usd": 0.516294
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T14:21:59.684Z"
+        },
+        {
+          "id": "3b8c7c5c-09d8-4354-9139-226ce9824448",
+          "runId": "1330d8b6-ed67-489b-852b-a6b792223142",
+          "feature": "scores",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 2076,
+            "outTokens": 840,
+            "usd": 0.012552
+          },
+          "actual": {
+            "inTokens": 3933,
+            "outTokens": 2325,
+            "usd": 0.031116
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T14:27:53.570Z"
+        },
+        {
+          "id": "85d795b4-bcf5-4feb-94e3-b9141904be75",
+          "runId": "1330d8b6-ed67-489b-852b-a6b792223142",
+          "feature": "scores",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 2076,
+            "outTokens": 840,
+            "usd": 0.0006276
+          },
+          "actual": {
+            "inTokens": 2592,
+            "outTokens": 1643,
+            "usd": 0.001145425
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T14:27:54.436Z"
+        },
+        {
+          "id": "e79891aa-9527-406b-8d42-2443ec10f9ce",
+          "runId": "91b6bc8c-e844-4028-a2f6-2380e5a72166",
+          "feature": "panel",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 2092,
+            "outTokens": 800,
+            "usd": 0.012184
+          },
+          "actual": {
+            "inTokens": 4029,
+            "outTokens": 812,
+            "usd": 0.016178
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T14:31:26.975Z"
+        },
+        {
+          "id": "9a055c63-a589-4ae5-ab3c-b40d66523cd0",
+          "runId": "91b6bc8c-e844-4028-a2f6-2380e5a72166",
+          "feature": "panel",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 2092,
+            "outTokens": 800,
+            "usd": 0.0006092
+          },
+          "actual": {
+            "inTokens": 2685,
+            "outTokens": 319,
+            "usd": 0.00049505
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T14:31:22.982Z"
+        },
+        {
+          "id": "de0e8e89-2bc8-43c9-98e9-f183e3389a2f",
+          "runId": "d6a83db7-d5a2-4731-8c56-deb2ef080506",
+          "feature": "chair",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 3937,
+            "outTokens": 1500,
+            "usd": 0.022874
+          },
+          "actual": {
+            "inTokens": 4979,
+            "outTokens": 1348,
+            "usd": 0.023438
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-14T14:31:39.053Z"
+        }
+      ],
+      "decision": {
+        "chosen": "c-7b007299-f068-4664-b60f-1151657f3a21",
+        "memo": ""
+      }
+    }
+  ]
+}
