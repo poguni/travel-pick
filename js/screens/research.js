@@ -289,7 +289,7 @@ export function renderResearch(ctx) {
           { class: 'chip-row' },
           chip(`조사한 후보 ${progress.doneCandidates} / ${n}곳`),
           chip(data.project.tripType === 'domestic' ? `국내 조사 항목 ${RESEARCH_ITEMS.domestic.length}개` : `해외 조사 항목 ${RESEARCH_ITEMS.overseas.length}개`),
-          progress.pendingCalls > 0 && chip('같은 후보·시기로 이미 조사한 칸은 다시 부르지 않아요', { variant: 'exclude' }),
+          progress.pendingCalls > 0 && chip('같은 후보·시기로 이미 조사한 모델은 다시 호출하지 않아요', { variant: 'exclude' }),
         ),
       ),
       progress.failedCalls > 0 &&
@@ -297,7 +297,7 @@ export function renderResearch(ctx) {
           'div',
           { class: 'notice notice--warn notice--action' },
           icon('warning', { size: 16 }),
-          h('span', null, `${progress.failedCalls}건의 조사가 실패했어요. 다른 결과는 그대로 쓸 수 있어요.`),
+          h('span', null, `조사 ${progress.failedCalls}개가 실패했어요. 다른 결과는 그대로 쓸 수 있어요.`),
           button({ variant: 'secondary', label: `실패한 ${progress.failedCalls}개 다시 시도`, iconName: 'refresh', onClick: () => runResearch(ctx, progress.failed) }),
         ),
       h('p', { class: 'notice notice--ok' }, SAFETY_NOTICE[data.project.tripType]),

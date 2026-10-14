@@ -105,7 +105,7 @@ export function renderResults(ctx) {
       dashedCard({
         eyebrow: 'NEXT GATE · 07',
         title: '세 AI가 서로의 의견을 반박한 뒤, 의장 모델이 최종 결론을 정리합니다',
-        desc: 'AI 최종 심사는 Phase 11에서 연결합니다.',
+        desc: '계산 순위를 그대로 따르지 않고, 다르면 이유를 밝혀요.',
         action: panelLink(),
       }),
     ),

@@ -4,7 +4,7 @@ import { screenHeader, segmented, button, dashedCard, panel as panelCard } from 
 import { MODEL_META } from '../ui/components/ai.js';
 import { roundSection, opinionCard, failedCard, pendingCard, responseList, verdictTicket } from '../ui/components/debate.js';
 import { icon } from '../ui/icons.js';
-import { formatUsd, josaRo } from '../ui/format.js';
+import { formatUsd, josa, josaRo } from '../ui/format.js';
 import { hrefFor } from '../router.js';
 import { RESEARCH_ITEMS } from '../core/research.js';
 import { OUT_DEFAULTS } from '../core/cost.js';
@@ -197,7 +197,7 @@ export function renderPanel(ctx) {
   const runBtn = button({ variant: p ? 'secondary' : 'primary', label: p ? '다시 심사' : '심사 시작', iconName: 'refresh', disabled: running || !models.length, onClick: () => runPanel(ctx, { depth, anonymize }) });
 
   const nodes = [
-    header([runBtn], [h('p', { class: 'screen-lead' }, '따로 의견을 내고, 서로 반박한 뒤, 의장이 결론을 정리합니다. 계산 순위를 그대로 따르지 않고 다르면 이유를 밝혀요.'), controls]),
+    header([runBtn], [h('p', { class: 'screen-lead' }, '따로 의견을 내고, 서로 반박한 뒤, 의장이 결론을 정리해요. 계산 순위를 그대로 따르지 않고 다르면 이유를 밝혀요.'), controls]),
   ];
 
   if (stale) nodes.push(h('p', { class: 'notice notice--warn' }, icon('warning', { size: 16 }), '심사한 뒤 점수나 가중치가 바뀌었어요. 지금 결과로 다시 심사하는 걸 권해요.'));
@@ -206,7 +206,7 @@ export function renderPanel(ctx) {
     nodes.push(
       dashedCard({
         eyebrow: 'THE PANEL · 심사 전',
-        title: `계산 1위는 ${cand(calcLeader).name}이에요. 세 AI가 이 결과를 다시 따져 봐요`,
+        title: `계산 1위는 ${josa(cand(calcLeader).name, '이에요', '예요')}. 세 AI가 이 결과를 다시 따져 봐요`,
         desc: '여행 조건, 조사 자료 요약, 확정 점수표, 그룹 가중치, 계산 결과, 동행인별 1위를 보내요. 실행 전에 예상 비용을 먼저 보여 드려요.',
       }),
     );

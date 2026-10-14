@@ -28,7 +28,7 @@ export function crGauge(consistency, { n, title = '일관성 비율', note } = {
     h('span', { class: 'cr-card__head' }, h('span', null, 'CONSISTENCY'), h('span', null, title)),
     s(
       'svg',
-      { class: 'cr-gauge', width: '240', height: '136', viewBox: '0 0 240 136', fill: 'none', role: 'img', 'aria-label': `${title} ${cr.toFixed(2)}, 기준 0.10 ${ok ? '이내' : '초과'}` },
+      { class: 'cr-gauge', width: '240', height: '136', viewBox: '0 0 240 136', fill: 'none', role: 'img', 'aria-label': `${title} ${cr.toFixed(2)}, 기준 0.10 ${ok ? '미만' : '이상'}` },
       s('path', { class: 'cr-gauge__track', d: 'M20 120 A100 100 0 0 1 220 120', 'stroke-width': '16', 'stroke-linecap': 'round' }),
       s('path', { class: 'cr-gauge__ok', d: 'M20 120 A100 100 0 0 1 120 20', 'stroke-width': '16', 'stroke-linecap': 'round' }),
       s('path', { class: 'cr-gauge__needle', d: `M120 120 L ${nx.toFixed(1)} ${ny.toFixed(1)}`, 'stroke-width': '3', 'stroke-linecap': 'round' }),

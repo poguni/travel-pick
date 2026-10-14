@@ -106,7 +106,7 @@ export function openReceipt(plan, { usdKrw, delta }) {
           h('div', null, h('span', { class: 'receipt__label' }, 'ESTIMATED TOTAL'), h('span', { class: 'receipt__delta' }, deltaText(delta))),
           h('div', { class: 'receipt__sum' }, h('span', { class: 'receipt__usd' }, s.total.unknownPrice ? `${usd(s.total.usd)}+` : usd(s.total.usd)), h('span', { class: 'receipt__krw' }, `${krw(s.total.krw)} · 환율 설정값 기준`)),
         ),
-        h('p', { class: 'receipt__note' }, '추정치예요. 단가는 OpenRouter 모델 목록에서 가져오고, 실행 후에는 실제 사용량으로 다시 기록합니다. 비용 상한은 없으니 금액을 보고 판단해 주세요.'),
+        h('p', { class: 'receipt__note' }, '추정치예요. 단가는 OpenRouter 모델 목록에서 가져오고, 실행 후에는 실제 사용량으로 다시 기록해요. 비용 상한은 없으니 금액을 보고 판단해 주세요.'),
         h(
           'div',
           { class: 'receipt__actions' },

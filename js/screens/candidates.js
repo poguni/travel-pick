@@ -27,7 +27,7 @@ const plannedLabel = (c) => {
   const parts = [];
   if (c.plannedPeriod?.season) parts.push(`추천 시기 · ${SEASON_KO[c.plannedPeriod.season]}`);
   if (c.plannedPeriod?.month) parts.push(`추천 시기 · ${c.plannedPeriod.month}월`);
-  if (c.plannedNights != null) parts.push(`일정 · ${c.plannedNights ? `${c.plannedNights}박 ${c.plannedNights + 1}일` : '당일치기'}`);
+  if (c.plannedNights != null) parts.push(`적정 일정 · ${c.plannedNights ? `${c.plannedNights}박 ${c.plannedNights + 1}일` : '당일치기'}`);
   return parts;
 };
 

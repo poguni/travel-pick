@@ -119,7 +119,7 @@ export function weightCompass(data, group) {
 
 // ── 탑승객별 1위 (F8-5) ──────────────────────────────────
 
-export function memberPicks(data, picks, { title = '탑승객별 1순위' } = {}) {
+export function memberPicks(data, picks, { title = '탑승객별 1위' } = {}) {
   return panel({
     title,
     children: h(

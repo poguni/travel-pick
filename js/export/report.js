@@ -62,7 +62,7 @@ export function buildReport(data, { now = new Date() } = {}) {
 
   const decisionOf = () => {
     if (chosen) return { name: chosen.name, code: chosen.code, where: overseas ? chosen.country : chosen.region, status: '확정', note: chosen.id === leaderId ? '계산 1위와 같은 후보예요.' : `계산 1위(${cand(leaderId)?.name ?? '—'})와 다른 후보를 골랐어요.` };
-    if (leaderId) return { name: cand(leaderId).name, code: cand(leaderId).code, where: overseas ? cand(leaderId).country : cand(leaderId).region, status: '결정 전', note: '아직 최종 결정 전이에요. 계산 1위를 표시합니다.' };
+    if (leaderId) return { name: cand(leaderId).name, code: cand(leaderId).code, where: overseas ? cand(leaderId).country : cand(leaderId).region, status: '결정 전', note: '아직 최종 결정 전이에요. 계산 1위를 표시해요.' };
     return null;
   };
 

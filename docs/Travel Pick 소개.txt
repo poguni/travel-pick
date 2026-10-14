@@ -1,0 +1,7 @@
+Travel Pick 소개
+
+한국어
+여행지를 고르기 힘들 때 세 가지 인공지능이 함께 도와주는 앱입니다. 요즘 뜨는 여행지를 추천받고 자료를 모은 다음, 함께 가는 사람들이 무엇을 중요하게 여기는지 반영해 점수로 비교합니다. 마지막에는 인공지능 셋이 서로 의견을 나눈 뒤 결론과 이유를 정리해 주고, 결정한 내용을 리포트로 남길 수 있습니다.
+
+English
+Can't decide where to travel next? Three AI assistants suggest trending destinations and gather the details for you. Then you compare your options with scores that weigh what matters to each person on the trip. At the end, the AIs debate the choice and explain their pick, and you can save the whole decision as a report.
