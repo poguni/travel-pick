@@ -8,6 +8,23 @@ import { hrefFor } from '../router.js';
 import { resultsFor, memberTopPicks, sensitivityFor, closestSensitivity, scoreProgress } from '../selectors.js';
 import { emptyRedirect } from './placeholder.js';
 
+/** Excel 내보내기 (F13-3): 누를 때 SheetJS를 불러온다 */
+function excelButton(ctx) {
+  return button({
+    variant: 'secondary',
+    label: 'Excel 내보내기',
+    onClick: async () => {
+      try {
+        const { exportExcel } = await import('../export/excel.js');
+        const name = await exportExcel(ctx.state.getState().data);
+        ctx.flash(`${name} 파일을 저장했어요.`);
+      } catch {
+        ctx.flash('Excel 파일을 만들지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.', 'warn');
+      }
+    },
+  });
+}
+
 /** "오키나와가 한 발 앞서 있어요" / "강릉과 경주가 사실상 동점이에요" */
 export function resultTitle(data, results) {
   const [a, b] = results.ranking.map((r) => data.candidates[r.index].name);
@@ -31,7 +48,7 @@ export function renderResults(ctx) {
       node: h(
         'div',
         { class: 'screen' },
-        screenHeader({ eyebrow: 'GATE 06 · RESULTS', title: '아직 비교할 결과가 없어요' }),
+        screenHeader({ eyebrow: 'GATE 06 · RESULTS', title: '아직 비교할 결과가 없어요', actions: [excelButton(ctx)] }),
         dashedCard({
           eyebrow: 'NEED SCORES · 점수 필요',
           title: data.candidates.length < 2 ? '후보를 2곳 이상 담아 주세요' : `점수표를 채워 주세요 (${p.filled} / ${p.total})`,
@@ -65,7 +82,7 @@ export function renderResults(ctx) {
       screenHeader({
         eyebrow: 'GATE 06 · RESULTS',
         title: resultTitle(data, results),
-        actions: [view].filter(Boolean),
+        actions: [view, excelButton(ctx)].filter(Boolean),
         below: h(
           'div',
           { class: 'chip-row' },

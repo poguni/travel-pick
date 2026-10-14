@@ -447,8 +447,10 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
     }
   },
   "scores": {
-    "c1": { "cost": { "final": 7, "ai": { "claude": 7, "gpt": 6, "gemini": 8 }, "rationale": "..." } }
+    "c1": { "cost": { "final": 7, "ai": { "claude": 7, "gpt": 6, "gemini": 8 },
+                      "rationale": { "claude": "...", "gpt": "...", "gemini": "..." } } }
   },
+  "scoreDraft": { "key": "...", "at": "...", "byModel": { "claude": { "status": "done", "count": 35, "usd": 0.01 } } },
   "recommend": { "key": "...", "at": "2026-10-14T00:00:00Z",
                  "byModel": { "claude": { "status": "done", "items": [], "citations": 3, "usd": 0.012 } } },
   "aiRuns": [
@@ -486,6 +488,8 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
 | `project.exclude` | 추천 제외 조건(F2-6) 자유 입력, 최대 200자. 기본 `""` |
 | `recommend` | AI 추천(F2) 캐시. `key`는 추천에 영향을 주는 여행 조건(여행 종류·출발지·시기·기간·예산·동행·인원·관심사·제외 조건)으로 만든 값으로, 지금 조건과 다르면 "조건이 바뀜" 안내를 띄운다. `byModel`에는 모델별 원래 추천 목록(`items`)·상태·출처 수·실제 비용을 두고, 공통 추천 순 목록은 저장하지 않고 `js/core/merge.js`로 매번 합친다. 아직 추천을 받지 않았으면 `null` |
 | `research[후보 id]` | 자료 수집(F4). 모델 키마다 `status`(`done`/`failed`), `key`(조사 기준 캐시 키: 후보·조사 기준 시기·일정·출발지·동행), 항목별 `{ value, summary, sources, asOf, needsCheck, numeric? }`, 출처 수, 실제 비용. `key`가 지금 조건과 같으면 다시 호출하지 않는다(F4-6). `confirmed`는 사용자가 확인한 확정값, `notes`는 항목별 메모(F4-5). 조사 항목은 국내/해외가 다르다(`js/core/research.js`) |
+| `scores[후보][기준]` | `final`은 사용자가 확정한 최종 점수(직접 입력하거나 초안을 적용했을 때만 바뀜), `ai`·`rationale`은 모델별 AI 점수 초안과 한 줄 근거(F7-2~4). 평균·표준편차는 저장하지 않고 계산 |
+| `scoreDraft` | AI 점수 초안 실행 상태. `key`(초안을 받을 때의 후보·기준 목록)가 지금과 다르면 "후보나 기준이 바뀜" 안내. 모델별 상태·채점한 칸 수·실제 비용 |
 
 이전 버전(`schemaVersion: 2`) 데이터를 불러오면 `tripType: "overseas"`, `period.mode: "month"`로 채우고, `companionType`을 `companion.type`으로 옮깁니다. `travelers`가 없으면 동행인 수로, 후보 `color`가 없으면 추가 순서로 채웁니다.
 

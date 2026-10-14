@@ -511,3 +511,27 @@
 .rcard__sources { flex-direction: row; flex-wrap: wrap; gap: 6px 12px; }
 .rcard__sources a { color: var(--sunset-soft); overflow-wrap: anywhere; }
 .input--memo { font-size: 13px; padding: 8px 12px; }
+
+/* ── ⑤ 점수 매기기: AI 초안 (DESIGN 9장) ── */
+.score-cell { vertical-align: top; padding: 4px; border-radius: 12px; }
+.score-cell.is-warn { background: var(--warn-bg); box-shadow: inset 0 0 0 1px var(--warn-line); }
+.score-cell.is-selected { box-shadow: inset 0 0 0 2px var(--sunset); }
+.score-ai { display: flex; justify-content: center; gap: 6px; margin: 4px auto 0; padding: 2px 6px; min-height: 24px; border: 0; border-radius: 8px; background: transparent; font-family: var(--font-mono); font-size: 12px; cursor: pointer; }
+.score-ai:hover { background: var(--surface-3); }
+.score-ai__n { color: var(--m); }
+.score-ai__n.is-none { color: var(--text-faint); }
+.apply-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.apply-bar__label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--text-faint); }
+.cons-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; }
+.cons-tile { display: flex; flex-direction: column; gap: 4px; padding: 14px 16px; border-radius: 14px; background: var(--surface-2); border: 1px solid var(--line); }
+.cons-tile.is-low { background: var(--warn-bg); border-color: var(--warn-line); }
+.cons-tile__label { font-size: 13px; color: var(--text-muted); }
+.cons-tile__value { font-family: var(--font-display); font-weight: 700; font-size: 26px; color: var(--text-strong); }
+.cons-tile__desc { font-size: 12px; color: var(--text-muted); }
+.cons-tile.is-high .cons-tile__desc { color: var(--ok); }
+.cons-tile.is-low .cons-tile__desc { color: var(--warn-text); }
+.cell-detail { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.cell-detail li { display: grid; grid-template-columns: 30px 36px minmax(0, 1fr) auto; align-items: center; gap: 12px; }
+.cell-detail__score { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--text-strong); text-align: center; }
+.cell-detail__why { font-size: 14px; color: var(--text-2); }
+@media (max-width: 600px) { .cell-detail li { grid-template-columns: 30px 36px minmax(0, 1fr); } .cell-detail li .btn { grid-column: 3; justify-self: start; } }

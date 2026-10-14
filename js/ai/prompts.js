@@ -224,3 +224,91 @@ export function researchRequest(project, targets, { items, today }) {
     calls,
   };
 }
+
+// ── Phase 10: 점수 초안 (F7-2) ───────────────────────────
+
+/**
+ * 후보 한 곳의 근거 요약: 사용자 확정값 → 메모 → AI 조사 값(서로 다른 값 최대 2개). 조사가 없으면 빈 배열
+ * itemDefs: RESEARCH_ITEMS[tripType]
+ */
+export function evidenceLines(research, itemDefs) {
+  if (!research) return [];
+  return itemDefs.flatMap((d) => {
+    const confirmed = research.confirmed?.[d.id];
+    const note = research.notes?.[d.id];
+    const aiValues = [...new Set(['claude', 'gpt', 'gemini'].map((m) => research[m]?.status === 'done' && research[m].items?.[d.id]?.value).filter(Boolean))].slice(0, 2);
+    if (!confirmed && !note && !aiValues.length) return [];
+    const parts = [confirmed && `[확정] ${confirmed}`, note && `[메모] ${note}`, !confirmed && aiValues.length && `[AI 조사] ${aiValues.join(' / ')}`].filter(Boolean);
+    return [`  - ${d.label}: ${parts.join(' · ')}`];
+  });
+}
+
+/** 점수 초안 출력 스키마: 후보 × 기준 칸 배열 */
+export function scoreSchema() {
+  return {
+    name: 'scores',
+    schema: {
+      type: 'object',
+      required: ['scores'],
+      additionalProperties: false,
+      properties: {
+        scores: {
+          type: 'array',
+          items: {
+            type: 'object',
+            required: ['c', 'k', 'score', 'rationale'],
+            additionalProperties: false,
+            properties: { c: { type: 'string' }, k: { type: 'string' }, score: { type: 'integer' }, rationale: { type: 'string' } },
+          },
+        },
+      },
+    },
+  };
+}
+
+/**
+ * 점수 초안 요청 (F7-2, 5.4: 확정값 우선). 점수표 전체를 모델마다 한 번에.
+ * criteria: [{ id, name, info }] (info: 기준 설명), itemDefs: RESEARCH_ITEMS[tripType]
+ * 반환: { request, map } — map은 짧은 키(c1, k1) → 실제 id
+ */
+export function scoreRequest(data, { models, today, criteria, itemDefs, basisOf }) {
+  const project = data.project;
+  const map = { c: {}, k: {} };
+  const candLines = data.candidates.flatMap((c, i) => {
+    const key = `c${i + 1}`;
+    map.c[key] = c.id;
+    const where = project.tripType === 'overseas' ? [c.country, c.code].filter(Boolean).join(', ') : c.region;
+    const ev = evidenceLines(data.research[c.id], itemDefs);
+    return [`- ${key}: ${c.name}${where ? ` (${where})` : ''} · 조사 기준 ${basisOf(c)}`, ...(ev.length ? ev : ['  - (조사 자료 없음: 일반 지식으로 판단하고 rationale에 "자료 없음"을 밝힌다)'])];
+  });
+  const critLines = criteria.map((k, j) => {
+    const key = `k${j + 1}`;
+    map.k[key] = k.id;
+    return `- ${key}: ${k.name}${k.info ? ` — ${k.info}` : ''}`;
+  });
+  const system = [
+    `너는 여행지 비교 평가자다. 오늘은 ${today}이다.`,
+    '후보 × 기준의 모든 칸에 1~10점(정수)을 매긴다. 이 여행자에게 좋을수록 높은 점수다. 비용은 부담이 적을수록, 거리는 가까울수록 높은 점수다.',
+    '',
+    '규칙',
+    '- 요구한 JSON만 출력한다. c는 후보 키, k는 기준 키를 그대로 쓴다. 모든 칸을 빠짐없이 채운다.',
+    '- [확정] 값은 여행자가 직접 확인한 값이므로 가장 우선하는 근거로 쓴다. 그다음 [메모], [AI 조사] 순서다.',
+    '- 후보끼리 비교해 점수 차이가 드러나게 매긴다(모두 같은 점수 금지).',
+    '- rationale: 한국어 한 줄(40자 안팎)로 근거를 쓴다.',
+  ].join('\n');
+  const user = ['여행 조건', conditionSummary(project), '', '기준', ...critLines, '', '후보와 조사 자료', ...candLines].join('\n');
+  const messages = [
+    { role: 'system', content: system },
+    { role: 'user', content: user },
+  ];
+  const cells = data.candidates.length * criteria.length;
+  return {
+    map,
+    request: {
+      feature: 'scores',
+      label: '점수 초안',
+      description: `세 AI가 후보 ${data.candidates.length}곳 × 기준 ${criteria.length}개, ${cells}칸에 점수와 근거를 매겨요. 웹 검색은 쓰지 않아요.`,
+      calls: models.map((model) => ({ model, messages, schema: scoreSchema(), webSearch: false, outTokens: Math.max(400, cells * 40) })),
+    },
+  };
+}

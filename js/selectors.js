@@ -4,6 +4,7 @@ import { normalizeWeights, ahpWeights, ahpConsistency, aggregateSimple, aggregat
 import { DEFAULT_SIMPLE_WEIGHT } from './core/schema.js';
 import { mergeRecommendations, findCandidate, numericSpread } from './core/merge.js';
 import { RESEARCH_ITEMS, researchStatus } from './core/research.js';
+import { cellStats, SD_WARN } from './core/scores.js';
 import { recommendKey } from './core/project.js';
 import { buildMatrix, inconsistencyOf, pairKey, pairValue } from './core/weights.js';
 
@@ -245,4 +246,53 @@ export function researchCards(data, candidate) {
     };
   });
   return { status, entries: Object.fromEntries(AI_MODELS.map((m) => [m, slot[m] ?? null])), items };
+}
+
+// ── 합의 수준 (F10-3, PRD 6.6) ───────────────────────────
+
+const LEVELS = ['low', 'mid', 'high'];
+const level = (v, mid, high, higherIsBetter = true) => (v == null ? null : higherIsBetter ? (v >= high ? 'high' : v >= mid ? 'mid' : 'low') : v <= high ? 'high' : v <= mid ? 'mid' : 'low');
+
+/**
+ * 세 지표로 본 AI 합의 수준. 각 지표는 데이터가 없으면 level null.
+ * - recommend: 2개 이상 모델이 함께 추천한 곳의 비율 (높을수록 합의)
+ * - numeric: 자료 수집 수치 항목 중 모델 간 차이 30% 이상인 비율 (낮을수록 합의)
+ * - scores: AI 점수 칸의 평균 표준편차, 2 이상인 칸 수 (낮을수록 합의)
+ * overall: 있는 지표 수준의 평균(내림)
+ */
+export function consensusSummary(data) {
+  const rec = recommendView(data);
+  const recDone = rec ? Object.values(rec.models).filter((r) => r.status === 'done').length : 0;
+  const shared = rec ? rec.items.filter((i) => i.count >= 2).length : 0;
+  const recRatio = rec && recDone >= 2 && rec.items.length ? shared / rec.items.length : null;
+
+  let compared = 0;
+  let diverged = 0;
+  for (const c of data.candidates) {
+    for (const item of researchCards(data, c).items) {
+      if (item.spread?.count >= 2) {
+        compared++;
+        if (item.spread.warn) diverged++;
+      }
+    }
+  }
+  const numRatio = compared ? diverged / compared : null;
+
+  const sds = [];
+  for (const c of data.candidates) {
+    for (const k of data.criteria) {
+      const st = cellStats(data.scores[c.id]?.[k.id]);
+      if (st.count >= 2) sds.push(st.sd);
+    }
+  }
+  const meanSd = sds.length ? sds.reduce((a, b) => a + b, 0) / sds.length : null;
+
+  const metrics = {
+    recommend: { ratio: recRatio, shared, total: rec?.items.length ?? 0, level: level(recRatio, 0.25, 0.5) },
+    numeric: { ratio: numRatio, compared, diverged, level: level(numRatio, 0.3, 0.1, false) },
+    scores: { meanSd, cells: sds.length, highSd: sds.filter((v) => v >= SD_WARN).length, level: level(meanSd, 1.5, 1, false) },
+  };
+  const present = Object.values(metrics).map((m) => m.level).filter(Boolean);
+  const overall = present.length ? LEVELS[Math.floor(present.reduce((a, l) => a + LEVELS.indexOf(l), 0) / present.length)] : null;
+  return { ...metrics, overall };
 }

@@ -15,9 +15,10 @@ npm run serve        # python dev/serve.py 8000 (캐시 끈 개발 서버)
 
 ## 테스트
 
-Node 22 이상이 필요합니다. 설치할 의존성은 없습니다.
+Node 22 이상이 필요합니다. 앱 자체는 의존성이 없고, 테스트만 Excel 내보내기 검증용 SheetJS(개발 의존성)를 씁니다.
 
 ```bash
+npm install          # 처음 한 번 (SheetJS xlsx 0.20.3, cdn.sheetjs.com)
 npm test             # node --test "tests/**/*.test.js"
 ```
 
