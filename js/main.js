@@ -8,6 +8,7 @@ import { projectSummaryLine, totalActualUsd } from './ui/format.js';
 import { renderHome } from './screens/home.js';
 import { renderConditions } from './screens/conditions.js';
 import { renderCandidates } from './screens/candidates.js';
+import { renderResearch } from './screens/research.js';
 import { renderWeights } from './screens/weights.js';
 import { renderScores } from './screens/scores.js';
 import { renderResults } from './screens/results.js';
@@ -23,6 +24,7 @@ const SCREENS = {
   home: renderHome,
   conditions: renderConditions,
   candidates: renderCandidates,
+  research: renderResearch,
   weights: renderWeights,
   scores: renderScores,
   results: renderResults,

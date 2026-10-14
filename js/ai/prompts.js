@@ -127,3 +127,100 @@ export function recommendRequest(project, { models, today }) {
     calls: models.map((model) => ({ model, messages, schema, webSearch: true })),
   };
 }
+
+// ── Phase 9: 자료 수집 (F4) ──────────────────────────────
+
+const MONTH_TEXT = (period) => (period?.month ? `${period.month}월` : period?.season ? SEASON_KO[period.season] : period?.startDate ? `${period.startDate} 출발` : null);
+
+/** 조사 기준 시기·일정 문구 (core/research.js researchBasis 결과) */
+export function basisText(basis) {
+  const when = MONTH_TEXT(basis.period) ?? '미정(이 여행지를 가기 가장 좋은 시기로 가정)';
+  const nights = basis.dayTrip ? '당일치기' : basis.nights == null ? '미정(적정 일정으로 가정)' : `${basis.nights}박 ${basis.nights + 1}일`;
+  return { when: `${when}${basis.fromCandidate.period && basis.period ? ' (후보의 추천 시기)' : ''}`, nights: `${nights}${basis.fromCandidate.nights && basis.nights != null ? ' (후보의 적정 일정)' : ''}` };
+}
+
+const researchItemSchema = (numeric) => ({
+  type: 'object',
+  required: ['value', 'summary', 'sources', 'asOf', 'needsCheck', ...(numeric ? ['numeric'] : [])],
+  additionalProperties: false,
+  properties: {
+    value: { type: 'string' },
+    summary: { type: 'string' },
+    sources: strings,
+    asOf: nullable('string'),
+    needsCheck: { type: 'boolean' },
+    ...(numeric
+      ? { numeric: { type: ['object', 'null'], required: ['min', 'max'], additionalProperties: false, properties: { min: nullable('number'), max: nullable('number') } } }
+      : {}),
+  },
+});
+
+/** 조사 출력 스키마 (국내/해외 항목이 다르다, F4-1). items: core/research.js RESEARCH_ITEMS[tripType] */
+export function researchSchema(items) {
+  const props = Object.fromEntries(items.map((d) => [d.id, researchItemSchema(Boolean(d.numeric))]));
+  return {
+    name: 'research',
+    schema: {
+      type: 'object',
+      required: ['items'],
+      additionalProperties: false,
+      properties: { items: { type: 'object', required: Object.keys(props), additionalProperties: false, properties: props } },
+    },
+  };
+}
+
+/** 조사 프롬프트 (F4-1~3, 5.4·5.6) */
+export function researchMessages(project, candidate, { items, basis, today }) {
+  const overseas = project.tripType === 'overseas';
+  const b = basisText(basis);
+  const system = [
+    `너는 한국에 사는 여행자를 위한 여행 조사원이다. 오늘은 ${today}이다. 웹 검색으로 확인한 사실만 쓴다.`,
+    '',
+    '조사 항목 (items의 키)',
+    ...items.map((d) => `- ${d.id}: ${d.ask}${d.numeric ? ` → numeric에 ${d.numeric} 단위 숫자 범위 {min, max}` : ''}`),
+    '',
+    '출력 규칙',
+    '- 요구한 JSON만 출력한다. 모든 글은 한국어로 쓴다.',
+    '- value: 비교하기 쉬운 한 줄 결론(예: "왕복 35~45만 원", "최저 12℃·최고 19℃, 비 적음"). summary: 근거와 주의점 2문장 이내.',
+    '- sources: 확인한 웹 페이지 URL. URL을 지어내지 않는다. asOf: 정보 기준 시점("2026-09" 형식), 모르면 null.',
+    '- 출처가 없거나 확실하지 않으면 needsCheck를 true로 한다. 모르는 값은 value에 "확인 필요"라고 쓰고 numeric은 null로 둔다.',
+    '- 가격은 대략적인 범위로만 쓴다(원화 기준). 시간은 시간 단위 소수(예: 2시간 30분 → 2.5).',
+    overseas
+      ? '- 안전·위생·비자는 외교부 해외안전여행, WHO, 질병관리청 등 공식 기관 정보를 우선 근거로 한다.'
+      : '- 안전·위생은 기상청, 행정안전부(재난안전), 지자체 공식 관광 정보를 우선 근거로 한다. 비자·여행경보·항공권 항목은 다루지 않는다.',
+  ].join('\n');
+  const where = overseas ? [candidate.country, candidate.code].filter(Boolean).join(', ') : candidate.region;
+  const user = [
+    '여행 조건',
+    conditionSummary(project),
+    '',
+    `조사 대상: ${candidate.name}${where ? ` (${where})` : ''}`,
+    `조사 기준 시기: ${b.when}`,
+    `조사 기준 일정: ${b.nights}`,
+    '',
+    '위 여행지를 조사 항목대로 조사해 줘.',
+  ].join('\n');
+  return [
+    { role: 'system', content: system },
+    { role: 'user', content: user },
+  ];
+}
+
+/**
+ * 조사 실행 요청. targets: [{ candidate, models: [키...], basis }]. items: RESEARCH_ITEMS[tripType]
+ * 호출마다 meta.candidateId를 붙여 결과를 후보에 나눠 담는다.
+ */
+export function researchRequest(project, targets, { items, today }) {
+  const schema = researchSchema(items);
+  const calls = targets.flatMap(({ candidate, models, basis }) => {
+    const messages = researchMessages(project, candidate, { items, basis, today });
+    return models.map((model) => ({ model, messages, schema, webSearch: true, meta: { candidateId: candidate.id } }));
+  });
+  const n = new Set(targets.map((t) => t.candidate.id)).size;
+  return {
+    feature: 'research',
+    label: n === 1 ? `${targets[0].candidate.name} 자료 수집` : `후보 ${n}곳 자료 수집`,
+    description: `웹 검색으로 ${project.tripType === 'domestic' ? '국내' : '해외'} 조사 항목 ${items.length}개를 모아요. 후보마다 모델별로 한 번씩 호출해요.`,
+    calls,
+  };
+}

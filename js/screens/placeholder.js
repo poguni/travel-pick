@@ -5,7 +5,6 @@ import { stepOf, hrefFor } from '../router.js';
 
 /** 화면별로 구현할 Phase (docs/Travel-Pick-Implementation-Plan.md 1장) */
 const PHASE_OF = {
-  research: 9,
   panel: 11,
   export: 12,
 };

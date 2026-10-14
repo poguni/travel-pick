@@ -3,6 +3,7 @@
 // 정렬: 추천한 모델 수 → 각 모델 목록 안의 평균 순서 → 이름
 
 import { SEASON_MONTHS } from './schema.js';
+import { disagreement } from './mcdm.js';
 
 const MOTIFS = ['sea', 'city', 'mountain'];
 
@@ -181,4 +182,24 @@ export function mergeRecommendations(byModel, tripType, modelOrder = Object.keys
 /** 추천 항목과 같은 곳인 기존 후보 (담김 표시용) */
 export function findCandidate(candidates, item, tripType) {
   return candidates.find((c) => samePlace(c, item, tripType)) ?? null;
+}
+
+// ── 자료 수집 수치 비교 (F4-4, PRD 5.6) ──────────────────
+
+/** 모델 간 수치 차이가 이 비율 이상이면 강조 */
+export const SPREAD_WARN = 0.3;
+
+/**
+ * 모델별 수치 범위 비교. numerics: { claude: { min, max } | null, ... }
+ * 각 범위의 가운데 값으로 (최대 − 최소) / 평균을 계산한다.
+ * 반환: { count, mids: { 모델: 가운데 값 }, spread(비율, 값 2개 미만이면 null), warn }
+ */
+export function numericSpread(numerics) {
+  const mids = {};
+  for (const [model, n] of Object.entries(numerics)) {
+    if (n && Number.isFinite(n.min) && Number.isFinite(n.max)) mids[model] = (n.min + n.max) / 2;
+  }
+  const d = disagreement(Object.values(mids));
+  const spread = d.count >= 2 ? d.spread : null;
+  return { count: d.count, mids, spread, warn: spread != null && spread >= SPREAD_WARN };
 }

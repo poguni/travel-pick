@@ -2,7 +2,8 @@
 // 앞 단계 값이 바뀌면 화면이 이 함수들을 다시 불러 자동으로 다시 계산된다 (PRD 3장).
 import { normalizeWeights, ahpWeights, ahpConsistency, aggregateSimple, aggregateAIJ, pairwiseToSlider, weightedSum, rank, isNearTie, sensitivity } from './core/mcdm.js';
 import { DEFAULT_SIMPLE_WEIGHT } from './core/schema.js';
-import { mergeRecommendations, findCandidate } from './core/merge.js';
+import { mergeRecommendations, findCandidate, numericSpread } from './core/merge.js';
+import { RESEARCH_ITEMS, researchStatus } from './core/research.js';
 import { recommendKey } from './core/project.js';
 import { buildMatrix, inconsistencyOf, pairKey, pairValue } from './core/weights.js';
 
@@ -170,7 +171,7 @@ export function stepsDone(data) {
   return {
     conditions: data.candidates.length > 0 || p.period.mode !== 'undecided' || p.budgetPerPerson != null || p.interests.length > 0,
     candidates: data.candidates.length >= 2,
-    research: Object.keys(data.research ?? {}).length > 0,
+    research: data.candidates.length > 0 && data.candidates.every((c) => researchProgressOf(data, c).done > 0 || Object.keys(data.research[c.id]?.confirmed ?? {}).length > 0),
     weights: weightsDone,
     scores: scored,
     results: scored,
@@ -192,4 +193,56 @@ export function recommendView(data) {
   const byModel = Object.fromEntries(Object.entries(rec.byModel).map(([m, r]) => [m, r.items]));
   const items = mergeRecommendations(byModel, tripType, AI_MODELS.filter((m) => m in byModel)).map((item) => ({ ...item, candidate: findCandidate(data.candidates, item, tripType) }));
   return { items, models: rec.byModel, stale: rec.key !== recommendKey(data.project), at: rec.at };
+}
+
+// ── 자료 수집 (F4) ───────────────────────────────────────
+
+/** 후보 하나의 모델별 조사 상태 { status: { 모델: done|stale|failed|none }, done, failed } */
+function researchProgressOf(data, candidate, models = AI_MODELS) {
+  const status = Object.fromEntries(models.map((m) => [m, researchStatus(data, candidate, m)]));
+  const vals = Object.values(status);
+  return { status, done: vals.filter((v) => v === 'done').length, failed: vals.filter((v) => v === 'failed').length };
+}
+
+/**
+ * 자료 수집 진행 (F4-6·7). models: 지금 쓸 수 있는 모델 키.
+ * pending: 아직 지금 조건으로 조사하지 않은 후보·모델(캐시 적중은 제외), failed: 실패한 후보·모델
+ */
+export function researchProgress(data, models) {
+  const perCandidate = data.candidates.map((c) => ({ candidate: c, ...researchProgressOf(data, c, models) }));
+  const pick = (want) => perCandidate.map((p) => ({ candidateId: p.candidate.id, models: models.filter((m) => want(p.status[m])) })).filter((t) => t.models.length);
+  const count = (targets) => targets.reduce((n, t) => n + t.models.length, 0);
+  const pending = pick((st) => st !== 'done');
+  const failed = pick((st) => st === 'failed');
+  return { perCandidate, pending, failed, pendingCalls: count(pending), failedCalls: count(failed), doneCandidates: perCandidate.filter((p) => p.done > 0).length };
+}
+
+const latest = (list) => list.filter(Boolean).sort().at(-1) ?? null;
+
+/**
+ * 후보 하나의 조사 카드들 (F4-2~5). 이전 조건(stale) 결과도 보여 주되 표시한다.
+ * 반환: { status, entries: { 모델: 저장된 결과 }, items: [{ def, models: { 모델: 항목 }, stale: Set, spread, sources, needsCheck, asOf, confirmed, note }] }
+ */
+export function researchCards(data, candidate) {
+  const slot = data.research[candidate.id] ?? {};
+  const { status } = researchProgressOf(data, candidate);
+  const usable = AI_MODELS.filter((m) => status[m] === 'done' || status[m] === 'stale');
+  const items = RESEARCH_ITEMS[data.project.tripType].map((def) => {
+    const models = Object.fromEntries(usable.filter((m) => slot[m].items[def.id]).map((m) => [m, slot[m].items[def.id]]));
+    const list = Object.values(models);
+    // 수치 비교는 지금 조건의 결과끼리만
+    const current = Object.fromEntries(Object.entries(models).filter(([m]) => status[m] === 'done').map(([m, it]) => [m, it.numeric]));
+    return {
+      def,
+      models,
+      stale: new Set(Object.keys(models).filter((m) => status[m] === 'stale')),
+      spread: def.numeric ? numericSpread(current) : null,
+      sources: [...new Set(list.flatMap((i) => i.sources))],
+      needsCheck: list.length > 0 && list.some((i) => i.needsCheck),
+      asOf: latest(list.map((i) => i.asOf)),
+      confirmed: slot.confirmed?.[def.id] ?? '',
+      note: slot.notes?.[def.id] ?? '',
+    };
+  });
+  return { status, entries: Object.fromEntries(AI_MODELS.map((m) => [m, slot[m] ?? null])), items };
 }

@@ -457,3 +457,57 @@
 .section-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .section-head__title { margin: 0; font-size: 18px; font-weight: 600; color: var(--text-strong); }
 .section-head__meta { font-family: var(--font-mono); font-size: 12px; font-weight: 400; color: var(--text-faint); margin-left: 8px; }
+
+/* ── ③ 자료 수집 (DESIGN 9장) ── */
+.notice--action { flex-wrap: wrap; }
+.notice--action > span { flex: 1 1 240px; }
+.rtabs { position: relative; display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: thin; }
+.rtab {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--cand);
+  background: var(--surface);
+  color: var(--text-2);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.rtab[aria-selected='true'] { background: var(--raised); border-color: var(--line-strong); border-top-color: var(--cand); color: var(--text-strong); font-weight: 600; }
+.rtab .flap--ko + .rtab__name { display: none; } /* 국내는 플랩에 지명이 이미 나온다 */
+.rtab__fail { width: 18px; height: 18px; border-radius: 50%; background: var(--warn-bg); border: 1px solid var(--warn-line); color: var(--warn-text); font-size: 11px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; }
+.rpanel { display: flex; flex-direction: column; gap: var(--s4); }
+.rpanel__head { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; flex-wrap: wrap; }
+.rpanel__title { display: flex; flex-direction: column; gap: 4px; }
+.rpanel__title h2 { margin: 0; font-size: 24px; font-weight: 700; color: var(--text-strong); }
+.rpanel__where { margin-left: 10px; font-size: 14px; font-weight: 400; color: var(--text-muted); }
+.rpanel__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.run-strip--compact .run-cell { padding: 12px 14px; gap: 12px; }
+.rcard-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 16px; align-items: start; }
+.rcard { display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); }
+.rcard.is-warn { background: var(--warn-bg); border-color: var(--warn-line); }
+.rcard__head { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.rcard__label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; color: var(--text-faint); }
+.rcard__confirm { display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 12px; background: var(--paper); color: var(--ink); }
+.rcard__confirm-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--ink-muted); }
+.input--confirm { background: transparent; border: 0; border-bottom: 1px dashed var(--paper-dash); border-radius: 0; padding: 4px 0; color: var(--ink); font-size: 18px; font-weight: 700; }
+.input--confirm::placeholder { color: var(--ink-muted); font-weight: 400; font-size: 14px; }
+.rcard__warn { margin: 0; display: flex; gap: 6px; align-items: center; font-size: 13px; color: var(--warn-text); }
+.rcard__models { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.rcard__model { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; align-items: start; gap: 8px; font-size: 13px; }
+.rcard__model.is-stale { opacity: 0.6; }
+.rcard__value { color: var(--text); line-height: 1.5; padding-top: 2px; }
+.rcard__value.is-empty { color: var(--text-faint); }
+.rcard__meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); padding-top: 4px; white-space: nowrap; }
+.rcard__more summary { cursor: pointer; font-size: 13px; color: var(--sunset-soft); min-height: 32px; display: inline-flex; align-items: center; }
+.rcard__more[open] { display: flex; flex-direction: column; gap: 8px; }
+.rcard__summaries, .rcard__sources { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--text-2); line-height: 1.55; }
+.rcard__summaries li { display: flex; gap: 8px; align-items: flex-start; }
+.rcard__sources { flex-direction: row; flex-wrap: wrap; gap: 6px 12px; }
+.rcard__sources a { color: var(--sunset-soft); overflow-wrap: anywhere; }
+.input--memo { font-size: 13px; padding: 8px 12px; }
