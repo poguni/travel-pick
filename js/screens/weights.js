@@ -276,7 +276,7 @@ function groupTable(data, group) {
     h('h2', { class: 'panel__title' }, '탑승객별 가중치', h('span', { class: 'panel__meta' }, '단위 %')),
     h(
       'div',
-      { class: 'table-wrap' },
+      { class: 'table-wrap', tabindex: '0', role: 'region', 'aria-label': '가중치 표' },
       h(
         'table',
         { class: 'wtable' },

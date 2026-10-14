@@ -14,6 +14,7 @@ import { panelContext, r1Messages, r2Messages, r3Messages, opinionSchema, respon
 import { planRun } from '../ai/runner.js';
 import { ERROR_TEXT } from '../ai/openrouter.js';
 import { emptyRedirect } from './placeholder.js';
+import { firstSeen } from '../ui/motion.js';
 
 const today = () => new Date().toLocaleDateString('sv-SE');
 
@@ -132,7 +133,7 @@ function roundCards(ctx, data, round, view, { names, running }) {
     if (round === 'r1') {
       const opinion = view.opinions.find((o) => o.model === m);
       const role = m === data.panel.chair ? 'chair' : view.verdict && opinion.first !== view.verdict.chosen ? 'dissent' : undefined;
-      return opinionCard({ model: m, name: names[m], role, opinion, cand });
+      return opinionCard({ model: m, name: names[m], role, opinion, cand, fresh: firstSeen(`opinion:${data.panel.at}:${m}`) });
     }
     return null;
   });

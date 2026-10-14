@@ -40,7 +40,7 @@
 /* ── RouteNav (6.1) ── */
 .route-nav { min-height: 100%; padding: 28px 20px; display: flex; flex-direction: column; gap: 28px; }
 
-.brand { display: flex; align-items: center; gap: 12px; padding: 0 6px; color: inherit; text-decoration: none; }
+.brand { display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 6px; color: inherit; text-decoration: none; }
 .brand__text { display: flex; flex-direction: column; }
 .brand__name { font-family: var(--font-display); font-weight: 800; font-size: 22px; letter-spacing: -0.02em; color: var(--text-strong); line-height: 1.2; }
 .brand__tag { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; color: var(--text-faint); }
@@ -108,7 +108,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 40px;
+  min-height: 44px;
   padding: 8px 10px;
   border-radius: 10px;
   color: var(--text-step);
@@ -401,7 +401,7 @@
 .chart-legend { display: flex; flex-wrap: wrap; gap: 8px; }
 .chart-legend__item {
   display: inline-flex; align-items: center; gap: 8px;
-  min-height: 36px; padding: 0 12px;
+  min-height: 44px; padding: 0 14px;
   border-radius: var(--r-chip); border: 1px solid var(--line-strong);
   background: transparent; color: var(--text-2); font-size: 13px; cursor: pointer;
 }
@@ -409,7 +409,7 @@
 .chart-legend__line { width: 18px; height: 0; border-top: 2.5px solid var(--legend, var(--line)); }
 .chart-legend__line.is-dashed { border-top-style: dashed; }
 .chart-legend--paper .chart-legend__item { border: 0; padding: 0; min-height: 0; color: var(--ink-2); cursor: default; }
-.table-details summary { cursor: pointer; font-size: 13px; color: var(--sunset-soft); min-height: 32px; display: flex; align-items: center; }
+.table-details summary { cursor: pointer; font-size: 13px; color: var(--sunset-soft); min-height: 44px; display: flex; align-items: center; }
 
 /* ── 민감도 (종이) ── */
 .sens__label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-muted); }
@@ -452,7 +452,7 @@
 .run-cell__status.is-done { color: var(--ok); }
 .run-cell__status.is-failed { color: var(--sunset-soft); }
 .run-cell__usd { font-family: var(--font-mono); font-size: 12px; color: var(--text-2); }
-.run-cell__raw summary { cursor: pointer; font-size: 12px; color: var(--sunset-soft); }
+.run-cell__raw summary { cursor: pointer; font-size: 12px; color: var(--sunset-soft); min-height: 44px; display: flex; align-items: center; }
 .run-cell__raw pre { max-height: 200px; overflow: auto; white-space: pre-wrap; font-size: 11px; color: var(--text-2); background: var(--surface-2); padding: 8px; border-radius: 8px; }
 .section-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .section-head__title { margin: 0; font-size: 18px; font-weight: 600; color: var(--text-strong); }
@@ -504,7 +504,7 @@
 .rcard__value { color: var(--text); line-height: 1.5; padding-top: 2px; }
 .rcard__value.is-empty { color: var(--text-faint); }
 .rcard__meta { font-family: var(--font-mono); font-size: 11px; color: var(--text-faint); padding-top: 4px; white-space: nowrap; }
-.rcard__more summary { cursor: pointer; font-size: 13px; color: var(--sunset-soft); min-height: 32px; display: inline-flex; align-items: center; }
+.rcard__more summary { cursor: pointer; font-size: 13px; color: var(--sunset-soft); min-height: 44px; display: inline-flex; align-items: center; }
 .rcard__more[open] { display: flex; flex-direction: column; gap: 8px; }
 .rcard__summaries, .rcard__sources { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--text-2); line-height: 1.55; }
 .rcard__summaries li { display: flex; gap: 8px; align-items: flex-start; }
@@ -516,7 +516,7 @@
 .score-cell { vertical-align: top; padding: 4px; border-radius: 12px; }
 .score-cell.is-warn { background: var(--warn-bg); box-shadow: inset 0 0 0 1px var(--warn-line); }
 .score-cell.is-selected { box-shadow: inset 0 0 0 2px var(--sunset); }
-.score-ai { display: flex; justify-content: center; gap: 6px; margin: 4px auto 0; padding: 2px 6px; min-height: 24px; border: 0; border-radius: 8px; background: transparent; font-family: var(--font-mono); font-size: 12px; cursor: pointer; }
+.score-ai { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 2px auto 0; padding: 2px 8px; min-height: 44px; min-width: 64px; border: 0; border-radius: 8px; background: transparent; font-family: var(--font-mono); font-size: 12px; cursor: pointer; }
 .score-ai:hover { background: var(--surface-3); }
 .score-ai__n { color: var(--m); }
 .score-ai__n.is-none { color: var(--text-faint); }

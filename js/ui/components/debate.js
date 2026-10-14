@@ -24,12 +24,12 @@ export function roundSection({ marker, chair = false, title, sub, children, labe
 }
 
 /** R1 의견 카드 */
-export function opinionCard({ model, name, role, opinion, cand }) {
+export function opinionCard({ model, name, role, opinion, cand, fresh = false }) {
   const first = cand(opinion.first);
   const second = opinion.second && cand(opinion.second);
   return h(
     'article',
-    { class: 'opinion' },
+    { class: ['opinion', fresh && 'is-new'] },
     h('div', { class: 'opinion__head' }, modelBadge(model, { size: 36, name, role })),
     h(
       'div',

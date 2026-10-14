@@ -288,7 +288,7 @@ export function renderScores(ctx) {
             '1~10점, 높을수록 좋아요. 비용은 적게 들수록, 거리는 가까울수록 높은 점수를 주세요. 기준 아래 %는 그룹 가중치, 종합은 그룹 기준 점수예요.',
             data.scoreDraft && ` 칸 아래 작은 숫자는 Claude · GPT · Gemini 점수예요. 의견 차이(표준편차)가 ${SD_WARN} 이상이면 칸이 강조돼요.`,
           ),
-          h('div', { class: 'table-wrap' }, table),
+          h('div', { class: 'table-wrap', tabindex: '0', role: 'region', 'aria-label': '점수표 (가로로 스크롤)' }, table),
           h(
             'div',
             { class: 'panel__foot' },

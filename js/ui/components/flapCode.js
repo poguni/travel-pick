@@ -20,18 +20,19 @@ const tileable = (text) => !/\s/.test(text) && [...text].length <= 4;
  * 스플릿 플랩 코드 (작은 표시: 순위표, 카드 등).
  * size: 라틴 기준 글자 크기(px). 한글은 CSS에서 약 80%로 줄인다.
  * tone: night(밤 카드 위) | raised(밤 바탕 위)
+ * flip: true면 타일이 위→아래로 넘어가며 나타난다(순위가 바뀐 자리, DESIGN 10장)
  */
-export function flapCode(place, { size = 20, tone = 'night', dim = false } = {}) {
+export function flapCode(place, { size = 20, tone = 'night', dim = false, flip = false } = {}) {
   const { text, ko } = placeLabel(place);
   const tiles = tileable(text);
   return h(
     'span',
     {
-      class: ['flap', ko && 'flap--ko', !tiles && 'flap--plain', `flap--${tone}`, dim && 'flap--dim'],
+      class: ['flap', ko && 'flap--ko', !tiles && 'flap--plain', `flap--${tone}`, dim && 'flap--dim', flip && 'flap--flip'],
       style: { '--flap-size': `${size}px` },
     },
     tiles
-      ? [...[...text].map((ch) => h('span', { class: 'flap__tile', 'aria-hidden': 'true' }, ch)), h('span', { class: 'visually-hidden' }, text)]
+      ? [...[...text].map((ch, i) => h('span', { class: 'flap__tile', 'aria-hidden': 'true', style: { '--i': i } }, ch)), h('span', { class: 'visually-hidden' }, text)]
       : text,
   );
 }
@@ -39,7 +40,7 @@ export function flapCode(place, { size = 20, tone = 'night', dim = false } = {})
 /**
  * 큰 코드 글자 (탑승권, 엽서, 최종 추천): Bricolage 800 / 한글은 Plex KR 700, 약 80% 크기
  */
-export function codeText(place, { size = 84, className } = {}) {
+export function codeText(place, { size = 84, className, flip = false } = {}) {
   const { text, ko } = placeLabel(place);
-  return h('span', { class: ['code', ko && 'code--ko', className], style: { '--code-size': `${size}px` } }, text);
+  return h('span', { class: ['code', ko && 'code--ko', flip && 'code--flip', className], style: { '--code-size': `${size}px` } }, text);
 }

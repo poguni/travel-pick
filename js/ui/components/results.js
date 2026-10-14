@@ -7,6 +7,7 @@ import { choiceGroup } from './form.js';
 import { mountChart, token, withAlpha } from '../charts.js';
 import { candidateStatus, criterionTones } from '../../selectors.js';
 import { josaRo } from '../format.js';
+import { changed, countTo } from '../motion.js';
 
 export const candOf = (data, id) => data.candidates.find((c) => c.id === id);
 export const candColorVar = (c) => `var(--c${(c.color ?? 0) + 1})`;
@@ -32,7 +33,7 @@ export function departureBoard(data, results, { title = '후보 순위', meta = 
       'tr',
       { class: first && 'is-first' },
       h('td', { class: 'board__rank' }, String(r.rank).padStart(2, '0')),
-      h('td', null, flapCode(c, { size: 20, dim: r.rank > 3 })),
+      h('td', null, flapCode(c, { size: 20, dim: r.rank > 3, flip: changed(`board:${data.project.id}:${title}:${r.rank}`, c.id) })),
       h(
         'td',
         null,
@@ -49,7 +50,7 @@ export function departureBoard(data, results, { title = '후보 순위', meta = 
         h(
           'span',
           { class: 'board__score-wrap' },
-          h('span', { class: ['board__num', r.rank > 3 && 'is-dim'] }, fmt(r.score)),
+          countTo(h('span', { class: ['board__num', r.rank > 3 && 'is-dim'] }), `board:${data.project.id}:${title}:${c.id}`, r.score, fmt),
           h('span', { class: 'board__bar', 'aria-hidden': 'true' }, h('span', { style: { width: `${r.score}%`, background: candColorVar(c) } })),
         ),
       ),
@@ -74,7 +75,7 @@ export function departureBoard(data, results, { title = '후보 순위', meta = 
     h('h2', { class: 'panel__title' }, title, h('span', { class: 'panel__meta' }, meta)),
     h(
       'div',
-      { class: 'table-wrap' },
+      { class: 'table-wrap', tabindex: '0', role: 'region', 'aria-label': `${title} 표` },
       h(
         'table',
         { class: 'board' },
@@ -157,7 +158,12 @@ export function rankCards(data, results, { label = '그룹 1위' } = {}) {
       'article',
       { class: 'rank-card rank-card--first on-paper' },
       h('span', { class: 'rank-card__label' }, `RANK 01 · ${label}`),
-      h('div', { class: 'rank-card__body' }, codeText(c1, { size: 64 }), h('span', { class: 'rank-card__score' }, fmt(first.score), h('small', null, ' / 100'))),
+      h(
+        'div',
+        { class: 'rank-card__body' },
+        codeText(c1, { size: 64, flip: changed(`rank:${data.project.id}:${label}:1`, c1.id) }),
+        h('span', { class: 'rank-card__score' }, countTo(h('span'), `rank:${data.project.id}:${label}:${c1.id}`, first.score, fmt), h('small', null, ' / 100')),
+      ),
       h('span', { class: 'rank-card__name' }, placeCaption(c1)),
       h('span', { class: 'rank-card__why' }, strengths(data, results, first.index)),
     ),
@@ -167,7 +173,12 @@ export function rankCards(data, results, { label = '그룹 1위' } = {}) {
         'article',
         { class: 'rank-card' },
         h('span', { class: 'rank-card__label' }, `RANK ${String(r.rank).padStart(2, '0')}`),
-        h('div', { class: 'rank-card__body' }, codeText(c, { size: 40 }), h('span', { class: 'rank-card__score' }, fmt(r.score))),
+        h(
+          'div',
+          { class: 'rank-card__body' },
+          codeText(c, { size: 40, flip: changed(`rank:${data.project.id}:${label}:${r.rank}`, c.id) }),
+          countTo(h('span', { class: 'rank-card__score' }), `rank:${data.project.id}:${label}:${c.id}`, r.score, fmt),
+        ),
         h('span', { class: 'rank-card__name' }, `${placeCaption(c)}`),
         h('span', { class: 'rank-card__why' }, `1위와 ${fmt(first.score - r.score)}점 차 · ${strengths(data, results, r.index)}`),
       );
@@ -226,7 +237,7 @@ export function scoreTableDetails(data, results) {
     h('summary', null, '표로 보기'),
     h(
       'div',
-      { class: 'table-wrap' },
+      { class: 'table-wrap', tabindex: '0', role: 'region', 'aria-label': '차트 데이터 표' },
       h(
         'table',
         { class: 'wtable' },

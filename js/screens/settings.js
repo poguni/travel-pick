@@ -274,7 +274,7 @@ function costPanel(ctx, settings) {
           h('p', { class: 'cost-total' }, formatUsd(t.total), ' ', h('span', { class: 'muted' }, `${formatKrw(t.total * settings.usdKrw)} · ${t.calls}회 호출`)),
           h(
             'div',
-            { class: 'table-wrap' },
+            { class: 'table-wrap', tabindex: '0', role: 'region', 'aria-label': '기능별 AI 비용 표' },
             h(
               'table',
               { class: 'wtable' },

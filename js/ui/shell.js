@@ -10,9 +10,9 @@ import { hrefFor } from '../router.js';
  */
 export function createShell(root) {
   const navSlot = h('div', { class: 'app__nav' });
-  const topSlot = h('div', { class: 'app__top' });
+  const topSlot = h('header', { class: 'app__top' });
   const main = h('main', { id: 'main', class: 'app__main', tabindex: '-1' });
-  const actions = h('div', { class: 'mobile-actions', hidden: true });
+  const actions = h('nav', { class: 'mobile-actions', 'aria-label': '다음 단계', hidden: true });
   const sheet = h('dialog', { class: 'sheet', 'aria-label': '단계 메뉴' });
 
   const skip = h(
