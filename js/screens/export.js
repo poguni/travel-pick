@@ -76,7 +76,12 @@ export function renderExport(ctx) {
     }
   };
   const onPdf = async () => {
-    await ensureCharts(ctx, ctx.state.getState().data);
+    const d = ctx.state.getState().data;
+    await ensureCharts(ctx, d);
+    // "PDF로 저장"의 기본 파일 이름은 문서 제목이므로, 인쇄하는 동안만 Excel·Word와 같은 이름으로 바꾼다
+    const title = document.title;
+    document.title = exportFileName(d.project.name, 'pdf').replace(/\.pdf$/, '');
+    window.addEventListener('afterprint', () => (document.title = title), { once: true });
     // 차트가 들어간 미리보기가 그려진 뒤 인쇄 창을 연다
     requestAnimationFrame(() => requestAnimationFrame(() => window.print()));
   };
