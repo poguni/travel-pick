@@ -156,8 +156,9 @@ export function openReceipt(plan, { usdKrw, delta }) {
     );
   }
 
+  let allowRetry = true;
   function finishActions() {
-    const failed = [...results.values()].filter((r) => !r.ok).length;
+    const failed = allowRetry ? [...results.values()].filter((r) => !r.ok).length : 0;
     return h(
       'div',
       { class: 'receipt__actions' },
@@ -181,8 +182,9 @@ export function openReceipt(plan, { usdKrw, delta }) {
       if (result) results.set(index, result);
       renderProgress();
     },
-    /** 결과를 보여 주고 닫기 또는 다시 시도를 기다린다 */
-    finish() {
+    /** 결과를 보여 주고 닫기 또는 다시 시도를 기다린다. allowRetry: false면 다시 시도 버튼 없음(라운드 실행) */
+    finish({ allowRetry: retry = true } = {}) {
+      allowRetry = retry;
       phase = 'done';
       renderProgress();
       dialog.querySelector('#receipt-done')?.focus();

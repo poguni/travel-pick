@@ -21,6 +21,7 @@ export const ERROR_TEXT = {
   network: '인터넷 연결을 확인해 주세요.',
   bad_request: '요청 형식에 문제가 있어요.',
   invalid_json: 'AI 응답을 정해진 형식으로 읽지 못했어요.',
+  skipped: '앞 라운드 결과가 없어 건너뛰었어요.',
 };
 
 /** 동시 실행 개수 제한 */

@@ -12,6 +12,7 @@ import { renderResearch } from './screens/research.js';
 import { renderWeights } from './screens/weights.js';
 import { renderScores } from './screens/scores.js';
 import { renderResults } from './screens/results.js';
+import { renderPanel } from './screens/panel.js';
 import { stepsDone } from './selectors.js';
 import { renderSettings } from './screens/settings.js';
 import { createClient } from './ai/openrouter.js';
@@ -28,6 +29,7 @@ const SCREENS = {
   weights: renderWeights,
   scores: renderScores,
   results: renderResults,
+  panel: renderPanel,
   settings: renderSettings,
 };
 
@@ -144,6 +146,50 @@ const ctx = {
         pending = { ...plan, calls: plan.calls.filter((c) => failed.includes(c.index)) };
       }
       return { results: [...byIndex.values()].sort((a, b) => a.index - b.index), runs: allRuns };
+    },
+
+    /**
+     * 라운드를 차례로 실행 (F11). 비용 확인 창은 전체 라운드를 합쳐 한 번만 띄운다.
+     * request: { feature, label, description,
+     *   stages: [[call...], ...]  — 예상 비용용 호출(뒤 라운드는 extraInTokens로 앞 응답 분량을 더함),
+     *   prepare(stage, planned, prior) → 실제로 보낼 호출(planned에서 messages를 채운 것, 보낼 수 없는 호출은 뺌),
+     *   onStart() — 확인 창에서 실행을 누른 직후, onStage(stage, results) — 라운드가 끝날 때마다 }
+     * 뺀 호출은 'skipped' 실패로 표시한다. 취소하면 null
+     */
+    async runStaged(request) {
+      const settings = store.loadSettings();
+      const data = state.getState().data;
+      const calls = request.stages.flatMap((stageCalls, stage) => stageCalls.map((c) => ({ ...c, meta: { ...c.meta, stage } })));
+      const plan = planRun({ ...request, calls }, settings, data?.aiRuns ?? []);
+      if (!plan.calls.length) {
+        ctx.flash('사용할 수 있는 모델이 없어요. 설정에서 모델을 켜고 슬러그를 확인해 주세요.', 'warn');
+        return null;
+      }
+      const receipt = openReceipt(plan, { usdKrw: settings.usdKrw, delta: lastRunDelta(data?.aiRuns ?? [], request.feature) });
+      const only = await receipt.confirm();
+      if (!only) return null;
+      request.onStart?.();
+      receipt.start();
+      const prior = [];
+      for (let stage = 0; stage < request.stages.length; stage++) {
+        const planned = plan.calls.filter((c) => c.meta.stage === stage && only.includes(c.model));
+        const ready = planned.length ? request.prepare(stage, planned, prior) : [];
+        const readyIdx = new Set(ready.map((c) => c.index));
+        const skipped = planned
+          .filter((c) => !readyIdx.has(c.index))
+          .map((c) => ({ index: c.index, model: c.model, meta: c.meta, ok: false, error: { kind: 'skipped', message: '' }, usd: null }));
+        skipped.forEach((r) => receipt.progress(r.index, 'failed', r));
+        let results = skipped;
+        if (ready.length) {
+          const out = await executeRun(client, { ...plan, calls: ready }, { onProgress: receipt.progress });
+          if (state.getState().data) ctx.update((d) => (d.aiRuns.push(...out.runs), { ok: true }));
+          results = [...out.results, ...skipped];
+        }
+        prior.push(results);
+        request.onStage?.(stage, results);
+      }
+      await receipt.finish({ allowRetry: false });
+      return { stages: prior };
     },
   },
 

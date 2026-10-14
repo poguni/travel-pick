@@ -109,6 +109,7 @@ export function createProject({ name = '새 여행', tripType = 'overseas', id =
     scores: {},
     scoreDraft: null, // AI 점수 초안 실행 상태 { key, at, byModel } — 모델 점수는 scores 셀의 ai·rationale에
     recommend: null, // AI 추천 결과 캐시 { key, at, byModel } — core/merge.js로 합쳐 표시
+    panel: null, // AI 최종 심사 { depth, anonymized, chair, key, at, rounds, checks } — core/panel.js
     aiRuns: [],
     decision: { chosen: null, memo: '' },
   };

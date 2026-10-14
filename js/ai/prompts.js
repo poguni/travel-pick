@@ -312,3 +312,152 @@ export function scoreRequest(data, { models, today, criteria, itemDefs, basisOf 
     },
   };
 }
+
+// ── Phase 11: AI 최종 심사 (F11) ─────────────────────────
+
+const MODEL_NAME = { claude: 'Claude', gpt: 'GPT', gemini: 'Gemini' };
+const STANCE_KO = { rebut: '반박', supplement: '보완', agree: '동의' };
+
+/**
+ * 심사 공통 맥락 (F11-1, 5.4: 짧게). 후보는 짧은 키(c1…)로 보낸다.
+ * input: { criteria, vector, totals, ranking, nearTie, picks: [{ label, top }], itemDefs }
+ * 반환: { text, candMap: { c1: 후보 id }, keyOf: { 후보 id: c1 } }
+ */
+export function panelContext(data, input) {
+  const { criteria, vector, totals, ranking, nearTie, picks, itemDefs } = input;
+  const candMap = {};
+  const keyOf = {};
+  data.candidates.forEach((c, i) => {
+    candMap[`c${i + 1}`] = c.id;
+    keyOf[c.id] = `c${i + 1}`;
+  });
+  const name = (id) => `${keyOf[id]} ${data.candidates.find((c) => c.id === id)?.name}`;
+  const rankOf = Object.fromEntries(ranking.map((r) => [r.id, r.rank]));
+  const lines = [
+    '여행 조건',
+    conditionSummary(data.project),
+    '',
+    '후보와 조사 자료',
+    ...data.candidates.flatMap((c, i) => {
+      const where = data.project.tripType === 'overseas' ? [c.country, c.code].filter(Boolean).join(', ') : c.region;
+      const ev = evidenceLines(data.research[c.id], itemDefs);
+      return [`- ${keyOf[c.id]}: ${c.name}${where ? ` (${where})` : ''}${totals[i] == null ? ' · 점수 미완성' : ` · 계산 ${totals[i].toFixed(1)}점 (${rankOf[c.id]}위)`}`, ...ev];
+    }),
+    '',
+    '기준과 그룹 가중치',
+    ...criteria.map((k, j) => `- ${k.name} ${Math.round(vector[j] * 100)}%`),
+    '',
+    '확정 점수표 (1~10, 높을수록 좋음)',
+    ...data.candidates.map((c) => `- ${name(c.id)}: ${criteria.map((k) => `${k.name} ${data.scores[c.id]?.[k.id]?.final ?? '–'}`).join(', ')}`),
+    '',
+    `계산 결과 (가중합): ${ranking.map((r) => `${r.rank}위 ${name(r.id)} ${r.score.toFixed(1)}`).join(' / ')}${nearTie ? ' — 1·2위가 3% 이내로 사실상 동점' : ''}`,
+    ...(picks.length > 1 ? ['', '동행인별 1위 (각자 가중치 기준)', ...picks.map((p) => `- ${p.label}: ${p.top ? name(p.top) : '없음'}`)] : []),
+  ];
+  return { text: lines.join('\n'), candMap, keyOf };
+}
+
+const PANEL_SYSTEM = (today) =>
+  [
+    `너는 여행지 결정 심사단의 한 명이다. 오늘은 ${today}이다.`,
+    '- 계산된 순위를 그대로 따르지 말고 자료와 조건을 보고 독립적으로 판단한다. 계산 결과와 다르게 판단하면 그 이유를 밝힌다.',
+    '- 요구한 JSON만 출력한다. 모든 글은 한국어로, 짧고 구체적으로 쓴다. 후보는 c1 같은 키로 가리킨다.',
+    '- 자료에 없는 사실을 단정하지 않는다. 확인이 필요한 점은 우려나 체크리스트로 남긴다.',
+  ].join('\n');
+
+export const opinionSchema = () => ({
+  name: 'opinion',
+  schema: {
+    type: 'object',
+    required: ['first', 'second', 'reason', 'concerns'],
+    additionalProperties: false,
+    properties: { first: { type: 'string' }, second: nullable('string'), reason: { type: 'string' }, concerns: { type: 'string' } },
+  },
+});
+
+export const responsesSchema = () => ({
+  name: 'responses',
+  schema: {
+    type: 'object',
+    required: ['responses'],
+    additionalProperties: false,
+    properties: {
+      responses: {
+        type: 'array',
+        items: {
+          type: 'object',
+          required: ['target', 'stance', 'text'],
+          additionalProperties: false,
+          properties: { target: { type: 'string', enum: ['claude', 'gpt', 'gemini'] }, stance: { type: 'string', enum: ['rebut', 'supplement', 'agree'] }, text: { type: 'string' } },
+        },
+      },
+    },
+  },
+});
+
+export const verdictSchema = () => ({
+  name: 'verdict',
+  schema: {
+    type: 'object',
+    required: ['markdown', 'summary'],
+    additionalProperties: false,
+    properties: {
+      markdown: { type: 'string' },
+      summary: {
+        type: 'object',
+        required: ['chosen', 'consensus', 'matchesCalculation', 'agreements', 'openIssues', 'checklist', 'reasonIfDifferent'],
+        additionalProperties: false,
+        properties: {
+          chosen: { type: 'string' },
+          consensus: { type: 'integer' },
+          matchesCalculation: { type: 'boolean' },
+          agreements: strings,
+          openIssues: strings,
+          checklist: strings,
+          reasonIfDifferent: nullable('string'),
+        },
+      },
+    },
+  },
+});
+
+const opinionText = (o, keyOf) => `[${MODEL_NAME[o.model]}] 1위 ${keyOf[o.first]}${o.second ? `, 2위 ${keyOf[o.second]}` : ''} · 이유: ${o.reason} · 우려: ${o.concerns || '없음'}`;
+
+/** R1 독립 의견 (F11-2) */
+export function r1Messages(context, { today }) {
+  return [
+    { role: 'system', content: `${PANEL_SYSTEM(today)}\n\n1라운드: 다른 심사위원의 의견을 보지 않고 1위·2위와 이유(2문장 이내), 가장 큰 우려 1가지를 쓴다.` },
+    { role: 'user', content: `${context.text}\n\n독립 의견을 줘.` },
+  ];
+}
+
+/** R2 상호 비판 (F11-3): 나머지 모델의 R1 의견을 읽고 각각에 동의·반박·보완 */
+export function r2Messages(context, self, opinions, { today }) {
+  const others = opinions.filter((o) => o.model !== self);
+  return [
+    {
+      role: 'system',
+      content: `${PANEL_SYSTEM(today)}\n\n2라운드: 다른 심사위원의 1라운드 의견마다 하나씩 답한다. target은 그 심사위원 키(${others.map((o) => o.model).join(', ')}), stance는 rebut(반박)·supplement(보완)·agree(동의) 중 하나, text는 근거를 담은 한두 문장.`,
+    },
+    { role: 'user', content: `${context.text}\n\n다른 심사위원의 1라운드 의견\n${others.map((o) => `- ${o.model}: ${opinionText(o, context.keyOf)}`).join('\n')}\n\n각 의견에 답해 줘.` },
+  ];
+}
+
+/** R3 의장 종합 (F11-4·5) */
+export function r3Messages(context, opinions, responses, { today, calcLeaderKey }) {
+  const r2 = responses.length ? `\n\n2라운드 상호 비판\n${responses.map((r) => `- ${MODEL_NAME[r.from]} → ${MODEL_NAME[r.target]} (${STANCE_KO[r.stance]}): ${r.text}`).join('\n')}` : '';
+  return [
+    {
+      role: 'system',
+      content: [
+        PANEL_SYSTEM(today),
+        '',
+        '3라운드: 너는 의장이다. 심사위원 의견을 종합해 최종 결론을 낸다.',
+        '- summary.chosen: 최종 추천 후보 키. consensus: 최종 결론에 동의하는 심사위원 수(0~3).',
+        `- matchesCalculation: chosen이 계산 1위(${calcLeaderKey})와 같으면 true. 다르면 reasonIfDifferent에 이유를 2문장 이내로 반드시 쓰고, 같으면 null.`,
+        '- agreements: 심사위원이 합의한 점 2~4개. openIssues: 남은 쟁점 1~3개. checklist: 결정 전에 여행자가 직접 확인할 것 3~5개(예: 실제 항공권 가격 검색).',
+        '- markdown: 결론과 근거를 Markdown으로 짧게(제목 없이 문단 2~3개, 목록 가능, 300자 안팎).',
+      ].join('\n'),
+    },
+    { role: 'user', content: `${context.text}\n\n1라운드 독립 의견\n${opinions.map((o) => `- ${opinionText(o, context.keyOf)}`).join('\n')}${r2}\n\n최종 결론을 정리해 줘.` },
+  ];
+}

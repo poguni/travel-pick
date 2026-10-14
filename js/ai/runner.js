@@ -6,7 +6,8 @@ import { estimateTokens, estimateCall, expectedOutTokens, summarizeEstimates, ac
 import { chatJson } from './json.js';
 
 /**
- * request: { feature, label, description, calls: [{ model: 'claude'|'gpt'|'gemini', messages, schema?, webSearch?, outTokens?, meta? }] }
+ * request: { feature, label, description, calls: [{ model: 'claude'|'gpt'|'gemini', messages, schema?, webSearch?, outTokens?, extraInTokens?, feature?, meta? }] }
+ * extraInTokens: 아직 모르는 입력(앞 라운드 응답 등)의 예상 토큰, feature: 호출마다 다른 기능으로 기록할 때(의장 종합 등)
  * 꺼 둔 모델과 슬러그가 없는 모델은 뺀다. 웹 검색은 설정이 켜져 있고 호출이 요구할 때만.
  */
 export function planRun(request, settings, aiRuns = []) {
@@ -16,8 +17,8 @@ export function planRun(request, settings, aiRuns = []) {
     .map((c, index) => {
       const m = byKey[c.model];
       const webSearch = Boolean(c.webSearch && settings.webSearch);
-      const inTokens = estimateTokens(c.messages, settings.tokenRatio) + (c.schema ? estimateTokens(JSON.stringify(c.schema.schema), settings.tokenRatio) : 0);
-      const outTokens = c.outTokens ?? expectedOutTokens(request.feature, c.model, aiRuns);
+      const inTokens = estimateTokens(c.messages, settings.tokenRatio) + (c.schema ? estimateTokens(JSON.stringify(c.schema.schema), settings.tokenRatio) : 0) + (c.extraInTokens ?? 0);
+      const outTokens = c.outTokens ?? expectedOutTokens(c.feature ?? request.feature, c.model, aiRuns);
       return { ...c, index, slug: m.slug, name: m.name, webSearch, pricing: m.pricing, estimate: estimateCall({ inTokens, outTokens, pricing: m.pricing, webSearch }) };
     });
   return { ...request, calls, summary: summarizeEstimates(calls, { usdKrw: settings.usdKrw }) };
@@ -40,7 +41,7 @@ export async function executeRun(client, plan, { only, onProgress = () => {}, no
       runs[pos] = {
         id: globalThis.crypto.randomUUID(),
         runId,
-        feature: plan.feature,
+        feature: call.feature ?? plan.feature,
         model: call.model,
         modelSlug: call.slug,
         estimate: { inTokens: call.estimate.inTokens, outTokens: call.estimate.outTokens, usd: call.estimate.usd },
