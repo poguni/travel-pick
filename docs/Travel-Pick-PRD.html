@@ -1134,6 +1134,7 @@ li{margin:.2em 0}
     &quot;companion&quot;: { &quot;type&quot;: &quot;family&quot;, &quot;familyDetail&quot;: &quot;with_kids&quot; },
     &quot;travelers&quot;: 4,
     &quot;interests&quot;: [&quot;사진&quot;, &quot;휴양&quot;, &quot;음식&quot;],
+    &quot;exclude&quot;: &quot;도쿄·오사카는 가 봤어요&quot;,
     &quot;createdAt&quot;: &quot;2026-10-13T00:00:00Z&quot;,
     &quot;lastBackupAt&quot;: null
   },
@@ -1168,6 +1169,8 @@ li{margin:.2em 0}
   &quot;scores&quot;: {
     &quot;c1&quot;: { &quot;cost&quot;: { &quot;final&quot;: 7, &quot;ai&quot;: { &quot;claude&quot;: 7, &quot;gpt&quot;: 6, &quot;gemini&quot;: 8 }, &quot;rationale&quot;: &quot;...&quot; } }
   },
+  &quot;recommend&quot;: { &quot;key&quot;: &quot;...&quot;, &quot;at&quot;: &quot;2026-10-14T00:00:00Z&quot;,
+                 &quot;byModel&quot;: { &quot;claude&quot;: { &quot;status&quot;: &quot;done&quot;, &quot;items&quot;: [], &quot;citations&quot;: 3, &quot;usd&quot;: 0.012 } } },
   &quot;aiRuns&quot;: [
     {
       &quot;id&quot;: &quot;r1&quot;, &quot;feature&quot;: &quot;research&quot;, &quot;model&quot;: &quot;claude&quot;, &quot;modelSlug&quot;: &quot;...&quot;,
@@ -1247,6 +1250,14 @@ li{margin:.2em 0}
 <tr>
 <td><code>candidates[].plannedPeriod</code> / <code>plannedNights</code></td>
 <td>시기·기간이 미정일 때 AI가 제시하고 사용자가 확정한 조사 기준 시기(예: <code>{ &quot;season&quot;: &quot;autumn&quot; }</code>, <code>{ &quot;month&quot;: 10 }</code>)와 일정. 시기가 정해진 프로젝트에서는 <code>null</code></td>
+</tr>
+<tr>
+<td><code>project.exclude</code></td>
+<td>추천 제외 조건(F2-6) 자유 입력, 최대 200자. 기본 <code>&quot;&quot;</code></td>
+</tr>
+<tr>
+<td><code>recommend</code></td>
+<td>AI 추천(F2) 캐시. <code>key</code>는 추천에 영향을 주는 여행 조건(여행 종류·출발지·시기·기간·예산·동행·인원·관심사·제외 조건)으로 만든 값으로, 지금 조건과 다르면 &quot;조건이 바뀜&quot; 안내를 띄운다. <code>byModel</code>에는 모델별 원래 추천 목록(<code>items</code>)·상태·출처 수·실제 비용을 두고, 공통 추천 순 목록은 저장하지 않고 <code>js/core/merge.js</code>로 매번 합친다. 아직 추천을 받지 않았으면 <code>null</code></td>
 </tr>
 </tbody></table>
 <p>이전 버전(<code>schemaVersion: 2</code>) 데이터를 불러오면 <code>tripType: &quot;overseas&quot;</code>, <code>period.mode: &quot;month&quot;</code>로 채우고, <code>companionType</code>을 <code>companion.type</code>으로 옮깁니다. <code>travelers</code>가 없으면 동행인 수로, 후보 <code>color</code>가 없으면 추가 순서로 채웁니다.</p>
@@ -1622,7 +1633,8 @@ li{margin:.2em 0}
 <li>&quot;떠오르는 여행지&quot;의 근거 우선순위(검색량·방문객 증가, 신규 직항·KTX 노선, SNS 인기 중 무엇을 우선할지). 국내와 해외를 따로 정함</li>
 <li>원화 환산 기본 환율</li>
 <li>(확장) 날씨 기후 통계, 환율, 항공권 가격 API 연동 여부(v2 검토)</li>
-</ol></article></main>
+</ol>
+</article></main>
 <button id="top" aria-label="맨 위로">↑</button>
 <script>
 (function(){

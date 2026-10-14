@@ -411,6 +411,7 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
     "companion": { "type": "family", "familyDetail": "with_kids" },
     "travelers": 4,
     "interests": ["사진", "휴양", "음식"],
+    "exclude": "도쿄·오사카는 가 봤어요",
     "createdAt": "2026-10-13T00:00:00Z",
     "lastBackupAt": null
   },
@@ -445,6 +446,8 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
   "scores": {
     "c1": { "cost": { "final": 7, "ai": { "claude": 7, "gpt": 6, "gemini": 8 }, "rationale": "..." } }
   },
+  "recommend": { "key": "...", "at": "2026-10-14T00:00:00Z",
+                 "byModel": { "claude": { "status": "done", "items": [], "citations": 3, "usd": 0.012 } } },
   "aiRuns": [
     {
       "id": "r1", "feature": "research", "model": "claude", "modelSlug": "...",
@@ -477,6 +480,8 @@ localStorage에 저장하며, JSON 백업 파일도 같은 구조를 씁니다. 
 | `candidates[].country` / `region` | 해외는 `country`, 국내는 `region`(시·도) |
 | `candidates[].code` | 해외는 공항 코드(IATA 3글자), 국내는 `null`(화면에 한글 지명 표시) |
 | `candidates[].plannedPeriod` / `plannedNights` | 시기·기간이 미정일 때 AI가 제시하고 사용자가 확정한 조사 기준 시기(예: `{ "season": "autumn" }`, `{ "month": 10 }`)와 일정. 시기가 정해진 프로젝트에서는 `null` |
+| `project.exclude` | 추천 제외 조건(F2-6) 자유 입력, 최대 200자. 기본 `""` |
+| `recommend` | AI 추천(F2) 캐시. `key`는 추천에 영향을 주는 여행 조건(여행 종류·출발지·시기·기간·예산·동행·인원·관심사·제외 조건)으로 만든 값으로, 지금 조건과 다르면 "조건이 바뀜" 안내를 띄운다. `byModel`에는 모델별 원래 추천 목록(`items`)·상태·출처 수·실제 비용을 두고, 공통 추천 순 목록은 저장하지 않고 `js/core/merge.js`로 매번 합친다. 아직 추천을 받지 않았으면 `null` |
 
 이전 버전(`schemaVersion: 2`) 데이터를 불러오면 `tripType: "overseas"`, `period.mode: "month"`로 채우고, `companionType`을 `companion.type`으로 옮깁니다. `travelers`가 없으면 동행인 수로, 후보 `color`가 없으면 추가 순서로 채웁니다.
 

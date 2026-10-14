@@ -2,6 +2,8 @@
 // 앞 단계 값이 바뀌면 화면이 이 함수들을 다시 불러 자동으로 다시 계산된다 (PRD 3장).
 import { normalizeWeights, ahpWeights, ahpConsistency, aggregateSimple, aggregateAIJ, pairwiseToSlider, weightedSum, rank, isNearTie, sensitivity } from './core/mcdm.js';
 import { DEFAULT_SIMPLE_WEIGHT } from './core/schema.js';
+import { mergeRecommendations, findCandidate } from './core/merge.js';
+import { recommendKey } from './core/project.js';
 import { buildMatrix, inconsistencyOf, pairKey, pairValue } from './core/weights.js';
 
 export const memberMatrix = buildMatrix;
@@ -175,4 +177,19 @@ export function stepsDone(data) {
     panel: Boolean(data.decision?.chosen),
     export: false,
   };
+}
+
+const AI_MODELS = ['claude', 'gpt', 'gemini'];
+
+/**
+ * AI 추천 화면용 (F2-4). 저장된 모델별 목록을 합쳐 공통 추천 순으로, 이미 담은 후보는 candidate로 표시.
+ * 반환: null(아직 추천 안 받음) 또는 { items, models: data.recommend.byModel, stale(조건이 바뀜), at }
+ */
+export function recommendView(data) {
+  const rec = data.recommend;
+  if (!rec) return null;
+  const tripType = data.project.tripType;
+  const byModel = Object.fromEntries(Object.entries(rec.byModel).map(([m, r]) => [m, r.items]));
+  const items = mergeRecommendations(byModel, tripType, AI_MODELS.filter((m) => m in byModel)).map((item) => ({ ...item, candidate: findCandidate(data.candidates, item, tripType) }));
+  return { items, models: rec.byModel, stale: rec.key !== recommendKey(data.project), at: rec.at };
 }

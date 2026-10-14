@@ -97,6 +97,7 @@ export function createProject({ name = '새 여행', tripType = 'overseas', id =
       companion: { type: 'solo', familyDetail: null },
       travelers: 1,
       interests: [],
+      exclude: '', // 추천 제외 조건 (F2-6)
       createdAt: now.toISOString(),
       lastBackupAt: null,
     },
@@ -106,6 +107,7 @@ export function createProject({ name = '새 여행', tripType = 'overseas', id =
     weights: { [me.id]: defaultMemberWeights(criteria) },
     research: {},
     scores: {},
+    recommend: null, // AI 추천 결과 캐시 { key, at, byModel } — core/merge.js로 합쳐 표시
     aiRuns: [],
     decision: { chosen: null, memo: '' },
   };

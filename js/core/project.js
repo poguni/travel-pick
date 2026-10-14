@@ -10,6 +10,7 @@ import {
   defaultMemberWeights,
   newId,
 } from './schema.js';
+import { sanitizeList } from './merge.js';
 
 const OK = { ok: true };
 const fail = (error) => ({ ok: false, error });
@@ -120,6 +121,18 @@ export function addInterest(data, tag) {
   return OK;
 }
 
+/** 추천 제외 조건 (F2-6): 자유 입력 */
+export function setExclude(data, text) {
+  data.project.exclude = clean(text).slice(0, 200);
+  return OK;
+}
+
+/** 추천 캐시 키: 추천 결과에 영향을 주는 여행 조건이 같으면 같은 값 (Phase 8 캐시) */
+export function recommendKey(project) {
+  const { tripType, origin, period, budgetPerPerson, companion, travelers, interests, exclude } = project;
+  return JSON.stringify([tripType, origin, period, budgetPerPerson, companion, travelers, [...interests].sort(), exclude ?? '']);
+}
+
 // ── 동행인 (F8-1) ────────────────────────────────────────
 
 export function addMember(data, name) {
@@ -216,4 +229,35 @@ export function candidateCountNotice(count) {
   if (count < CANDIDATE_RECOMMENDED.min) return 'few';
   if (count > CANDIDATE_RECOMMENDED.max) return 'many';
   return null;
+}
+
+// ── AI 추천 (F2) ─────────────────────────────────────────
+
+const RAW_LIMIT = 4000;
+
+/**
+ * AI 추천 실행 결과를 data.recommend에 기록한다.
+ * results: runner의 결과 [{ model, ok, value, citations, usd, error, raw }]
+ * 조건 키가 바뀌었거나 replace면 이전 결과를 버리고, 아니면(실패한 모델만 다시 시도) 해당 모델만 바꾼다.
+ */
+export function saveRecommendResults(data, results, { key, at, replace = false }) {
+  if (replace || data.recommend?.key !== key) data.recommend = { key, at, byModel: {} };
+  data.recommend.at = at;
+  for (const r of results) {
+    data.recommend.byModel[r.model] = r.ok
+      ? { status: 'done', items: sanitizeList(r.value, data.project.tripType), citations: r.citations?.length ?? 0, usd: r.usd ?? null, at }
+      : { status: 'failed', items: [], citations: 0, usd: r.usd ?? null, error: r.error?.kind ?? 'unknown', raw: r.raw ? String(r.raw).slice(0, RAW_LIMIT) : null, at };
+  }
+  return OK;
+}
+
+const plannedValue = (p) => (p?.month ? `month:${p.month}` : p?.season ? `season:${p.season}` : '');
+
+/** 합친 추천 항목 하나를 후보로 담는다 (F2-5). 추천 시기·일정은 미정 프로젝트에서만 plannedPeriod·plannedNights로 (F2-7) */
+export function addRecommended(data, item) {
+  return addCandidate(
+    data,
+    { name: item.name, country: item.country, region: item.region, code: item.code, plannedPeriod: plannedValue(item.plannedPeriod), plannedNights: item.plannedNights ?? '' },
+    { source: 'ai' },
+  );
 }

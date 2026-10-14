@@ -438,3 +438,22 @@
 .input--score.is-empty { border-style: dashed; background: transparent; }
 .score-table__total { font-family: var(--font-display); font-weight: 700; font-size: 18px; text-align: right; padding-left: 8px; }
 .score-table .num { text-align: right; }
+
+/* ── ② 후보 발굴: AI 추천 (7장 02) ── */
+.rec-exclude { max-width: 640px; }
+.run-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px; }
+.run-cell { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.run-cell__text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.run-cell__name { font-size: 14px; font-weight: 600; }
+.run-cell__sub { font-size: 12px; color: var(--text-muted); }
+.run-cell__end { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.run-cell__status { font-family: var(--font-mono); font-size: 11px; }
+.run-cell__status.is-waiting { color: var(--text-faint); }
+.run-cell__status.is-done { color: var(--ok); }
+.run-cell__status.is-failed { color: var(--sunset-soft); }
+.run-cell__usd { font-family: var(--font-mono); font-size: 12px; color: var(--text-2); }
+.run-cell__raw summary { cursor: pointer; font-size: 12px; color: var(--sunset-soft); }
+.run-cell__raw pre { max-height: 200px; overflow: auto; white-space: pre-wrap; font-size: 11px; color: var(--text-2); background: var(--surface-2); padding: 8px; border-radius: 8px; }
+.section-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.section-head__title { margin: 0; font-size: 18px; font-weight: 600; color: var(--text-strong); }
+.section-head__meta { font-family: var(--font-mono); font-size: 12px; font-weight: 400; color: var(--text-faint); margin-left: 8px; }
