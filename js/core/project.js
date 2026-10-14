@@ -246,7 +246,7 @@ export function saveRecommendResults(data, results, { key, at, replace = false }
   for (const r of results) {
     data.recommend.byModel[r.model] = r.ok
       ? { status: 'done', items: sanitizeList(r.value, data.project.tripType), citations: r.citations?.length ?? 0, usd: r.usd ?? null, at }
-      : { status: 'failed', items: [], citations: 0, usd: r.usd ?? null, error: r.error?.kind ?? 'unknown', raw: r.raw ? String(r.raw).slice(0, RAW_LIMIT) : null, at };
+      : { status: 'failed', items: [], citations: 0, usd: r.usd ?? null, error: r.error?.kind ?? 'unknown', detail: r.error?.message ? String(r.error.message).slice(0, 300) : null, raw: r.raw ? String(r.raw).slice(0, RAW_LIMIT) : null, at };
   }
   return OK;
 }

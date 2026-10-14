@@ -12,7 +12,7 @@ import { DEPTHS, panelKey, memberLabel, sanitizeOpinion, sanitizeResponses, sani
 import { resultsFor, groupWeights, memberTopPicks } from '../selectors.js';
 import { panelContext, r1Messages, r2Messages, r3Messages, opinionSchema, responsesSchema, verdictSchema } from '../ai/prompts.js';
 import { planRun } from '../ai/runner.js';
-import { ERROR_TEXT } from '../ai/openrouter.js';
+import { describeError } from '../ai/openrouter.js';
 import { emptyRedirect } from './placeholder.js';
 import { firstSeen } from '../ui/motion.js';
 
@@ -129,7 +129,7 @@ function roundCards(ctx, data, round, view, { names, running }) {
   return models.map((m) => {
     const r = slot[m];
     if (!r) return running ? pendingCard({ model: m, name: names[m] }) : null;
-    if (r.status !== 'done') return failedCard({ model: m, name: names[m], text: ERROR_TEXT[r.error] ?? '응답을 받지 못했어요.' });
+    if (r.status !== 'done') return failedCard({ model: m, name: names[m], text: describeError(r.error, r.detail) });
     if (round === 'r1') {
       const opinion = view.opinions.find((o) => o.model === m);
       const role = m === data.panel.chair ? 'chair' : view.verdict && opinion.first !== view.verdict.chosen ? 'dissent' : undefined;
@@ -233,7 +233,7 @@ export function renderPanel(ctx) {
           children: [
             view.responses.length > 0 && responseList(view.responses),
             waiting && pendingCard({ model: 'claude', name: '상호 비판' }),
-            failed.length > 0 && h('p', { class: 'muted' }, failed.map(([m, r]) => `${names[m]}: ${ERROR_TEXT[r.error] ?? '응답 없음'}`).join(' · ')),
+            failed.length > 0 && h('p', { class: 'muted' }, failed.map(([m, r]) => `${names[m]}: ${describeError(r.error, r.detail, '응답 없음')}`).join(' · ')),
             !waiting && !view.responses.length && !failed.length && h('p', { class: 'muted' }, '상호 비판 결과가 없어요.'),
           ],
         }),

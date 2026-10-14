@@ -65,7 +65,7 @@ export function saveScoreDraft(data, results, { key, at, map }) {
   for (const r of results) {
     const m = r.model;
     if (!r.ok) {
-      data.scoreDraft.byModel[m] = { status: 'failed', count: 0, usd: r.usd ?? null, at, error: r.error?.kind ?? 'unknown', raw: r.raw ? String(r.raw).slice(0, RAW_LIMIT) : null };
+      data.scoreDraft.byModel[m] = { status: 'failed', count: 0, usd: r.usd ?? null, at, error: r.error?.kind ?? 'unknown', detail: r.error?.message ? String(r.error.message).slice(0, 300) : null, raw: r.raw ? String(r.raw).slice(0, RAW_LIMIT) : null };
       continue;
     }
     for (const row of Object.values(data.scores)) {

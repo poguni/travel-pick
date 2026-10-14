@@ -41,6 +41,10 @@
 - `response_format: { type: 'json_schema', json_schema: { name, strict, schema } }`와 `{ type: 'json_object' }`를 지원합니다.
 - 세 모델 모두 `supported_parameters`에 `response_format`과 `structured_outputs`가 있습니다.
 - 그래도 모델 응답이 스키마를 벗어날 수 있으므로 PRD 5.5대로 처리합니다. 코드 블록을 벗기고 → 파싱 → 검증하고, 실패하면 오류를 붙여 1회 재요청하고, 그래도 실패하면 원문을 보여 줍니다.
+- **Claude(Anthropic) 스키마 제한** (2026-10-14 실제 사용 중 발견): union type(`"type": ["string", "null"]` 같은 타입 배열이나 `anyOf`) 매개변수는 요청당 **16개**, 선택 매개변수(required에 없는 속성)는 **24개**까지입니다. 객체는 `additionalProperties: false`여야 하고 `minimum`·`maxLength` 같은 제약 키워드는 지원하지 않습니다. 넘으면 400(앱 문구: "요청 형식에 문제가 있어요")이 나고, GPT에서는 같은 요청이 통과합니다.
+  - 자료 수집 스키마가 null 허용 항목 때문에 해외 20·국내 19개라 Claude만 실패했습니다. 지금은 모르는 값을 빈 문자열·0으로 받아 union type이 0개입니다.
+  - `tests/schema-limits.test.js`가 모든 AI 스키마를 이 한도로 검사합니다. 스키마를 바꿀 때 함께 확인하세요.
+  - 400·403·5xx 오류는 OpenRouter가 보낸 원문을 비용 확인 창과 모델 상태 칸에 함께 보여 줍니다.
 
 ## 5. 브라우저 직접 호출 (CORS)·헤더·키 확인
 
@@ -76,3 +80,4 @@
 - 오류: <https://openrouter.ai/docs/api-reference/errors>
 - 키·한도: <https://openrouter.ai/docs/api-reference/limits>
 - 모델 목록(직접 호출): <https://openrouter.ai/api/v1/models>
+- Anthropic 구조화 출력 제한: <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>

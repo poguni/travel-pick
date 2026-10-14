@@ -66,7 +66,7 @@ export function saveRound(data, round, results, clean, { at }) {
     slot[r.model] =
       r.ok && value
         ? { status: 'done', value, usd: r.usd ?? null, at }
-        : { status: r.error?.kind === 'skipped' ? 'skipped' : 'failed', usd: r.usd ?? null, error: r.ok ? 'invalid_json' : r.error?.kind ?? 'unknown', raw: r.raw ? String(r.raw).slice(0, RAW_LIMIT) : null, at };
+        : { status: r.error?.kind === 'skipped' ? 'skipped' : 'failed', usd: r.usd ?? null, error: r.ok ? 'invalid_json' : r.error?.kind ?? 'unknown', detail: !r.ok && r.error?.message ? String(r.error.message).slice(0, 300) : null, raw: r.raw ? String(r.raw).slice(0, RAW_LIMIT) : null, at };
   }
   data.panel.at = at;
   return { ok: true };

@@ -87,6 +87,10 @@ describe('응답 다듬기 (F4-2·3)', () => {
     assert.deepEqual(items.flightPrice.sources, ['https://a.com']);
     assert.equal(items.flightPrice.needsCheck, false);
     assert.deepEqual(items.flightPrice.numeric, { min: 350000, max: 450000 }, '뒤집힌 범위는 바로잡는다');
+    const unknown = sanitizeResearch({ items: { lodging: { value: '확인 필요', sources: [], asOf: '', numeric: { min: 0, max: 0 } }, flightTime: { value: '2시간', sources: [], numeric: { min: 0, max: 2.5 } } } }, 'overseas');
+    assert.equal(unknown.lodging.numeric, null, 'min·max가 모두 0이면 모름');
+    assert.equal(unknown.lodging.asOf, null, '빈 기준 시점은 없음');
+    assert.deepEqual(unknown.flightTime.numeric, { min: 2.5, max: 2.5 }, '한쪽만 0이면 다른 값으로');
     assert.equal(items.visa, undefined, '빈 값은 빠진다');
     assert.equal(items.lodging.numeric, null);
     assert.equal(items.unknownItem, undefined);
@@ -182,7 +186,23 @@ describe('조사 요청 (F10-1, F4-7)', () => {
   });
   test('예시 응답이 스키마 검증을 통과한다', () => {
     const items = RESEARCH_ITEMS.domestic;
-    const sample = { items: Object.fromEntries(items.map((d) => [d.id, { value: 'v', summary: 's', sources: [], asOf: null, needsCheck: true, ...(d.numeric ? { numeric: { min: 1, max: 2 } } : {}) }])) };
+    const sample = { items: Object.fromEntries(items.map((d) => [d.id, { value: 'v', summary: 's', sources: [], asOf: '', needsCheck: true, ...(d.numeric ? { numeric: { min: 0, max: 0 } } : {}) }])) };
     assert.deepEqual(validate(sample, researchSchema(items).schema), []);
+  });
+});
+
+describe('오류 원문 보이기 (400 진단)', () => {
+  test('요청 형식 오류는 OpenRouter 원문을 함께, 그 밖의 오류는 공통 문구만', async () => {
+    const { describeError, ERROR_TEXT } = await import('../js/ai/openrouter.js');
+    assert.equal(describeError('bad_request', 'Too many union types'), `${ERROR_TEXT.bad_request} (Too many union types)`);
+    assert.equal(describeError('timeout', 'whatever'), ERROR_TEXT.timeout);
+    assert.equal(describeError('bad_request', ERROR_TEXT.bad_request), ERROR_TEXT.bad_request, '원문이 없으면 공통 문구만');
+    assert.equal(describeError('unknown_kind', null, '응답 없음'), '응답 없음');
+  });
+  test('실패 기록에 원문(detail)을 남긴다', () => {
+    const d = project();
+    const a = d.candidates[0];
+    saveResearchResults(d, [{ model: 'claude', ok: false, meta: { candidateId: a.id }, error: { kind: 'bad_request', message: 'Provider returned error' }, raw: null }], { keys: { [a.id]: 'k' }, at: 't' });
+    assert.equal(d.research[a.id].claude.detail, 'Provider returned error');
   });
 });

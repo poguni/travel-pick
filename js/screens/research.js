@@ -10,7 +10,7 @@ import { hrefFor } from '../router.js';
 import { RESEARCH_ITEMS, SAFETY_NOTICE, researchBasis, researchKey, saveResearchResults, setConfirmed, setResearchNote } from '../core/research.js';
 import { researchProgress, researchCards } from '../selectors.js';
 import { researchRequest, basisText } from '../ai/prompts.js';
-import { ERROR_TEXT } from '../ai/openrouter.js';
+import { describeError } from '../ai/openrouter.js';
 import { emptyRedirect } from './placeholder.js';
 
 const usdText = (v) => (v > 0 && v < 0.001 ? '< $ 0.001' : formatUsd(v));
@@ -109,7 +109,7 @@ function modelStrip(ctx, candidate, cards, models) {
       const [label, cls] = STATUS_TEXT[st];
       const sub =
         st === 'failed'
-          ? ERROR_TEXT[e.error] ?? '응답을 받지 못했어요'
+          ? describeError(e.error, e.detail, '응답을 받지 못했어요')
           : st === 'done'
             ? `항목 ${Object.keys(e.items).length}개 · 출처 ${Math.max(e.citations, new Set(Object.values(e.items).flatMap((i) => i.sources)).size)}개`
             : st === 'stale'

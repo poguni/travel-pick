@@ -12,7 +12,7 @@ import { REGIONS, CANDIDATE_RECOMMENDED } from '../core/schema.js';
 import { addCandidate, removeCandidate, candidateCountNotice, setExclude, recommendKey, saveRecommendResults, addRecommended } from '../core/project.js';
 import { recommendView } from '../selectors.js';
 import { recommendRequest } from '../ai/prompts.js';
-import { ERROR_TEXT } from '../ai/openrouter.js';
+import { describeError } from '../ai/openrouter.js';
 import { emptyRedirect } from './placeholder.js';
 
 const SEASON_KO = { spring: '봄', summer: '여름', autumn: '가을', winter: '겨울' };
@@ -101,7 +101,7 @@ function runStrip(ctx, view) {
         'span',
         { class: 'run-cell__text' },
         h('span', { class: 'run-cell__name' }, name),
-        h('span', { class: 'run-cell__sub' }, !r ? '이번 추천에서 실행하지 않았어요' : r.status === 'done' ? `추천 ${r.items.length}곳 · 출처 ${sources}개` : ERROR_TEXT[r.error] ?? '응답을 받지 못했어요'),
+        h('span', { class: 'run-cell__sub' }, !r ? '이번 추천에서 실행하지 않았어요' : r.status === 'done' ? `추천 ${r.items.length}곳 · 출처 ${sources}개` : describeError(r.error, r.detail, '응답을 받지 못했어요')),
         r?.raw && h('details', { class: 'run-cell__raw' }, h('summary', null, '응답 원문 보기'), h('pre', null, r.raw)),
       ),
       h(

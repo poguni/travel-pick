@@ -24,6 +24,17 @@ export const ERROR_TEXT = {
   skipped: '앞 라운드 결과가 없어 건너뛰었어요.',
 };
 
+/** 원인이 요청 쪽(형식·권한)이나 제공사에 있는 오류는 OpenRouter가 보낸 원문을 함께 보여 준다 */
+const DETAIL_KINDS = new Set(['bad_request', 'forbidden', 'server']);
+
+/** 화면용 오류 문구: 공통 안내 + (해당하면) 원문. detail: error.message */
+export function describeError(kind, detail, fallback = '응답을 받지 못했어요.') {
+  const base = ERROR_TEXT[kind] ?? fallback;
+  const raw = String(detail ?? '').trim();
+  return raw && raw !== base && DETAIL_KINDS.has(kind) ? `${base} (${raw.slice(0, 200)})` : base;
+}
+
+
 /** 동시 실행 개수 제한 */
 function semaphore(max) {
   let active = 0;

@@ -3,7 +3,7 @@ import { h, mount } from '../dom.js';
 import { icon } from '../icons.js';
 import { modelBadge, MODEL_META } from './ai.js';
 import { summarizeEstimates } from '../../core/cost.js';
-import { ERROR_TEXT } from '../../ai/openrouter.js';
+import { describeError } from '../../ai/openrouter.js';
 
 const k = (n) => (n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n));
 const usd = (v) => (v == null ? '단가 확인 필요' : v > 0 && v < 0.0001 ? '< $0.0001' : `$ ${v < 0.01 ? v.toFixed(4) : v.toFixed(2)}`);
@@ -146,7 +146,7 @@ export function openReceipt(plan, { usdKrw, delta }) {
                 { class: 'receipt__prow' },
                 modelBadge(m, { size: 30, name: mine[0].name }),
                 h('span', { class: ['receipt__status', cls] }, label, counts.running ? h('span', { class: 'dots', 'aria-hidden': 'true' }, h('i'), h('i'), h('i')) : null),
-                firstError && h('span', { class: 'receipt__error' }, ERROR_TEXT[firstError.kind] ?? firstError.message),
+                firstError && h('span', { class: 'receipt__error' }, describeError(firstError.kind, firstError.message, firstError.message)),
               );
             }),
         ),

@@ -12,7 +12,7 @@ import { criterionInfo } from '../core/schema.js';
 import { RESEARCH_ITEMS, researchBasis } from '../core/research.js';
 import { resultsFor, scoreProgress, groupWeights, consensusSummary } from '../selectors.js';
 import { scoreRequest, basisText } from '../ai/prompts.js';
-import { ERROR_TEXT } from '../ai/openrouter.js';
+import { describeError } from '../ai/openrouter.js';
 import { emptyRedirect } from './placeholder.js';
 
 const usdText = (v) => (v > 0 && v < 0.001 ? '< $ 0.001' : formatUsd(v));
@@ -103,7 +103,7 @@ function draftPanel(ctx, data) {
               'span',
               { class: 'run-cell__text' },
               h('span', { class: 'run-cell__name' }, settings.models.find((x) => x.key === m)?.name ?? MODEL_META[m].name),
-              h('span', { class: 'run-cell__sub' }, ok ? `${r.count}칸 채점` : ERROR_TEXT[r.error] ?? '응답을 받지 못했어요'),
+              h('span', { class: 'run-cell__sub' }, ok ? `${r.count}칸 채점` : describeError(r.error, r.detail, '응답을 받지 못했어요')),
               r.raw && h('details', { class: 'run-cell__raw' }, h('summary', null, '응답 원문 보기'), h('pre', null, r.raw)),
             ),
             h(

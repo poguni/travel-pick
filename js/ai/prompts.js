@@ -139,6 +139,8 @@ export function basisText(basis) {
   return { when: `${when}${basis.fromCandidate.period && basis.period ? ' (후보의 추천 시기)' : ''}`, nights: `${nights}${basis.fromCandidate.nights && basis.nights != null ? ' (후보의 적정 일정)' : ''}` };
 }
 
+// Anthropic 구조화 출력은 union type(['string','null'] 등) 매개변수를 요청당 16개까지만 받는다.
+// 조사 항목은 10~11개라 항목마다 null을 허용하면 한도를 넘으므로(400 오류), 모르는 값은 빈 문자열·0으로 받는다.
 const researchItemSchema = (numeric) => ({
   type: 'object',
   required: ['value', 'summary', 'sources', 'asOf', 'needsCheck', ...(numeric ? ['numeric'] : [])],
@@ -147,10 +149,10 @@ const researchItemSchema = (numeric) => ({
     value: { type: 'string' },
     summary: { type: 'string' },
     sources: strings,
-    asOf: nullable('string'),
+    asOf: { type: 'string' },
     needsCheck: { type: 'boolean' },
     ...(numeric
-      ? { numeric: { type: ['object', 'null'], required: ['min', 'max'], additionalProperties: false, properties: { min: nullable('number'), max: nullable('number') } } }
+      ? { numeric: { type: 'object', required: ['min', 'max'], additionalProperties: false, properties: { min: { type: 'number' }, max: { type: 'number' } } } }
       : {}),
   },
 });
@@ -182,8 +184,8 @@ export function researchMessages(project, candidate, { items, basis, today }) {
     '출력 규칙',
     '- 요구한 JSON만 출력한다. 모든 글은 한국어로 쓴다.',
     '- value: 비교하기 쉬운 한 줄 결론(예: "왕복 35~45만 원", "최저 12℃·최고 19℃, 비 적음"). summary: 근거와 주의점 2문장 이내.',
-    '- sources: 확인한 웹 페이지 URL. URL을 지어내지 않는다. asOf: 정보 기준 시점("2026-09" 형식), 모르면 null.',
-    '- 출처가 없거나 확실하지 않으면 needsCheck를 true로 한다. 모르는 값은 value에 "확인 필요"라고 쓰고 numeric은 null로 둔다.',
+    '- sources: 확인한 웹 페이지 URL. URL을 지어내지 않는다. asOf: 정보 기준 시점("2026-09" 형식), 모르면 빈 문자열.',
+    '- 출처가 없거나 확실하지 않으면 needsCheck를 true로 한다. 모르는 값은 value에 "확인 필요"라고 쓰고 numeric은 min·max를 모두 0으로 둔다.',
     '- 가격은 대략적인 범위로만 쓴다(원화 기준). 시간은 시간 단위 소수(예: 2시간 30분 → 2.5).',
     overseas
       ? '- 안전·위생·비자는 외교부 해외안전여행, WHO, 질병관리청 등 공식 기관 정보를 우선 근거로 한다.'

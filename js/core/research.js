@@ -66,10 +66,12 @@ export function researchKey(project, candidate) {
 const isUrl = (u) => typeof u === 'string' && /^https?:\/\/\S+$/i.test(u.trim());
 const num = (v) => (typeof v === 'number' && Number.isFinite(v) && v >= 0 ? v : null);
 
-/** 숫자 범위 다듬기: { min, max } (하나만 있으면 같은 값), 둘 다 없으면 null */
+/** 숫자 범위 다듬기: { min, max } (하나만 있으면 같은 값), 둘 다 없거나 둘 다 0(모름)이면 null */
 function cleanNumeric(n) {
   if (!n || typeof n !== 'object') return null;
   let [min, max] = [num(n.min), num(n.max)];
+  if (min === 0) min = null; // 가격·시간이 0인 경우는 없으므로 0은 "모름"
+  if (max === 0) max = null;
   if (min == null && max == null) return null;
   min ??= max;
   max ??= min;
@@ -116,7 +118,7 @@ export function saveResearchResults(data, results, { keys, at }) {
     const slot = (data.research[id] ??= { confirmed: {}, notes: {} });
     slot[r.model] = r.ok
       ? { status: 'done', key: keys[id], at, items: sanitizeResearch(r.value, data.project.tripType), citations: r.citations?.length ?? 0, usd: r.usd ?? null }
-      : { status: 'failed', key: keys[id], at, items: {}, citations: 0, usd: r.usd ?? null, error: r.error?.kind ?? 'unknown', raw: r.raw ? String(r.raw).slice(0, RAW_LIMIT) : null };
+      : { status: 'failed', key: keys[id], at, items: {}, citations: 0, usd: r.usd ?? null, error: r.error?.kind ?? 'unknown', detail: r.error?.message ? String(r.error.message).slice(0, 300) : null, raw: r.raw ? String(r.raw).slice(0, RAW_LIMIT) : null };
   }
   return { ok: true };
 }
