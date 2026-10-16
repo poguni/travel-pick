@@ -16,13 +16,15 @@ export function projectPass(data, results = resultsFor(data)) {
   const [first, second] = results.ranking;
   const leader = first && data.candidates[first.index];
   const n = data.candidates.length;
+  const chosen = data.decision.chosen && data.candidates.find((c) => c.id === data.decision.chosen);
   const created = p.createdAt.slice(0, 10).split('-');
   const tbd = (text) => (text === '미정' ? 'TBD · AI가 추천 시기 제시' : null);
   return boardingPass({
     tripType: p.tripType,
     serial: `TP-${created[0]}-${created[1]}${created[2]}`,
     origin: { text: originLabel(p), caption: `${p.origin} 출발` },
-    dest: { pending: true, caption: n ? `후보 ${n}곳 중 결정 중` : '후보를 모으는 중' },
+    // AI 최종 심사에서 고른 여행지가 있으면 도착지에 표시한다
+    dest: chosen ? { place: chosen, caption: `${placeCaption(chosen)} · 최종 결정` } : { pending: true, caption: n ? `후보 ${n}곳 중 결정 중` : '후보를 모으는 중' },
     info: [
       { label: 'DEPART', value: periodLong(p.period), sub: tbd(periodLong(p.period)) },
       { label: 'DURATION', value: durationText(p.period), sub: tbd(durationText(p.period)) },

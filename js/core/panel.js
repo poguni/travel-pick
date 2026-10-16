@@ -87,7 +87,15 @@ export function toggleCheck(data, index, checked) {
 /** 최종 선택 저장 (F11 → 리포트) */
 export function choose(data, candidateId) {
   if (!data.candidates.some((c) => c.id === candidateId)) return { ok: false, error: 'unknown' };
+  // 결정을 바꾸면 전에 내보낸 리포트는 옛 결정이므로 내보내기를 다시 해야 한다
+  if (data.decision.chosen !== candidateId) data.decision.exportedAt = null;
   data.decision.chosen = candidateId;
+  return { ok: true };
+}
+
+/** 내보내기 기록 (⑧ 완료 표시). JSON·Excel·Word·PDF 중 하나라도 내보내면 */
+export function markExported(data, { at }) {
+  data.decision.exportedAt = at;
   return { ok: true };
 }
 

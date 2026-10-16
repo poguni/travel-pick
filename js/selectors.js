@@ -177,7 +177,7 @@ export function stepsDone(data) {
     scores: scored,
     results: scored,
     panel: Boolean(data.decision?.chosen),
-    export: false,
+    export: Boolean(data.decision?.exportedAt),
   };
 }
 

@@ -5,6 +5,7 @@ import { reportDocument } from '../ui/components/report.js';
 import { icon } from '../ui/icons.js';
 import { downloadText, exportFileName } from '../ui/download.js';
 import { backupDue, BACKUP_DAYS } from '../core/project.js';
+import { markExported } from '../core/panel.js';
 import { buildReport } from '../export/report.js';
 import { reportCharts } from '../export/charts.js';
 import { emptyRedirect } from './placeholder.js';
@@ -50,7 +51,11 @@ export function renderExport(ctx) {
   const report = { ...buildReport(data), charts: charts.key === key ? charts.list : [] };
   const due = backupDue(data.project);
 
+  // 무엇이든 내보내면 ⑧ 단계를 완료로 표시한다 (RouteNav·홈 다음 게이트)
+  const exported = () => ctx.update((d) => markExported(d, { at: new Date().toISOString() }));
+
   const onBackup = () => {
+    exported(); // 백업 파일에도 완료 기록이 들어가도록 먼저
     ctx.flush();
     const backup = ctx.store.exportBackup();
     downloadText(exportFileName('백업', 'json'), JSON.stringify(backup, null, 2));
@@ -60,7 +65,9 @@ export function renderExport(ctx) {
   const onExcel = async () => {
     try {
       const { exportExcel } = await import('../export/excel.js');
-      ctx.flash(`${await exportExcel(ctx.state.getState().data)} 파일을 저장했어요.`);
+      const name = await exportExcel(ctx.state.getState().data);
+      exported();
+      ctx.flash(`${name} 파일을 저장했어요.`);
     } catch {
       ctx.flash('Excel 파일을 만들지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.', 'warn');
     }
@@ -70,7 +77,9 @@ export function renderExport(ctx) {
       const d = ctx.state.getState().data;
       const list = await ensureCharts(ctx, d);
       const { exportWord } = await import('../export/word.js');
-      ctx.flash(`${await exportWord({ ...buildReport(d), charts: list })} 파일을 저장했어요. Word나 한컴오피스에서 열어 보세요.`);
+      const name = await exportWord({ ...buildReport(d), charts: list });
+      exported();
+      ctx.flash(`${name} 파일을 저장했어요. Word나 한컴오피스에서 열어 보세요.`);
     } catch {
       ctx.flash('Word 파일을 만들지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.', 'warn');
     }
@@ -82,6 +91,7 @@ export function renderExport(ctx) {
     const title = document.title;
     document.title = exportFileName(d.project.name, 'pdf').replace(/\.pdf$/, '');
     window.addEventListener('afterprint', () => (document.title = title), { once: true });
+    exported(); // 인쇄 창에서 실제로 저장했는지는 알 수 없어 창을 열 때 기록한다
     // 차트가 들어간 미리보기가 그려진 뒤 인쇄 창을 연다
     requestAnimationFrame(() => requestAnimationFrame(() => window.print()));
   };

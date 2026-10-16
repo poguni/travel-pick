@@ -111,7 +111,7 @@ export function createProject({ name = '새 여행', tripType = 'overseas', id =
     recommend: null, // AI 추천 결과 캐시 { key, at, byModel } — core/merge.js로 합쳐 표시
     panel: null, // AI 최종 심사 { depth, anonymized, chair, key, at, rounds, checks } — core/panel.js
     aiRuns: [],
-    decision: { chosen: null, memo: '' },
+    decision: { chosen: null, memo: '', exportedAt: null }, // exportedAt: 내보내기 화면에서 마지막으로 내보낸 때 (⑧ 완료)
   };
 }
 

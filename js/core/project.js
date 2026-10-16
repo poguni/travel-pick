@@ -220,7 +220,10 @@ export function removeCandidate(data, id) {
   data.candidates = data.candidates.filter((c) => c.id !== id);
   delete data.research[id];
   delete data.scores[id];
-  if (data.decision.chosen === id) data.decision.chosen = null;
+  if (data.decision.chosen === id) {
+    data.decision.chosen = null;
+    data.decision.exportedAt = null;
+  }
   return OK;
 }
 
