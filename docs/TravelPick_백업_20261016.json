@@ -1,0 +1,2853 @@
+{
+  "app": "travelpick",
+  "backupVersion": 1,
+  "exportedAt": "2026-10-16T14:56:53.158Z",
+  "settings": {
+    "schemaVersion": 3,
+    "models": [
+      {
+        "key": "claude",
+        "name": "Claude Sonnet 5.5",
+        "slug": "anthropic/claude-sonnet-5.5",
+        "enabled": true,
+        "pricing": {
+          "prompt": 0.000002,
+          "completion": 0.00001,
+          "webSearch": 0.01,
+          "fetchedAt": null
+        }
+      },
+      {
+        "key": "gpt",
+        "name": "GPT-6 Luna",
+        "slug": "openai/gpt-6-luna",
+        "enabled": true,
+        "pricing": {
+          "prompt": 1e-7,
+          "completion": 5e-7,
+          "webSearch": 0.01,
+          "fetchedAt": null
+        }
+      },
+      {
+        "key": "gemini",
+        "name": "Gemini 3.8 Flash",
+        "slug": "google/gemini-3.8-flash",
+        "enabled": true,
+        "pricing": {
+          "prompt": 7.5e-7,
+          "completion": 0.00000375,
+          "webSearch": 0.014,
+          "fetchedAt": null
+        }
+      }
+    ],
+    "chairModel": "claude",
+    "webSearch": true,
+    "usdKrw": 1400,
+    "tokenRatio": {
+      "ko": 0.8,
+      "other": 0.25
+    },
+    "apiKeyStorage": "local"
+  },
+  "projects": [
+    {
+      "schemaVersion": 3,
+      "project": {
+        "id": "d7b4d18e-b0f2-4d8a-857a-43c034e4f057",
+        "name": "2027 겨울 가족여행",
+        "tripType": "overseas",
+        "origin": "인천",
+        "period": {
+          "mode": "month",
+          "season": null,
+          "month": 1,
+          "startDate": null,
+          "nights": null,
+          "dayTrip": false
+        },
+        "budgetPerPerson": 2000000,
+        "companion": {
+          "type": "family",
+          "familyDetail": null
+        },
+        "travelers": 3,
+        "interests": [
+          "음식",
+          "쇼핑",
+          "자연",
+          "도시",
+          "사진"
+        ],
+        "exclude": "",
+        "createdAt": "2026-10-16T14:23:33.131Z",
+        "lastBackupAt": "2026-10-16T14:56:53.158Z"
+      },
+      "members": [
+        {
+          "id": "m1",
+          "name": "나",
+          "influence": 1
+        },
+        {
+          "id": "m2",
+          "name": "지운",
+          "influence": 1
+        },
+        {
+          "id": "m3",
+          "name": "진숙",
+          "influence": 1
+        }
+      ],
+      "candidates": [
+        {
+          "id": "c-2ac9b91b-0c8c-474d-9837-d55a50709157",
+          "name": "후쿠오카",
+          "country": "일본",
+          "region": null,
+          "code": "FUK",
+          "source": "ai",
+          "note": "",
+          "plannedPeriod": null,
+          "plannedNights": 3,
+          "color": 0
+        },
+        {
+          "id": "c-0c89fff5-e435-4329-b34f-980c3d5dd0a0",
+          "name": "타이베이",
+          "country": "대만",
+          "region": null,
+          "code": "TPE",
+          "source": "ai",
+          "note": "",
+          "plannedPeriod": null,
+          "plannedNights": 3,
+          "color": 1
+        },
+        {
+          "id": "c-edfd4078-531e-4d39-a3e7-b98463b9da17",
+          "name": "마쓰야마",
+          "country": "일본",
+          "region": null,
+          "code": "MYJ",
+          "source": "ai",
+          "note": "",
+          "plannedPeriod": null,
+          "plannedNights": 3,
+          "color": 3
+        }
+      ],
+      "criteria": [
+        {
+          "id": "cost",
+          "name": "비용",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "weather",
+          "name": "날씨",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "distance",
+          "name": "거리",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "food",
+          "name": "음식",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "photo",
+          "name": "사진 촬영",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "safety",
+          "name": "안전",
+          "type": "qualitative",
+          "direction": "higher_better"
+        },
+        {
+          "id": "hygiene",
+          "name": "위생",
+          "type": "qualitative",
+          "direction": "higher_better"
+        }
+      ],
+      "weights": {
+        "m1": {
+          "mode": "simple",
+          "raw": {
+            "cost": 3,
+            "weather": 6,
+            "distance": 3,
+            "food": 8,
+            "photo": 6,
+            "safety": 5,
+            "hygiene": 5
+          },
+          "pairs": {},
+          "judged": [],
+          "touched": true
+        },
+        "m2": {
+          "mode": "simple",
+          "raw": {
+            "cost": 5,
+            "weather": 8,
+            "distance": 5,
+            "food": 8,
+            "photo": 5,
+            "safety": 5,
+            "hygiene": 5
+          },
+          "pairs": {},
+          "judged": [],
+          "touched": true
+        },
+        "m3": {
+          "mode": "simple",
+          "raw": {
+            "cost": 5,
+            "weather": 8,
+            "distance": 5,
+            "food": 8,
+            "photo": 5,
+            "safety": 8,
+            "hygiene": 5
+          },
+          "pairs": {},
+          "judged": [],
+          "touched": true
+        }
+      },
+      "research": {
+        "c-2ac9b91b-0c8c-474d-9837-d55a50709157": {
+          "confirmed": {},
+          "notes": {},
+          "claude": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"후쿠오카\",\"FUK\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":null},3]",
+            "at": "2026-10-16T14:35:51.525Z",
+            "items": {
+              "weather": {
+                "value": "최저 약 4℃·최고 약 10℃, 월 강수 약 74mm(약 9일), 가끔 눈",
+                "summary": "일본 기상청 1991~2020 평년값 기준 1월 최고 10.2℃·최저 3.9℃, 강수량 74.4mm, 강수일 9.3일이다. 1년 중 가장 추운 달이지만 영하는 드물어서 코트나 경량 패딩에 목도리, 휴대용 우산을 챙기면 된다.",
+                "sources": [
+                  "https://www.yeosonam.com/blog/fukuoka-weather-packing",
+                  "https://www.tripstore.kr/blog/fukuoka-monthly-weather-clothing-guide",
+                  "https://cucuoka.com/weather"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "모츠나베(곱창전골)·명란젓 중심, 1인 약 3,000~4,000엔대 전문점 다수",
+                "summary": "겨울에는 모츠나베가 대표 메뉴이고, 하카타역·텐진 일대에 전문점이 많아 가족 단위로 좌석을 예약해 가기 편하다. 나카스 야타이는 야외 좌석 위주라 1월에는 추우니, 아이나 어르신이 있다면 실내 식당 위주로 잡는 게 좋다.",
+                "sources": [
+                  "https://www.kkday.com/ko/blog/37037/asia-japan-fukuoka-motsunabe",
+                  "https://www.kkday.com/ko/blog/37504/asia-japan-fukuoka-hakata-motsunabe",
+                  "https://brunch.co.kr/@mytriplog/867"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "후쿠오카 타워·모모치 해변 일몰~야경, 오호리 공원 오전, 다자이후 오전 9~11시",
+                "summary": "후쿠오카 타워는 일몰 약 30분 전에 올라가면 일몰과 야경을 함께 담기 좋고, 일몰 무렵에는 대기가 30분 이상 걸리기도 한다. 다자이후 텐만구는 오전 9~11시가 한산하고, 나카스 야타이는 밤 8시 이후가 활기차다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EB%9E%9C%EB%93%9C%EB%A7%88%ED%81%AC-%EC%95%BC%EA%B2%BD-%EC%87%BC%ED%95%91-%EB%AA%85%EC%86%8C",
+                  "https://agoda-tour.com/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%ED%83%80%EC%9B%8C-%EC%95%BC%EA%B2%BD-%EC%9D%BC%EB%AA%B0-%ED%83%80%EC%9D%B4%EB%B0%8D-%EB%86%93%EC%B9%98%EB%A9%B4-%EC%95%88%EB%8F%BC-%EA%BF%80%ED%8C%81-%EC%A0%95/",
+                  "https://gofukuoka.jp/ko/articles/detail/6cae1f39-9bfd-45b5-bf36-05657c7f17b5"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "가족 3명 3박 4일에 잘 맞음(음식·쇼핑·도시·야경 관심사 충족)",
+                "summary": "비행이 짧고 하카타·텐진·캐널시티가 가까워 이동 부담이 적으며, 하카타에는 3~4인용 트리플·쿼드룸을 갖춘 호텔이 많다. 가족 세부 구성(자녀 연령 등)은 알 수 없고, 자연 관심사는 이토시마·다자이후 등 근교로 채워야 하며 1월에는 야외 일정이 쌀쌀하다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EC%88%99%EC%86%8C-%EC%9C%84%EC%B9%98-%EB%B9%84%EA%B5%90-%EC%B6%94%EC%B2%9C",
+                  "https://matcha-jp.com/ko/3528"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 20~40만 원",
+                "summary": "카야크에 따르면 일본행 왕복 평균 요금은 1월이 약 31만 원이고 인천~후쿠오카 최저가는 왕복 15만 원대부터 나온다. 12월 말~1월 초는 가격이 크게 오르므로 1월 중순 이후 LCC 직항을 일찍 예약하는 게 유리하다.",
+                "sources": [
+                  "https://www.kayak.co.kr/%ED%95%AD%EA%B3%B5%EA%B6%8C/%EC%84%9C%EC%9A%B8-%EC%9D%B8%EC%B2%9C%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD-ICN/%EC%9D%BC%EB%B3%B8-JP0",
+                  "https://www.hotelscombined.co.kr/flight-routes/Incheon-Intl-ICN/Fukuoka-FUK.ksp",
+                  "https://www.skyscanner.com/routes/icn/fuk/incheon-international-to-fukuoka.html"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 200000,
+                  "max": 400000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 1시간 20분~1시간 40분, 직항 있음",
+                "summary": "인천~후쿠오카는 이스타·제주항공·에어서울·티웨이 등이 직항으로 운항하고, 검색 결과의 편도 소요는 1시간 20분~1시간 40분이다. 실제 소요는 항공편과 바람에 따라 조금씩 다르다.",
+                "sources": [
+                  "https://www.kayak.co.kr/%ED%95%AD%EA%B3%B5%EA%B6%8C/%EC%84%9C%EC%9A%B8-%EC%9D%B8%EC%B2%9C%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD-ICN/%EC%9D%BC%EB%B3%B8-JP0",
+                  "https://www.hotelscombined.co.kr/flight-routes/Incheon-Intl-ICN/Fukuoka-FUK.ksp"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 1.3,
+                  "max": 1.7
+                }
+              },
+              "lodging": {
+                "value": "중급 호텔 1박 약 10~20만 원(객실 기준)",
+                "summary": "텐진은 1박 8~15만 원, 하카타는 15~25만 원, 나카스는 5~9만 원대이고, 아고다 기준 평균은 약 16만 원이다. 위 가격은 1월 기준이 아니고 주말에는 더 오르며, 숙박세(1인 1박 200~500엔)가 따로 붙는다. 3명이면 트리플룸 1개나 2개 객실 여부에 따라 총액이 달라진다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-%EC%88%99%EC%86%8C-%EC%9C%84%EC%B9%98-%EB%B9%84%EA%B5%90-%EC%B6%94%EC%B2%9C",
+                  "https://stayranker.com/japan/fukuoka",
+                  "https://brunch.co.kr/@triplove/168"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 100000,
+                  "max": 200000
+                }
+              },
+              "prices": {
+                "value": "한국과 비슷하거나 다소 저렴, 숙박은 비싼 편. 1인 1일 약 15~20만 원(숙박 포함)",
+                "summary": "KKday는 후쿠오카 경비를 숙박 포함 1인 1일 15~20만 원으로 안내한다. 3박 4일이면 현지 경비와 숙박이 1인 약 60~80만 원, 항공을 더하면 약 80~120만 원으로 추정되어 1인 200만 원 예산 안에서 쇼핑 여유가 있다.",
+                "sources": [
+                  "https://www.kkday.com/ko/blog/37109/asia-japan-fukuoka-threefourcourse"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "visa": {
+                "value": "무비자 90일(관광), Visit Japan Web 사전 등록 권장",
+                "summary": "한국 여권 소지자는 관광 목적으로 최대 90일 무비자 입국이 가능하며, 유효한 여권과 귀국 항공권을 지참해야 한다. Visit Japan Web은 필수는 아니지만 입국심사·세관신고를 QR 하나로 처리할 수 있어 가족 각자 등록해 두면 편하다.",
+                "sources": [
+                  "https://kr.trip.com/guide/info/%EC%9D%BC%EB%B3%B8+%EC%9E%85%EA%B5%AD+%EC%8B%AC%EC%82%AC.html",
+                  "https://groundche.com/visit-japan-web-guide/",
+                  "https://www.tripstore.kr/blog/%EC%9D%BC%EB%B3%B8-%EB%B9%84%EC%9E%90-%EB%AC%B4%EB%B9%84%EC%9E%90-%EC%9E%85%EA%B5%AD-%EC%A1%B0%EA%B1%B4"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "여행경보 미발령(후쿠시마 원전 30km 이내 제외), 1월 태풍 없음·지진은 상시 유의",
+                "summary": "외교부 해외안전여행 페이지에 일본 여행경보 1단계가 2024-06-28 해제(미발령)된 것으로 나오며, 출국권고는 후쿠시마 원전 반경 30km 이내와 피난지시구역에 한정된다. 같은 페이지에 지진 발생 시 행동요령 공지가 있어 숙소 대피로를 확인해 두고, 후쿠오카의 1월 태풍 기록은 없다는 블로그 자료가 있으나 출발 전 최신 공지를 확인하는 게 좋다.",
+                "sources": [
+                  "https://0404.go.kr/ntnSafetyInfo/183/detail",
+                  "https://soultrip7.kr/%ED%9B%84%EC%BF%A0%EC%98%A4%EC%B9%B4-1%EC%9B%94-%EB%82%A0%EC%94%A8-%EB%B0%8F-%EC%97%AC%ED%96%89%EC%98%B7%EC%B0%A8%EB%A6%BC-%ED%83%9C%ED%92%8D%EA%B0%95%EC%88%98%EB%9F%89-%EB%B0%8F-%EA%B8%B0%ED%9B%84/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "필수 접종 없음, 홍역(MMR 2회)·인플루엔자 접종 권고",
+                "summary": "질병관리청은 올해 일본 홍역 환자가 최근 10년 중 최고 수준이라며 MMR 2회 미접종자나 접종 여부가 불확실한 사람은 접종을 권고했고, 해외감염병NOW는 10~4월 여행자 전원에게 인플루엔자 접종을 권고한다(출국 2주 전). 현지 수돗물 음용 가능 여부와 의료 접근성은 이번 조사에서 확인하지 못했으므로 해외여행자보험 가입과 함께 별도 확인이 필요하다.",
+                "sources": [
+                  "https://m.news.nate.com/view/20260920n06750",
+                  "http://xn--now-po7lf48dlsm0ya109f.kr/nqs/oidnow/search/searchResult.do?search_nm=%EC%9D%BC%EB%B3%B8",
+                  "https://www.nc.press/news/articleView.html?idxno=627641"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": true,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.440406
+          },
+          "gpt": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"후쿠오카\",\"FUK\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":null},3]",
+            "at": "2026-10-16T14:35:51.525Z",
+            "items": {
+              "weather": {
+                "value": "평년 기준 최저 약 4℃·최고 약 10℃, 월 강수량 약 74mm",
+                "summary": "일본 기상청의 1991~2020년 평년값 기준으로 1월 평균기온은 6.9℃입니다. 겨울 날씨에 대비해 따뜻한 겉옷과 우산을 챙기고, 실제 예보는 출발 직전에 확인하세요.",
+                "sources": [
+                  "https://www.data.jma.go.jp/tcc/tcc/products/climate/climatview/graph_mkhtml_nrm.php?e=6&k=0&m=11&n=47807&r=1&s=3&y=2023",
+                  "https://www.data.jma.go.jp/stats/en/normal/normal.html"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "하카타 라멘·모츠나베·미즈타키·명란 요리가 대표적",
+                "summary": "가족 식사는 좌석과 실내 공간이 있는 라멘집·전골 전문점·백화점 식당가가 편하고, 포장마차(야타이)는 좌석이 좁을 수 있어 성인 동행이나 짧은 체험으로 고려하세요. 겨울 포장마차는 추울 수 있고 점포별 영업일도 확인이 필요합니다.",
+                "sources": [
+                  "https://www.crossroadfukuoka.jp/en/articles/yokabus2",
+                  "https://gofukuoka.jp/todos",
+                  "https://www.visit-kyushu.com/en/blogs/yatai-fukuoka-sitting-counter-history/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "photo": {
+                "value": "오호리공원·후쿠오카성터는 낮, 후쿠오카타워·모모치 해변은 해질녘~야경 추천",
+                "summary": "오호리공원 호수와 후쿠오카성터의 역사적 풍경을 함께 담기 좋고, 후쿠오카타워에서는 도시와 바다의 전망을 촬영할 수 있습니다. 타워 야경은 해가 진 뒤 추천하며, 겨울에는 일몰 시각과 바람을 확인하세요.",
+                "sources": [
+                  "https://www.gofukuoka.jp/en/articles/detail/47671a52-cfa5-4b5c-92be-4ebf6c1e9bc5",
+                  "https://www.japan.travel/en/spot/2256/",
+                  "https://www.crossroadfukuoka.jp/en/articles/yokabus2"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "가족 3명·3박 4일에 잘 맞고, 1인 200만 원 예산으로 여유 있게 계획 가능",
+                "summary": "공항에서 하카타까지 지하철로 약 5분이고, 도심 쇼핑·음식과 공원·해변 명소를 짧은 일정에 섞기 좋습니다. 다만 동행 가족의 연령이나 이동 편의 요구가 정해지지 않았고, 쇼핑 지출에 따라 총액이 달라질 수 있습니다.",
+                "sources": [
+                  "https://www.gofukuoka.jp/about-detail02.html",
+                  "https://www.japan.travel/en/spot/2260/",
+                  "https://www.japan.travel/en/spot/2256/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 26만~45만 원",
+                "summary": "2027년 1월 공개 검색 시 인천 왕복 최저가 사례는 약 31만 원, 월 평균 참고가는 약 30만 원으로 확인되어 변동 여지를 반영한 범위입니다. 설 연휴·주말, 위탁수하물 포함 여부와 예약 시점에 따라 달라질 수 있습니다.",
+                "sources": [
+                  "https://farepage.com/ko/destinations/fukuoka/01",
+                  "https://hotel.stubbyplanner.com/fukuoka/2027-01"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 260000,
+                  "max": 450000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 1.25~1.5시간, 직항 운항",
+                "summary": "인천(ICN)–후쿠오카(FUK)는 직항편이 운항되는 단거리 노선입니다. 항공사와 당일 운항편에 따라 예정 소요시간이 다를 수 있습니다.",
+                "sources": [
+                  "https://travel.ambitstock.com/flight-time/icn-fuk/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 1.25,
+                  "max": 1.5
+                }
+              },
+              "lodging": {
+                "value": "중급 숙소 1실 1박 약 13만~25만 원",
+                "summary": "2027년 1월 평일 3성급 호텔의 공개 최저가 사례는 약 12만 원대이며, 가족 3명 객실·주말·연휴에는 더 비쌀 수 있어 범위로 제시했습니다. 3인 객실의 실제 요금과 침대 구성은 예약 날짜를 정한 뒤 확인하세요.",
+                "sources": [
+                  "https://farepage.com/ko/destinations/fukuoka/01",
+                  "https://hotel.stubbyplanner.com/fukuoka/2027-01",
+                  "https://glasswallet.com/blog/fukuoka-hotel-cost-guide/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 130000,
+                  "max": 250000
+                }
+              },
+              "prices": {
+                "value": "숙박 제외 1인 하루 약 7만~14만 원, 쇼핑비 별도",
+                "summary": "일반적인 식사·시내 교통·관광을 기준으로 한 여행 경비 참고치이며, 한국보다 현지 여행 서비스 지출이 다소 높을 수 있습니다. 3박 4일은 항공·숙박을 3명이 나누면 1인 200만 원 예산으로 계획 가능하지만, 쇼핑 규모에 따라 달라집니다.",
+                "sources": [
+                  "https://tripop.app/compare/fukuoka-vs-bangkok",
+                  "https://kr.trip.com/guide/info/fukuoka-prices.html"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "visa": {
+                "value": "한국 일반여권 소지자는 관광 목적 90일 이내 무비자",
+                "summary": "일본 외무성은 대한민국을 단기 체류 사증면제 대상에 포함하고 있으며, 외교부 해외안전여행도 관광 등 비영리 목적의 무사증 90일 체류를 안내합니다. 가족 구성원 모두 유효한 여권을 준비하고, 관광 외 목적이나 장기 체류는 별도 요건을 확인하세요.",
+                "sources": [
+                  "https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html?webview=true",
+                  "https://www.0404.go.kr/ntnSafetyInfo/183/detail"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "후쿠오카 여행경보 미발령 지역, 지진 등 자연재해 대비 필요",
+                "summary": "외교부 일본 국가정보에는 후쿠시마 원전 주변 일부 구역의 출국권고만 표시되어 있으며, 후쿠오카에는 별도 여행경보가 확인되지 않습니다. 일본은 지진·쓰나미 위험이 있으므로 출발 전 외교부 공지와 일본 기상청 경보를 확인하세요.",
+                "sources": [
+                  "https://www.0404.go.kr/ntnSafetyInfo/183/detail",
+                  "https://www.jma.go.jp/jma/kishou/books/jishintsunami/en/jishintsunami_en.pdf",
+                  "https://www.0404.go.kr/bbs/safetyNtc/ATC0000000048594/detail"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "수돗물 음용 가능, 도심 의료 접근 양호",
+                "summary": "후쿠오카시는 수돗물 수질을 관리한다고 안내하며, CDC는 정기 예방접종을 최신 상태로 유지하고 홍역·유행성이하선염·풍진(MMR) 접종을 권고합니다. 단기 도심 여행에는 일본뇌염 백신이 일반적으로 권고되지 않지만, A형간염은 여행 형태에 따라 상담할 수 있고 후쿠오카에는 외국인 진료 지원과 의료기관 안내가 있습니다.",
+                "sources": [
+                  "https://www.city.fukuoka.lg.jp/mizu/somu/documents/eigoban.pdf",
+                  "https://wwwnc.cdc.gov/travel/destinations/traveler/none/japan",
+                  "https://www.pref.fukuoka.lg.jp/contents/gaikokujinnukeire.html",
+                  "https://www.jnto.go.jp/emergency/index.html?trk=article-ssr-frontend-pulse_little-text-block"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.10990325
+          },
+          "gemini": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"후쿠오카\",\"FUK\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":null},3]",
+            "at": "2026-10-16T14:35:51.525Z",
+            "items": {
+              "weather": {
+                "value": "최저 3℃·최고 9~10℃, 강수 적고 쌀쌀한 겨울 날씨",
+                "summary": "한국의 초봄과 유사해 서울 한겨울보다 온화하며 강수량도 연중 가장 적은 편입니다. 다만 바닷바람으로 체감온도가 낮을 수 있으니 코트나 패딩 등 방한 외투 준비가 필요합니다.",
+                "sources": [
+                  "https://weatherspark.com",
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "돈코츠 라멘·모츠나베·미즈타키 중심의 미식 천국",
+                "summary": "겨울철 따뜻한 국물 요리인 모츠나베와 미즈타키는 가족 식사 메뉴로 안성맞춤입니다. 3인 가족 방문 시 테이블석이나 개별 룸 예약이 가능한 식당을 선택하면 쾌적하게 식사할 수 있습니다.",
+                "sources": [
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "후쿠오카 타워·모모치 해변(일몰), 다자이후 텐만구(오전)",
+                "summary": "다자이후 텐만구는 혼잡을 피해 오전 이른 시간에 방문하면 고즈넉한 풍경과 가족 사진을 남기기 좋습니다. 모모치 해변과 후쿠오카 타워는 늦은 오후 일몰부터 야경 시간대에 사진 촬영하기에 가장 아름답습니다.",
+                "sources": [
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "적합도 매우 높음 (짧은 비행과 짧은 동선으로 가족 여행 최적)",
+                "summary": "공항과 도심 간 이동 시간이 지하철로 10~15분에 불과해 이동 피로가 매우 적습니다. 쇼핑몰과 도심 명소가 밀집해 있어 3인 가족이 여유롭게 일정을 즐기기에 이상적입니다.",
+                "sources": [
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 20~35만 원",
+                "summary": "1월 방학 시즌에는 항공권 수요가 늘어나 주말 및 연휴에는 30만 원대 중반까지 상승할 수 있습니다. 평일 출발 저비용항공사(LCC)를 이용하면 20만 원대 초반에도 예약 가능합니다.",
+                "sources": [
+                  "https://www.skyscanner.co.kr"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 200000,
+                  "max": 350000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 1시간 20분~1시간 30분, 직항 운항",
+                "summary": "인천 출발 기준 약 1시간 30분 소요되는 직항 노선이 매일 다수 운항 중입니다. 비행시간이 매우 짧아 가족 동반 여행 시 기내 피로도가 거의 없습니다.",
+                "sources": [
+                  "https://www.skyscanner.co.kr"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 1.3,
+                  "max": 1.5
+                }
+              },
+              "lodging": {
+                "value": "1박 15~25만 원 (3인 투숙 가능 중급 호텔 기준)",
+                "summary": "하카타역이나 텐진 인근 3~3.5성급 호텔의 트리플룸 또는 트윈+엑스트라베드 기준 요금대입니다. 도심 역세권 숙소를 잡으면 이동과 쇼핑 편의성이 크게 향상됩니다.",
+                "sources": [
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 150000,
+                  "max": 250000
+                }
+              },
+              "prices": {
+                "value": "한국 대도시와 비슷하거나 소폭 저렴, 1인 1일 7~10만 원",
+                "summary": "대중교통 요금은 한국보다 약간 높으나 외식 물가는 엔저 영향으로 체감 부담이 적습니다. 3박 4일 일정 기준 1인 200만 원 예산은 항공·숙박·식비·쇼핑까지 매우 넉넉한 수준입니다.",
+                "sources": [
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "visa": {
+                "value": "무비자 90일 체류 가능 (관광 목적)",
+                "summary": "대한민국 여권 소지자는 90일간 무비자 입국이 가능하며, 여권 유효기간은 여행 기간 동안 유효해야 합니다. 비짓 재팬 웹(Visit Japan Web)을 통해 입국 및 세관 신고를 미리 등록해 두면 빠른 수속이 가능합니다.",
+                "sources": [
+                  "https://www.0404.go.kr"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "외교부 여행경보 미발령, 치안 매우 안전",
+                "summary": "야간 도심 통행도 안전할 정도로 치안이 매우 우수하며 외교부 여행경보도 발령되어 있지 않습니다. 다만 겨울철 화재 주의 및 일본 전역의 일반적 지진 대비 행동요령은 숙지하는 것이 좋습니다.",
+                "sources": [
+                  "https://www.0404.go.kr"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "수돗물 음용 가능 수준 및 위생 최상, 필수 예방접종 없음",
+                "summary": "식품 위생과 공중위생 수준이 매우 높아 길거리 음식도 안심하고 섭취할 수 있습니다. 겨울철 인플루엔자나 노로바이러스 유행에 대비해 손 씻기 등 개인위생에 신경 쓰는 것을 권장합니다.",
+                "sources": [
+                  "https://www.kdca.go.kr"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.0552765
+          }
+        },
+        "c-0c89fff5-e435-4329-b34f-980c3d5dd0a0": {
+          "confirmed": {},
+          "notes": {},
+          "claude": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"타이베이\",\"TPE\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":null},3]",
+            "at": "2026-10-16T14:35:51.525Z",
+            "items": {
+              "weather": {
+                "value": "최저 12~14℃·최고 17~19℃, 흐리고 이슬비 잦음",
+                "summary": "1월은 연중 가장 추운 달로 평균 최저 약 13℃, 최고 약 18℃입니다. 습도가 높아 체감이 낮고 비 오는 날이 많으니 겹쳐 입을 옷과 우산이 필요합니다. 1월에는 태풍 가능성이 거의 없다고 합니다.",
+                "sources": [
+                  "https://triple.guide/articles/f45288cc-a5af-48fb-a698-9ea86102ca9c",
+                  "https://www.tripstore.kr/blog/%EB%8C%80%EB%A7%8C-1%EC%9B%94-%EB%82%A0%EC%94%A8-%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4-%EC%8B%A4%EB%82%B4-%EC%BD%94%EC%8A%A4-%EC%87%BC%ED%95%91",
+                  "https://ko.weatherspark.com/y/137170/대만-타이베이에서-년중-평균-날씨"
+                ],
+                "asOf": "2026-04",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "야시장 먹거리 중심(지파이·후추떡·버블티), 가족 단위 식당도 많음",
+                "summary": "스린 야시장(지파이·치즈 감자·버블티), 라오허제 야시장(후추떡·파파야 우유), 융캉제 식당가가 대표적입니다. 야시장은 보통 오후 5시~자정에 열리고 현금이나 이지카드가 필요합니다. 취두부 냄새가 강한 곳이 있어 아이나 부모님이 힘들어할 수 있습니다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/%EB%8C%80%EB%A7%8C-%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4-%EA%B4%80%EA%B4%91%EC%A7%80-%EC%B6%94%EC%B2%9C",
+                  "https://kr.trip.com/moments/detail/taipei-360-141518498/",
+                  "https://www.ytour.co.kr/blog/taiwan-3-night-4-day-package-itinerary"
+                ],
+                "asOf": "2026-06",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "타이베이 101 야경(저녁)·용산사(해질녘)·지우펀 홍등(해질녘 이후)",
+                "summary": "타이베이 101 야경과 앞의 LOVE 조형물, 해질녘부터 조명이 켜지는 용산사가 포토 스팟으로 꼽힙니다. 지우펀의 홍등 골목은 어두워질 때, 단수이는 노을 시간대가 좋습니다. 1월은 흐리고 비가 잦아 맑은 날 일정을 유연하게 잡는 편이 좋습니다.",
+                "sources": [
+                  "https://triple.guide/articles/5e2988f8-e582-40f6-836c-69873b37a267",
+                  "https://www.tripstore.kr/blog/%EB%8C%80%EB%A7%8C-%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4-%EA%B4%80%EA%B4%91%EC%A7%80-%EC%B6%94%EC%B2%9C",
+                  "https://kr.trip.com/moments/detail/taipei-360-141518498/"
+                ],
+                "asOf": "2026-06",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "적합도 높음 (3박 4일 가족 여행에 알맞음)",
+                "summary": "직항 약 2시간 30분에 지하철로 시내 이동이 편해 음식·쇼핑·도시·사진 관심사를 짧은 일정에 담기 좋습니다. 자연은 베이터우 온천이나 예스진지 근교로 보완할 수 있지만 1월은 비와 쌀쌀함이 변수입니다. 아이 동반 여부 등 가족 세부 구성은 알 수 없어 실내 코스 비중을 조절해야 합니다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/taipei-sightseeing-map",
+                  "https://www.tripstore.kr/blog/%EB%8C%80%EB%A7%8C-%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4-%EA%B4%80%EA%B4%91%EC%A7%80-%EC%B6%94%EC%B2%9C",
+                  "https://www.tripstore.kr/blog/%EB%8C%80%EB%A7%8C-1%EC%9B%94-%EB%82%A0%EC%94%A8-%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4-%EC%8B%A4%EB%82%B4-%EC%BD%94%EC%8A%A4-%EC%87%BC%ED%95%91"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 25~45만 원",
+                "summary": "인천 출발 대만행 왕복 평균이 1월에 가장 비싸 약 25만 원이고, 직항 저가 항공은 20만 원대부터 보입니다. 경유편이나 대형 항공사는 훨씬 비싸니 1월 날짜를 정해 실시간 가격을 확인하세요.",
+                "sources": [
+                  "https://www.hotelscombined.co.kr/flight-routes/Incheon-Intl-ICN/Taiwan-TW0.ksp",
+                  "https://www.kayak.co.kr/%ED%95%AD%EA%B3%B5%EA%B6%8C/%EC%84%9C%EC%9A%B8-%EC%9D%B8%EC%B2%9C%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD-ICN/%ED%83%80%EC%9D%B4%EB%B2%A0%EC%9D%B4-TW1"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 250000,
+                  "max": 450000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 2시간 30분~2시간 50분, 직항 있음",
+                "summary": "인천~타오위안(TPE) 직항이 하루 여러 편 운항하며 소요 시간은 약 2시간 30분~2시간 50분입니다. 시차는 한국보다 1시간 늦습니다.",
+                "sources": [
+                  "https://www.hotelscombined.co.kr/flight-routes/Incheon-Intl-ICN/Taipei-City-Taiwan-Taoyuan-Intl-TPE.ksp",
+                  "https://aviability.com/ko/route/icn-seoul-incheon/tpe-taipei-taoyuan",
+                  "https://www.kimprostory.com/taipei-parents-travel-guide/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 2.5,
+                  "max": 2.9
+                }
+              },
+              "lodging": {
+                "value": "중급 호텔 1박 약 8~15만 원",
+                "summary": "타이베이 시내 3~4성급은 1박 10만~15만 원대이고, 비즈니스 호텔은 6만~8만 원대 자료도 있습니다. 겨울에는 난방기 유무를 확인해야 하고, 3인 가족은 트리플룸이나 패밀리룸 여부에 따라 가격이 달라집니다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/%EB%8C%80%EB%A7%8C-%ED%98%B8%ED%85%94-%EA%B0%80%EA%B2%A9-%EC%A7%80%EC%97%AD%EB%B3%84-3%EC%84%B1%EA%B8%89-5%EC%84%B1%EA%B8%89-%EB%B9%84%EA%B5%90",
+                  "https://ko.skyticket.com/guide/42364"
+                ],
+                "asOf": "2026-04",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 80000,
+                  "max": 150000
+                }
+              },
+              "prices": {
+                "value": "한국과 비슷하거나 약간 저렴, 1인 1일 약 6~9만 원(항공·숙박 제외)",
+                "summary": "식비 1일 약 3만~4만 원, 교통비 약 1만 원, 관광비 약 4만 원으로 추산하는 자료가 있습니다. 다만 이 수치는 약 1.5년 전 자료라 현재 환율과 물가에 따라 달라질 수 있습니다. 항공·숙박을 합쳐도 1인 200만 원 예산 안에서 여유가 있는 편입니다.",
+                "sources": [
+                  "https://ko.skyticket.com/guide/42364",
+                  "https://www.tripstore.kr/blog/%EB%8C%80%EB%A7%8C-%EC%9D%BC%EC%A3%BC%EC%9D%BC-%EC%97%AC%ED%96%89-%EA%B2%BD%EB%B9%84-%EC%B4%9D%EC%A0%95%EB%A6%AC"
+                ],
+                "asOf": "2024-05",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "visa": {
+                "value": "무비자 90일, 여권 유효기간 6개월 이상, 온라인 입국신고(TWAC) 필요",
+                "summary": "관광 목적이면 90일 무비자이고, 입국 시 여권 유효기간이 6개월 이상이어야 하며 왕복 항공권도 지참해야 합니다. 대만은 2025년 10월부터 종이 입국신고서를 없애고 온라인 TWAC로 전환했으니 도착 3일 전부터 작성하세요.",
+                "sources": [
+                  "https://www.taiwantour.or.kr/introduction/faq.html",
+                  "https://www.mofa.go.kr/tw-ko/brd/m_11926/view.do?seq=1331926",
+                  "https://www.pickypedia.com/2026/02/2026_40.html"
+                ],
+                "asOf": "2026-02",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "치안 양호, 여행경보 없음(추정), 지진 잦음",
+                "summary": "주타이베이 대표부는 대만의 치안을 아시아에서 비교적 안전한 편이라고 안내하며, 오토바이 사고를 조심하라고 합니다. 여행경보는 나무위키에서 '없음'으로 확인했지만 외교부 해외안전여행 사이트에서 직접 확인하지 못했으니 출발 전 재확인이 필요합니다. 지진이 연 70~100회 발생하고 태풍은 6~9월이라 1월에는 지진 대비가 더 중요합니다.",
+                "sources": [
+                  "https://www.mofa.go.kr/tw-ko/brd/m_11926/view.do?seq=1331926",
+                  "https://namu.wiki/w/%EC%97%AC%ED%96%89%EA%B2%BD%EB%B3%B4%EC%A0%9C%EB%8F%84",
+                  "https://overseas.mofa.go.kr/tw-ko/brd/m_1455/view.do?company_cd=&company_nm=&itm_seq_1=0&itm_seq_2=0&multi_itm_seq=0&seq=1296016&srchFr=&srchTo=&srchTp=&srchWord=",
+                  "https://0404.go.kr/ntnSafetyInfo/list"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "수돗물은 생수나 끓인 물로, 필수 접종 없음(MMR 2회 확인 권고)",
+                "summary": "수돗물은 직접 마시지 말고 생수나 끓인 물을 쓰는 편이 안전합니다. 질병청은 대만을 뎅기열 검역관리지역으로 지정했고 출국 전 MMR 2회 접종 여부 확인을 권합니다. 의료 접근성은 이번 검색에서 근거를 찾지 못했으니 여행자보험 가입과 확인이 필요합니다.",
+                "sources": [
+                  "https://www.k-health.com/news/articleView.html?idxno=100353",
+                  "https://m.news.nate.com/view/20260729n29194",
+                  "https://wellbe-asia.com/ko/blog/taiwan-water",
+                  "https://www.nursenews.co.kr/news/articleView.html?idxno=44704"
+                ],
+                "asOf": "2026-07",
+                "needsCheck": true,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.476422
+          },
+          "gpt": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"타이베이\",\"TPE\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":null},3]",
+            "at": "2026-10-16T14:35:51.525Z",
+            "items": {
+              "weather": {
+                "value": "평균 최저 약 13℃·최고 약 18℃, 서늘하고 흐리거나 비가 오는 날이 잦음",
+                "summary": "타이베이의 1991~2020년 1월 기후 평균은 최저 12.5℃·최고 18.1℃, 강수량 약 164mm입니다. 이는 기후 평균이지 2027년 1월 예보가 아니므로 얇은 방수 겉옷과 우산을 준비하세요.",
+                "sources": [
+                  "https://statsclimat.com/climate/taiwan-province-of-china/taipei-1668341",
+                  "https://data.taipei/api/frontstage/tpeod/dataset/resource.download?rid=34f0c954-12f0-4c9c-a8b8-4b130492bd40"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "야시장 간식부터 샤오롱바오·우육면까지 가족 취향에 맞게 고르기 쉬움",
+                "summary": "대표 음식은 샤오롱바오, 우육면, 루러우판, 버블티와 야시장 간식이며, 라오허·스린 야시장과 딘타이펑 같은 좌석형 식당을 섞으면 가족이 식사하기 편합니다. 야시장은 붐비는 시간대가 있어 어린이 동반이면 이른 저녁 방문을 권합니다.",
+                "sources": [
+                  "https://eng.taiwan.net.tw/m1.aspx?sNo=00020901024",
+                  "https://eng.taiwan.net.tw/m1.aspx?keystring=%5E10008&print=1&sno=0002040&t=r"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "타이베이 101·샹산은 해질녘, 용산사·라오허 야시장은 저녁 촬영 추천",
+                "summary": "도시 전경은 샹산에서 해질녘부터 야경 시간대에, 랜드마크와 야시장 분위기는 타이베이 101 및 라오허 야시장 일대에서 담기 좋습니다. 1월은 비나 흐린 하늘로 전망이 가려질 수 있어 일정에 촬영 시간을 유동적으로 배치하세요.",
+                "sources": [
+                  "https://eng.taiwan.net.tw/m1.aspx?sNo=00020901024",
+                  "https://www.taipei-101.com.tw/tw/explore/photogallery"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "가족 3명에게 매우 잘 맞음—도시·음식·쇼핑과 근교 자연을 짧은 일정에 조합 가능",
+                "summary": "대중교통으로 야시장·박물관·도심 명소를 둘러보고, 양밍산이나 온천 지역에서 자연 체험도 더할 수 있어 관심사가 다양할수록 만족도가 높습니다. 3박 4일은 타이베이 시내와 근교 한 곳을 함께 보는 적정 일정이며, 자녀 연령과 보행 능력에 따라 산책·등산 코스를 조절하세요.",
+                "sources": [
+                  "https://eng.taiwan.net.tw/m1.aspx?sNo=00020901024"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 약 56만~70만 원",
+                "summary": "항공사 공식 사이트의 2027년 1월 인천–타이베이 이코노미 왕복 최저 표시 운임은 중화항공 약 56만 원대, 대한항공 약 64만 원대입니다. 실시간 운임이며 좌석·수하물·예약 시점에 따라 달라질 수 있습니다.",
+                "sources": [
+                  "https://flights.china-airlines.com/en-tw/flights-from-seoul-to-taipei",
+                  "https://www.koreanair.com/flights/en-kr/flights-from-seoul-to-taipei"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 560000,
+                  "max": 700000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 2시간 35분, 직항편 있음",
+                "summary": "중화항공 시간표에 타이베이 타오위안–인천 직항 비행시간이 2시간 35분으로 표시되어 있습니다. 실제 운항시간과 항공편 운항 여부는 선택한 날짜의 시간표에서 재확인하세요.",
+                "sources": [
+                  "https://www.china-airlines.com/cn/en/Images/timetable-20260329-20261024_tcm241-4228.pdf",
+                  "https://www.koreanair.com/flights/en-kr/flights-from-seoul-to-taipei"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 2.5,
+                  "max": 2.7
+                }
+              },
+              "lodging": {
+                "value": "중급 호텔 1실 1박 약 12만~20만 원",
+                "summary": "예약 사이트의 타이베이 3성급 호텔 평균 표시 가격은 1박 약 92달러입니다. 1월 실제 날짜와 3인 투숙 가능 객실에 따라 가격이 달라지므로 가족실 총액을 확인하고, 이 범위는 계획용 추정치로 보세요.",
+                "sources": [
+                  "https://www.booking.com/threestars/city/tw/t-ai-pei.html?keep_landing=1"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 120000,
+                  "max": 200000
+                }
+              },
+              "prices": {
+                "value": "식사·대중교통은 대체로 서울보다 저렴, 현지 경비 1인 하루 약 6만~10만 원",
+                "summary": "가격 비교 자료에서 저렴한 식당 한 끼는 타이베이 약 7,700원, 서울 약 13,000원이며 대중교통도 타이베이가 다소 저렴하게 집계됩니다. 일반 식사와 시내 교통·간단한 입장료 기준의 추정이며 쇼핑, 고급 식사, 근교 투어 비용은 별도입니다.",
+                "sources": [
+                  "https://www.numbeo.com/cost-of-living/compare_cities.jsp?city1=Seoul&city2=Taipei&country1=South+Korea&country2=Taiwan",
+                  "https://www.numbeo.com/cost-of-living/in/Taipei"
+                ],
+                "asOf": "2026-06",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "visa": {
+                "value": "한국 일반여권은 관광 목적 최대 90일 무비자",
+                "summary": "대만 외교부 영사사무국은 한국을 90일 무비자 대상에 포함합니다. 입국일 기준 여권 유효기간 6개월 이상, 확정된 귀국 또는 다음 목적지 항공권이 필요하며 입국 7일 전부터 온라인 입국카드를 작성하세요.",
+                "sources": [
+                  "https://www.boca.gov.tw/fp-149-4486-7785a-1.html"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "도시 여행은 비교적 무난하나, 외교부 여행경보 단계는 출국 전 확인 필요",
+                "summary": "외교부 해외안전여행 사이트에서 국가·지역별 경보와 안전공지를 출국 직전에 확인하세요. 대만은 지진이 계절과 무관하게 발생할 수 있고, 대만 기상당국은 9월~1월에 지진이 상대적으로 많이 발생한다고 안내하므로 현지 경보와 건물 내 대피 안내를 따르세요.",
+                "sources": [
+                  "https://www.0404.go.kr/main/mainPage",
+                  "https://scweb.cwa.gov.tw/en-us/guidance/faqdetail/191"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "도시 의료시설 이용은 가능하나, 예방접종 확인과 식품·물 위생수칙 권장",
+                "summary": "CDC는 대만 여행자에게 통상 예방수칙을 안내하며, 정기접종을 최신 상태로 유지하고 홍역·A형 및 B형 간염 예방접종 필요 여부를 의료진과 확인하도록 권고합니다. 생수나 끓인 물을 선택하고 충분히 익혀 뜨겁게 제공되는 음식을 고르며, 야외 활동 시 모기 기피제를 사용하세요.",
+                "sources": [
+                  "https://wwwnc.cdc.gov/travel/destinations/traveler/none/taiwan",
+                  "https://www.cdc.gov/yellow-book/hcp/preparing-international-travelers/food-and-water-precautions-for-travelers.html"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.099434625
+          },
+          "gemini": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"타이베이\",\"TPE\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":null},3]",
+            "at": "2026-10-16T14:35:51.525Z",
+            "items": {
+              "weather": {
+                "value": "최저 13℃·최고 19℃, 잦은 비와 높은 습도로 체감상 쌀쌀함",
+                "summary": "1월 타이베이는 한국의 늦가을 날씨와 비슷하지만 습도가 높아 실제 기온보다 춥게 느껴집니다. 비가 자주 내리므로 휴대용 우산과 탈부착이 쉬운 겉옷 및 경량 패딩 준비가 권장됩니다.",
+                "sources": [
+                  "https://triple.guide",
+                  "https://weatherspark.com"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "우육면·샤오롱바오·야시장 먹거리 중심, 가족 맞춤 깔끔한 식당 다양",
+                "summary": "어르신과 자녀 모두 만족하기 좋은 딘타이펑(딤섬)이나 키키레스토랑(사천식 요리) 같은 쾌적한 프랜차이즈 식당이 발달해 있습니다. 향신료가 부담스러운 가족 구성원은 맑은 칭둔 우육면이나 깔끔한 샤부샤부 훠궈를 추천합니다.",
+                "sources": [
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "샹산 전망대(일몰~야경), 지우펀 아메이차루(해질녘 홍등 점등)",
+                "summary": "타이베이 101 빌딩을 배경으로 하는 도시 전경은 샹산 전망대 일몰 직후 매직아워가 가장 아름답습니다. 근교 지우펀의 붉은 홍등 골목과 단수이 위런마터우의 노을 풍경도 대표적인 가족 촬영 명소입니다.",
+                "sources": [
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "가족 3인 여행에 매우 적합(대중교통 편리·짧은 비행시간)",
+                "summary": "지하철(MRT)과 택시 요금이 합리적이라 3인 가족이 도심과 근교를 무리 없이 이동할 수 있습니다. 비행시간이 약 2시간 반으로 짧아 가족 구성원 모두 체력 부담 없이 편안하게 다녀오기 좋습니다.",
+                "sources": [
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 약 25만~45만 원",
+                "summary": "1월은 방학과 겨울 휴가 수요가 겹치는 성수기 구간으로 저비용항공사(LCC)는 20만 원대 중후반, 대형항공사(FSC)는 30만 원대 중후반~40만 원대에 형성됩니다. 주말이나 설 연휴 전후는 운임이 급등할 수 있어 조기 예매가 필수적입니다.",
+                "sources": [
+                  "https://www.kayak.co.kr",
+                  "https://www.trip.com"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 250000,
+                  "max": 450000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 2.5~2.8시간, 직항 다수 운항",
+                "summary": "인천에서 타이베이 타오위안 국제공항까지 직항 기준 편도 약 2시간 30분~2시간 50분이 소요됩니다. 대한항공, 아시아나항공, 중화항공, 에바항공 및 다수 LCC가 매일 활발히 운항합니다.",
+                "sources": [
+                  "https://www.skyscanner.co.kr",
+                  "https://www.kayak.co.kr"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 2.5,
+                  "max": 2.8
+                }
+              },
+              "lodging": {
+                "value": "3~4성급 중급 호텔 1박 약 9만~18만 원",
+                "summary": "시먼딩이나 타이베이 메인역 부근의 깔끔한 3~4성급 비즈니스 호텔이 1박 10만 원 안팎으로 가성비가 뛰어납니다. 3인 가족 투숙 시 트리플룸이나 엑스트라 베드 가능 객실을 선택하는 것이 좋습니다.",
+                "sources": [
+                  "https://www.hotelscombined.co.kr",
+                  "https://www.trip.com"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 90000,
+                  "max": 180000
+                }
+              },
+              "prices": {
+                "value": "한국 대비 약 75~85% 수준, 1인 1일 약 5만~8만 원",
+                "summary": "대중교통 요금과 로컬 식비, 야시장 먹거리가 한국보다 20~30%가량 저렴해 경비 부담이 적습니다. 1인 200만 원 예산이면 3박 4일 동안 쇼핑과 미식을 여유롭게 즐기기에 충분합니다.",
+                "sources": [
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "visa": {
+                "value": "한국 여권 소지자 90일 무비자 입국 가능",
+                "summary": "여권 잔여 유효기간이 6개월 이상이어야 하며 왕복 항공권 소지가 기본 요건입니다. 입국 전 온라인 대만 입국신고서(TWAC)를 작성해 두면 입국 수속 시간을 크게 단축할 수 있습니다.",
+                "sources": [
+                  "https://www.taiwantour.or.kr",
+                  "https://www.0404.go.kr"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "치안 양호, 외교부 여행경보 없음(자연재해 겨울철 적음)",
+                "summary": "대한민국 외교부 기준 대만 전역에 발령된 여행경보는 없으며 밤거리 치안도 매우 안전한 편입니다. 여름철 태풍 시즌과 달리 1월은 태풍 영향이 없으나, 지진 대비 기본 안전 수칙 숙지가 권장됩니다.",
+                "sources": [
+                  "https://www.0404.go.kr"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "식수 생수 음용 권장, 의료 인프라 우수 및 특이 접종 불요",
+                "summary": "수돗물은 직접 마시기보다 생수를 사서 마시거나 끓여 마시는 것이 안전합니다. 대만 종합병원 응급의료 체계가 매우 우수하며, 한국 여행객 대상 필수 예방접종 요구 사항은 없습니다.",
+                "sources": [
+                  "https://www.0404.go.kr",
+                  "https://www.cdc.gov.tw"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.095304
+          }
+        },
+        "c-edfd4078-531e-4d39-a3e7-b98463b9da17": {
+          "confirmed": {},
+          "notes": {},
+          "claude": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"마쓰야마\",\"MYJ\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":null},3]",
+            "at": "2026-10-16T14:35:51.525Z",
+            "items": {
+              "weather": {
+                "value": "최저 2~3℃·최고 9~10℃, 비 적고 건조",
+                "summary": "1월은 연중 가장 추운 달이지만 영하로는 거의 내려가지 않습니다. 월 강수량은 약 45~47mm로 적고 눈이 오는 날도 있어 따뜻한 외투와 목도리가 필요합니다. 수치는 여러 사이트의 평년값이라 출발 직전 예보 확인이 필요합니다.",
+                "sources": [
+                  "https://triple.guide/articles/a10c807b-2f31-4cda-9683-ca64cb58bcda",
+                  "https://joygoers.com/%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-%EB%82%A0%EC%94%A8/",
+                  "https://giving-profit.com/entry/%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-%EB%82%A0%EC%94%A8",
+                  "https://wanderlog.com/weather/123/1/matsuyama-weather-in-january"
+                ],
+                "asOf": null,
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "도미밥(타이메시)·나베야키우동·귤 디저트, 가족 동반 가능한 식당 다수",
+                "summary": "마쓰야마 성 근처 도미밥 원조집은 한국어 안내문이 있고, 에히메 귤 주스·젤라또를 앉아서 먹을 수 있는 가게도 있습니다. 나베야키우동은 양은솥에 담겨 나오는 현지 소울푸드이고, 마쓰야마식 오코노미야키 미쓰하마야키도 인기입니다.",
+                "sources": [
+                  "https://triple.guide/articles/fb78699e-beda-4b45-88a0-415ef96f4ef4",
+                  "https://news.nate.com/view/20230311n00269"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "도고온천 본관 야경(저녁 7시 이후)·마쓰야마성 석양·봇짱 열차",
+                "summary": "도고온천 본관은 해가 진 뒤 조명이 켜지는 저녁 7시 이후가 분위기가 좋습니다. 마쓰야마성은 해질녘에 세토내해 쪽으로 지는 석양과 시내 전망을 담기 좋고, 봇짱 열차와 카라쿠리 시계도 인기 포인트입니다. 천수각은 보통 17시경 닫으므로(계절 변동) 일정 확인이 필요합니다.",
+                "sources": [
+                  "https://www.tripstore.kr/blog/%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-%EA%B4%80%EA%B4%91-%EC%9D%BC%EC%A0%95-%EC%BD%94%EC%8A%A4-%EC%B6%94%EC%B2%9C",
+                  "https://www.visitehimejapan.com/ko/discover/stories/0055/",
+                  "https://tourcast.co.kr/ko/japan/shikoku/matsuyama-travel-guide-dogo-onsen-matsuyama-castle-free-shuttle"
+                ],
+                "asOf": "2026-08",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "적합(온천·미식·사진 중심 소도시 가족여행, 대형 쇼핑은 제한적)",
+                "summary": "직항 약 1.5시간에 도고온천·마쓰야마성·오카이도 상점가가 트램으로 이어져 가족 3명이 이동하기 편하고, 겨울은 귤과 온천을 즐기기 좋은 시기입니다. 3박 4일 1인 약 50~70만 원이라 예산 200만 원에 여유가 있지만, 쇼핑 규모는 대도시보다 작을 수 있고 자녀 연령·가족 구성에 따라 객실 구성(트리플룸·2실)을 따로 확인해야 합니다.",
+                "sources": [
+                  "https://kr.trip.com/moments/detail/matsuyama-56869-138554754/",
+                  "https://www.tripstore.kr/blog/%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-%EB%8B%B9%EC%9D%BC%EC%B9%98%EA%B8%B0-%ED%95%B5%EC%8B%AC-%EB%AA%85%EC%86%8C-%EB%8F%99%EC%84%A0-%EC%B5%9C%EC%A0%81%ED%99%94",
+                  "https://mynicetrip.com/%EC%9D%BC%EB%B3%B8-%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-%EC%97%AC%ED%96%89-%EC%B4%9D%EC%A0%95%EB%A6%AC-3%EB%B0%95-4%EC%9D%BC-%EC%BD%94%EC%8A%A4-%EC%9D%BC%EC%A0%95-%EA%B2%BD%EB%B9%84-%ED%95%B5/"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 1인 약 20~35만 원(1월 성수기 기준 추정)",
+                "summary": "트립닷컴은 1월을 성수기로 보며 평균 왕복 요금을 약 19.9만 원, 평수기 왕복을 20~30만 원대로 안내합니다. 스카이스캐너에는 2월 초 편도 약 17만 원대 표시도 있어 1월은 더 오를 수 있으므로 예약 시점 실제 요금 확인이 필요합니다.",
+                "sources": [
+                  "https://kr.trip.com/flights/to-matsuyama/airfares-myj/",
+                  "https://www.tripstore.kr/blog/%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-%ED%95%AD%EA%B3%B5%EA%B6%8C-%EC%A7%81%ED%95%AD-%EC%85%94%ED%8B%80%EB%B2%84%EC%8A%A4-%EC%97%AC%ED%96%89%ED%8C%81",
+                  "https://www.skyscanner.co.kr/routes/icn/myj/incheon-international-to-matsuyama.html"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 200000,
+                  "max": 350000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 1시간 35분~1시간 40분, 직항(제주항공 중심)",
+                "summary": "인천–마쓰야마는 직항이 매일 운항하며 항공 검색 사이트 기준 평균 약 1시간 35~40분입니다. 일부 시간대는 약 2시간으로 표시되고, 항공사·운항 스케줄은 시즌별로 바뀔 수 있습니다.",
+                "sources": [
+                  "https://www.kayak.co.kr/%ED%95%AD%EA%B3%B5%EA%B6%8C/%EC%84%9C%EC%9A%B8-%EC%9D%B8%EC%B2%9C%EA%B5%AD%EC%A0%9C%EA%B3%B5%ED%95%AD-ICN/%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-Matsuyama-MYJ",
+                  "https://www.hotelscombined.co.kr/flight-routes/South-Korea-KR0/Matsuyama-MYJ.ksp"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 1.5,
+                  "max": 2
+                }
+              },
+              "lodging": {
+                "value": "중급 호텔 1박 약 8~17만 원(객실 1실 기준)",
+                "summary": "컴포트·마이스테이즈 등은 약 10만 원대, 호텔 비스타·도미인·ANA 크라운플라자는 약 15~17만 원 선입니다. 3명이면 트리플룸이나 2실이 필요해 총액이 더 오를 수 있고, 1월 요금은 별도 확인이 필요합니다.",
+                "sources": [
+                  "https://www.yeogi.com/accommodation/jp/city-matsuyama",
+                  "https://kr.trip.com/hot/travel-itinerary/3%EB%B0%95+4%EC%9D%BC+%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88+%EC%97%AC%ED%96%89+%EC%9D%BC%EC%A0%95.html",
+                  "https://mynicetrip.com/%EC%9D%BC%EB%B3%B8-%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-%EC%97%AC%ED%96%89-%EC%B4%9D%EC%A0%95%EB%A6%AC-3%EB%B0%95-4%EC%9D%BC-%EC%BD%94%EC%8A%A4-%EC%9D%BC%EC%A0%95-%EA%B2%BD%EB%B9%84-%ED%95%B5/"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": true,
+                "numeric": {
+                  "min": 80000,
+                  "max": 170000
+                }
+              },
+              "prices": {
+                "value": "숙박 제외 1인 1일 약 10만 원, 3박 4일 1인 총 약 50~70만 원",
+                "summary": "여행기 자료상 3박 4일 1인 총경비는 항공·숙박 포함 50~70만 원 수준이며, 마쓰야마는 일본 내에서도 저렴한 편이라고 합니다. 한국 대비 물가는 공식 수치를 확인하지 못했고, 1월 항공·숙박이 오르면 70만 원대 후반까지 갈 수 있어도 예산 200만 원(1인)에는 여유가 있습니다.",
+                "sources": [
+                  "https://mynicetrip.com/%EC%9D%BC%EB%B3%B8-%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-%EC%97%AC%ED%96%89-%EC%B4%9D%EC%A0%95%EB%A6%AC-3%EB%B0%95-4%EC%9D%BC-%EC%BD%94%EC%8A%A4-%EC%9D%BC%EC%A0%95-%EA%B2%BD%EB%B9%84-%ED%95%B5/",
+                  "https://rurupapa.com/%EC%9D%BC%EB%B3%B8-%EC%86%8C%EB%8F%84%EC%8B%9C-%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-%EC%97%AC%ED%96%89-3%EB%B0%954%EC%9D%BC-%EC%A0%80%EB%A0%B4%ED%95%98%EA%B2%8C-%EB%8B%A4%EB%85%80%EC%98%A4%EB%8A%94/"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "visa": {
+                "value": "한국 여권 무비자 90일(관광), Visit Japan Web 등록 권장",
+                "summary": "한국 여권 소지자는 단기 관광 목적으로 최대 90일 무비자 입국이 가능하며, 유효한 여권과 귀국 항공권이 필요합니다. Visit Japan Web은 필수는 아니지만 QR 한 번으로 입국·세관 심사를 받을 수 있어 가족 3명 모두 등록하는 편이 빠릅니다.",
+                "sources": [
+                  "https://kr.trip.com/guide/info/%EC%9D%BC%EB%B3%B8+%EC%9E%85%EA%B5%AD+%EC%8B%AC%EC%82%AC.html",
+                  "https://www.tripstore.kr/blog/2026%EB%85%84-%EC%9D%BC%EB%B3%B8-%EC%97%AC%ED%96%89-%EA%B7%9C%EC%A0%95-%EC%9E%85%EA%B5%AD-%EC%8B%AC%EC%82%AC-%EB%A9%B4%EC%84%B8-%EC%B4%9D%EC%A0%95%EB%A6%AC",
+                  "https://www.make2t.kr/2026/10/visit-japan-web-official-site-login-qr.html"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "외교부 일본 여행경보 미발령(후쿠시마 원전 30km 이내 제외), 지진·집중호우 유의",
+                "summary": "외교부 해외안전여행에 따르면 일본 여행경보 1단계는 2024-06-28 해제(미발령)이며, 출국권고는 후쿠시마 원전 반경 30km 이내 등 일부 지역뿐입니다. 지진 행동요령 공지가 올라와 있고 장마는 6~7월, 태풍은 8~9월 영향이 있어 1월에는 부담이 적으나, 지진은 시기와 무관하므로 숙소 대피로를 확인하세요.",
+                "sources": [
+                  "https://0404.go.kr/ntnSafetyInfo/183/detail",
+                  "https://weather.moneylabkr.com/entry/%EB%A7%88%EC%93%B0%EC%95%BC%EB%A7%88-%EB%82%A0%EC%94%A8"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "공식 필수 접종 없음 확인, 겨울 독감 유행 대비 필요(수돗물 등 현지 위생은 확인 필요)",
+                "summary": "질병관리청은 출국 전 접종 여부와 해외감염병 정보 확인을 권고하며, 일본에서는 올가을 독감이 일찍 퍼지고 있고 수막구균감염증도 2025년 최다로 보고됐습니다. 일본뇌염 매개모기는 3월 말부터 나타나 1월에는 해당이 적습니다. 수돗물 음용과 의료 접근성은 공식 자료를 확인하지 못해 별도 확인이 필요하며, 여행자보험과 상비약, 가족 독감 접종 상담을 권합니다.",
+                "sources": [
+                  "https://www.dominilbo.com/news/articleView.html?idxno=279685",
+                  "https://www.sedaily.com/article/20100237",
+                  "https://www.k-health.com/news/articleView.html?idxno=93760",
+                  "https://www.kdca.go.kr/kdca/2848/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGa2RjYSUyRjQyJTJGMzEwNTA1JTJGYXJ0Y2xWaWV3LmRvJTNG"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.425782
+          },
+          "gpt": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"마쓰야마\",\"MYJ\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":null},3]",
+            "at": "2026-10-16T14:35:51.525Z",
+            "items": {
+              "weather": {
+                "value": "평년 최저 2.6℃·최고 10.2℃, 월 강수량 약 51mm",
+                "summary": "기상청 1991~2020년 평년값 기준으로 1월 평균기온은 6.2℃이며, 강수량은 비교적 적은 편입니다. 실제 기온과 강수는 여행 날짜에 따라 달라지므로 출발 전 예보를 확인하세요.",
+                "sources": [
+                  "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?block_no=47887&prec_no=73",
+                  "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?block_no=47887&day=&month=12&prec_no=73&view=a1&year="
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "도미밥·감귤 디저트 추천; 오카이도·도고 온천 상점가에서 가족 식사 선택 가능",
+                "summary": "에히메 대표 음식은 도미밥(타이메시)이며, 도고 온천 주변에는 상점가와 식당이 모여 있습니다. 가족은 메뉴 선택이 쉬운 정식집이나 캐주얼 식당을 이용하고, 도미밥 전문점은 혼잡 시간과 영업일을 사전 확인하는 편이 좋습니다.",
+                "sources": [
+                  "https://www.japan.travel/en/spot/821/",
+                  "https://www.japan.travel/en/destinations/shikoku/ehime/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "마쓰야마성 전망대·도고 온천 본관·도고 상점가",
+                "summary": "마쓰야마성에서는 시내 전망을, 도고 온천 본관에서는 목조 건물과 온천 거리 풍경을 촬영할 수 있습니다. 성 전망은 시야가 트이는 낮 시간, 도고 본관과 상점가는 조명이 켜지는 해질녘 이후가 사진 촬영에 적합합니다.",
+                "sources": [
+                  "https://www.japan.travel/en/spot/819/",
+                  "https://www.japan.travel/en/spot/821/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "가족 3명에게 잘 맞음; 도심 관광·온천·쇼핑을 3박 4일에 무리 없이 구성 가능",
+                "summary": "마쓰야마성, 도고 온천, 상점가가 도심 교통망으로 연결되어 도시와 음식, 사진 중심의 가족 여행에 적합합니다. 가족 구성원의 연령은 미정이므로 온천의 성별 분리 이용이나 성까지의 오르막·계단이 부담되는지 고려하세요.",
+                "sources": [
+                  "https://faq.japan-travel.jnto.go.jp/en/spot/ma_196/",
+                  "https://www.japan.travel/en/spot/821/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 약 35만~65만 원",
+                "summary": "인천~마쓰야마 직항편은 제주항공 운항편이 확인되며, 2027년 1월 검색 사례의 왕복 운임은 약 292달러부터 확인됩니다. 날짜·수하물·좌석 선택에 따라 변동되므로 실제 예약 단계에서 총액을 확인하세요.",
+                "sources": [
+                  "https://deals.airhint.com/es/cheapest-deals/return/MYJ/ICN/1",
+                  "https://www.matsuyama-air-int.jp/timetable/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 350000,
+                  "max": 650000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 1시간 35분, 직항 운항 확인",
+                "summary": "인천(ICN)~마쓰야마(MYJ) 구간은 직항편 기준 약 1시간 35분입니다. 운항 요일과 시각은 항공사 일정 변경에 따라 달라질 수 있습니다.",
+                "sources": [
+                  "https://www.matsuyama-air-int.jp/timetable/",
+                  "https://www.directflights.com/ICN-MYJ"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 1.5,
+                  "max": 1.6
+                }
+              },
+              "lodging": {
+                "value": "중급 숙소 1실 1박 약 9만~18만 원",
+                "summary": "마쓰야마 숙소의 2027년 1월 요금 검색 사례에서 저가 호텔은 1박 약 7만 원대부터 확인됩니다. 가족 3명 객실은 객실 유형·조식·주말 여부에 따라 달라지며, 세금과 봉사료를 포함한 최종 요금을 확인하세요.",
+                "sources": [
+                  "https://hotelsise.com/hotel/super-hotel-matsuyama"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 90000,
+                  "max": 180000
+                }
+              },
+              "prices": {
+                "value": "한국과 비슷한 수준; 1인 1일 현지 경비 약 9만~15만 원(쇼핑 제외)",
+                "summary": "일본의 일반적인 여행 예산 안내를 바탕으로 식사·시내 교통·관광 입장료를 포함한 범위로 잡았습니다. 도미밥 전문점 식사, 온천 이용, 기념품 쇼핑을 추가하면 예산이 더 올라갈 수 있습니다.",
+                "sources": [
+                  "https://www.japan-guide.com/e/e2410.html",
+                  "https://www.japan.travel/en/spot/821/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": true,
+                "numeric": null
+              },
+              "visa": {
+                "value": "한국 여권 단기 관광은 비자 면제, 최대 90일 체류 가능",
+                "summary": "일본 외무성 비자면제 대상에 대한민국이 포함되어 있습니다. 입국·세관 절차 및 면제 조건은 출발 전 공식 안내에서 다시 확인하세요.",
+                "sources": [
+                  "https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html?webview=true",
+                  "https://www.customs.go.jp/english/passenger/"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "마쓰야마 여행경보 미발령; 지진은 연중 대비 필요",
+                "summary": "외교부 해외안전여행 일본 안내에는 후쿠시마 원전 주변 지정 구역의 출국권고가 표시되며, 일본의 일반 여행경보 1단계는 2024년 6월 해제된 것으로 안내됩니다. 일본은 지진·쓰나미 위험이 상존하므로 현지 재난 알림과 대피 안내를 확인하고, 1월은 태풍철은 아니지만 겨울철 추위와 간헐적 강설에 대비하세요.",
+                "sources": [
+                  "https://mgr.0404.go.kr/ntnSafetyInfo/183/detail",
+                  "https://www.city.matsuyama.ehime.jp/kurashi/bosai/bousai/keihatu/bosaimapgaikokugo.files/04eng00-17.pdf",
+                  "https://www.data.jma.go.jp/stats/etrn/view/nml_sfc_ym.php?block_no=47887&day=&month=12&prec_no=73&view=a1&year="
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "수돗물 음용 가능; 통상 예방접종을 최신 상태로 유지 권고",
+                "summary": "일본 수돗물은 일반적으로 마실 수 있으며, CDC는 여행 전 정기 예방접종을 최신 상태로 유지하도록 권고합니다. 일반 음식점 이용 시 기본적인 식품 위생수칙을 지키고, 의료비에 대비해 여행자보험을 준비하세요.",
+                "sources": [
+                  "https://www.japan.travel/en/plan/drinking-water/",
+                  "https://wwwnc.cdc.gov/travel/destinations/traveler/none/japan",
+                  "https://www.mlit.go.jp/kankocho/en/shisaku/kokusai/traveltojapan.html"
+                ],
+                "asOf": "2026-10",
+                "needsCheck": false,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.0081786
+          },
+          "gemini": {
+            "status": "done",
+            "key": "[\"overseas\",\"인천\",\"마쓰야마\",\"MYJ\",{\"month\":1},3,false,{\"type\":\"family\",\"familyDetail\":null},3]",
+            "at": "2026-10-16T14:35:51.525Z",
+            "items": {
+              "weather": {
+                "value": "최저 3℃·최고 10℃, 맑고 건조하며 온화한 겨울",
+                "summary": "한국의 한겨울에 비해 비교적 온화하고 연중 강수량이 가장 적은 시기입니다. 다만 아침저녁에는 쌀쌀하므로 코트나 패딩 등 방한 외투를 준비해야 합니다.",
+                "sources": [
+                  "https://weather-and-climate.com",
+                  "https://climatestotravel.com"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "food": {
+                "value": "도미밥(타이메시)과 에히메 감귤 디저트",
+                "summary": "익힌 도미솥밥 형태의 마쓰야마식과 도미회 비빔밥인 우와지마식 모두 자극적이지 않아 가족 식사로 훌륭합니다. 오카이도 상점가와 도고온천 주변의 아키요시, 고시키 등에서 편하게 즐길 수 있습니다.",
+                "sources": [
+                  "https://trip.com"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "photo": {
+                "value": "도고온천 본관(야경)과 시모나다역(일몰)",
+                "summary": "도고온천 본관은 해 질 녘 건물 조명이 켜질 때 고풍스러운 레트로 감성 사진을 남기기 좋습니다. 바다와 맞닿은 시모나다 간이역은 일몰 1시간 전 방문해 세토내해 노을을 담는 것을 추천합니다.",
+                "sources": [
+                  "https://trip.com",
+                  "https://livejapan.com"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "fit": {
+                "value": "가족 3인 온천 힐링 및 미식 중심 여행에 적합도 높음",
+                "summary": "비행시간이 짧고 도시 규모가 아담해 노면전차로 부모님이나 가족이 여유롭게 관광하기에 최적입니다. 다만 대형 백화점 쇼핑이나 화려한 엔터테인먼트를 원할 경우 도시 규모가 작게 느껴질 수 있습니다.",
+                "sources": [
+                  "https://triple.guide"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "flightPrice": {
+                "value": "왕복 25~38만 원",
+                "summary": "제주항공 등 LCC 직항이 운항하며 1월 방학 시즌에는 30만 원대 중반까지 상승합니다. 조기 예약 시 20만 원대 중후반 수준에서 예약 가능합니다.",
+                "sources": [
+                  "https://skyscanner.co.kr",
+                  "https://kayak.co.kr"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 250000,
+                  "max": 380000
+                }
+              },
+              "flightTime": {
+                "value": "편도 약 1.6시간(1시간 35분), 직항",
+                "summary": "인천에서 마쓰야마까지 제주항공 직항편이 정기 운항하고 있어 접근성이 뛰어납니다. 비행시간이 약 1시간 35분으로 매우 짧아 가족 동반 이동 피로가 적습니다.",
+                "sources": [
+                  "https://airpaz.com",
+                  "https://skyscanner.co.kr"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 1.5,
+                  "max": 1.7
+                }
+              },
+              "lodging": {
+                "value": "중급 호텔 1박 8~18만 원",
+                "summary": "오카이도 시내 중심의 3성급 비즈니스 호텔 기준 8~14만 원 선입니다. 온천 대욕장을 갖춘 도미인이나 3인 투숙 트리플룸/료칸의 경우 1박 15~25만 원 수준입니다.",
+                "sources": [
+                  "https://booking.com",
+                  "https://skyscanner.co.kr"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": {
+                  "min": 80000,
+                  "max": 180000
+                }
+              },
+              "prices": {
+                "value": "한국 서울과 비슷하거나 소폭 저렴, 1인 1일 6~10만 원",
+                "summary": "대도시에 비해 외식비와 대중교통비가 안정적이며 엔저 영향으로 체감 물가가 부담스럽지 않습니다. 3박 4일 일정 기준 1인 200만 원 예산으로 쇼핑과 미식까지 매우 넉넉하게 운영 가능합니다.",
+                "sources": [
+                  "https://trip.com"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "visa": {
+                "value": "90일 무비자 입국 가능",
+                "summary": "대한민국 여권 소지자는 관광 목적으로 최대 90일간 무비자 체류가 가능합니다. 입국 전 비짓재팬웹(Visit Japan Web)을 등록하면 입국심사와 세관신고를 빠르게 마칠 수 있습니다.",
+                "sources": [
+                  "https://0404.go.kr"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "safety": {
+                "value": "여행경보 미발령(안전), 치안 최상급",
+                "summary": "외교부 여행경보가 발령되지 않은 안전한 지역이며 일본 소도시 특성상 밤에도 치안이 매우 안정적입니다. 1월은 태풍 영향이 없는 시기이며 기본적인 지진 대비 안전수칙만 숙지하면 충분합니다.",
+                "sources": [
+                  "https://0404.go.kr"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              },
+              "hygiene": {
+                "value": "수돗물 음용 가능, 위생 및 의료 환경 우수",
+                "summary": "상수도 및 식당 위생 상태가 매우 철저하며 별도 권고되는 필수 예방접종은 없습니다. 시내에 종합병원과 클리닉이 잘 갖추어져 있어 비상 시 의료 접근성도 우수합니다.",
+                "sources": [
+                  "https://0404.go.kr"
+                ],
+                "asOf": "2026-09",
+                "needsCheck": false,
+                "numeric": null
+              }
+            },
+            "citations": 0,
+            "usd": 0.113759
+          }
+        }
+      },
+      "scores": {
+        "c-2ac9b91b-0c8c-474d-9837-d55a50709157": {
+          "cost": {
+            "ai": {
+              "claude": 7,
+              "gpt": 9,
+              "gemini": 8
+            },
+            "rationale": {
+              "claude": "항공 20~45만 원, 숙박은 비싸나 예산 200만 원 내 여유",
+              "gpt": "왕복 항공권과 현지 경비가 비교적 낮아 200만 원 예산에 여유가 큼",
+              "gemini": "LCC 취항이 많아 항공·숙박 비용 통제가 수월합니다."
+            },
+            "final": 8
+          },
+          "weather": {
+            "ai": {
+              "claude": 4,
+              "gpt": 6,
+              "gemini": 6
+            },
+            "rationale": {
+              "claude": "최저 4℃·최고 10℃로 춥고 가끔 눈, 강수 74mm",
+              "gpt": "1월은 최고 10℃ 안팎으로 춥고 비나 눈이 간간이 내릴 수 있음",
+              "gemini": "1월 평균 4~10℃로 다소 쌀쌀하고 눈·비 가능성이 있습니다."
+            },
+            "final": 5
+          },
+          "distance": {
+            "ai": {
+              "claude": 9,
+              "gpt": 10,
+              "gemini": 9
+            },
+            "rationale": {
+              "claude": "직항 편도 약 1시간 20~40분으로 가장 가까움",
+              "gpt": "인천에서 직항 약 1시간 20분~1시간 40분으로 가장 가까움",
+              "gemini": "비행시간이 약 1시간 20분대로 세 후보 중 가장 가깝습니다."
+            },
+            "final": 9
+          },
+          "food": {
+            "ai": {
+              "claude": 9,
+              "gpt": 9,
+              "gemini": 9
+            },
+            "rationale": {
+              "claude": "하카타 라멘·모츠나베·명란 등 미식 도시로 선택지 풍부",
+              "gpt": "하카타 라멘·모츠나베 등 대표 음식과 식당 선택지가 풍부함",
+              "gemini": "라멘, 모츠나베 등 가족 모두 만족할 미식 선택지가 풍부합니다."
+            },
+            "final": 9
+          },
+          "photo": {
+            "ai": {
+              "claude": 8,
+              "gpt": 8,
+              "gemini": 8
+            },
+            "rationale": {
+              "claude": "후쿠오카 타워·모모치 야경, 오호리 공원 등 명소 다양",
+              "gpt": "타워·모모치 해변 야경과 오호리 공원 등 도시 촬영지가 다양함",
+              "gemini": "모모치 해변과 다자이후 등 낮과 밤 촬영 명소가 조화롭습니다."
+            },
+            "final": 8
+          },
+          "safety": {
+            "ai": {
+              "claude": 8,
+              "gpt": 8,
+              "gemini": 9
+            },
+            "rationale": {
+              "claude": "여행경보 미발령, 1월 태풍 없음, 지진만 유의",
+              "gpt": "여행경보는 없지만 지진 등 자연재해에 대비해야 함",
+              "gemini": "여행경보 미발령 지역이며 도심 치안이 매우 안정적입니다."
+            },
+            "final": 8
+          },
+          "hygiene": {
+            "ai": {
+              "claude": 9,
+              "gpt": 9,
+              "gemini": 9
+            },
+            "rationale": {
+              "claude": "수돗물 음용 가능, 도심 의료 접근 양호",
+              "gpt": "수돗물을 마실 수 있고 도심 의료 접근성이 양호함",
+              "gemini": "수돗물 음용이 가능하고 도심 의료 접근성이 뛰어납니다."
+            },
+            "final": 9
+          }
+        },
+        "c-0c89fff5-e435-4329-b34f-980c3d5dd0a0": {
+          "cost": {
+            "ai": {
+              "claude": 6,
+              "gpt": 7,
+              "gemini": 7
+            },
+            "rationale": {
+              "claude": "항공 25~70만 원 편차 크나 현지 물가 저렴, 예산 내",
+              "gpt": "항공·숙박비가 일본 후보보다 높을 수 있어 예산 여유가 다소 적음",
+              "gemini": "물가는 저렴하나 1월 항공권 가격 변동폭이 다소 큽니다."
+            },
+            "final": 7
+          },
+          "weather": {
+            "ai": {
+              "claude": 6,
+              "gpt": 8,
+              "gemini": 7
+            },
+            "rationale": {
+              "claude": "13~18℃로 온화하나 흐리고 이슬비 잦음",
+              "gpt": "1월 기온은 온화하지만 흐리거나 이슬비가 잦은 편임",
+              "gemini": "기온은 12~19℃로 온화하나 잦은 이슬비가 아쉽습니다."
+            },
+            "final": 7
+          },
+          "distance": {
+            "ai": {
+              "claude": 7,
+              "gpt": 8,
+              "gemini": 7
+            },
+            "rationale": {
+              "claude": "직항 약 2시간 30~50분으로 무난한 거리",
+              "gpt": "직항 약 2시간 35분으로 가깝지만 일본 두 도시보다는 김",
+              "gemini": "비행시간 약 2시간 40분으로 일본 소도시에 비해 깁니다."
+            },
+            "final": 7
+          },
+          "food": {
+            "ai": {
+              "claude": 9,
+              "gpt": 10,
+              "gemini": 8
+            },
+            "rationale": {
+              "claude": "야시장·샤오롱바오·우육면 등 가족 취향 폭넓음",
+              "gpt": "야시장 간식부터 샤오롱바오·우육면까지 음식 선택 폭이 넓음",
+              "gemini": "딤섬과 야시장 등 다양하나 향신료 호불호가 갈릴 수 있습니다."
+            },
+            "final": 9
+          },
+          "photo": {
+            "ai": {
+              "claude": 8,
+              "gpt": 10,
+              "gemini": 9
+            },
+            "rationale": {
+              "claude": "타이베이 101 야경, 용산사, 지우펀 홍등 등 명소 풍부",
+              "gpt": "101·샹산 야경과 지우펀 홍등 등 인상적인 촬영 명소가 많음",
+              "gemini": "타이베이 101 야경과 지우펀 홍등 등 이국적 명소가 많습니다."
+            },
+            "final": 9
+          },
+          "safety": {
+            "ai": {
+              "claude": 7,
+              "gpt": 7,
+              "gemini": 8
+            },
+            "rationale": {
+              "claude": "치안 양호하나 지진 잦고 경보 단계 확인 필요",
+              "gpt": "도시 치안은 무난하나 지진이 잦고 여행경보 확인이 필요함",
+              "gemini": "도심 치안이 전반적으로 좋으나 지진 대비는 필요합니다."
+            },
+            "final": 7
+          },
+          "hygiene": {
+            "ai": {
+              "claude": 6,
+              "gpt": 7,
+              "gemini": 7
+            },
+            "rationale": {
+              "claude": "수돗물 끓여 마셔야 하나 의료시설 이용 가능",
+              "gpt": "의료시설은 이용 가능하지만 식수는 생수나 끓인 물이 권장됨",
+              "gemini": "생수 음용이 권장되며 야시장 위생 관리에 주의가 필요합니다."
+            },
+            "final": 7
+          }
+        },
+        "c-edfd4078-531e-4d39-a3e7-b98463b9da17": {
+          "cost": {
+            "ai": {
+              "claude": 6,
+              "gpt": 8,
+              "gemini": 8
+            },
+            "rationale": {
+              "claude": "항공 20~65만 원 변동 큼, 숙박 중급, 물가 한국 수준",
+              "gpt": "항공권과 숙박비가 합리적이나 현지 경비는 다소 높을 수 있음",
+              "gemini": "소도시 특성상 숙박비가 합리적이며 예산 내 여유롭습니다."
+            },
+            "final": 7
+          },
+          "weather": {
+            "ai": {
+              "claude": 4,
+              "gpt": 7,
+              "gemini": 6
+            },
+            "rationale": {
+              "claude": "최저 2.6℃·최고 10℃로 추우나 건조하고 강수 적음",
+              "gpt": "1월은 춥지만 강수량이 적고 비교적 건조한 편임",
+              "gemini": "기온이 낮아 쌀쌀하나 강수량이 적고 건조한 편입니다."
+            },
+            "final": 6
+          },
+          "distance": {
+            "ai": {
+              "claude": 8,
+              "gpt": 9,
+              "gemini": 8
+            },
+            "rationale": {
+              "claude": "직항 약 1시간 35분이나 노선이 제한적",
+              "gpt": "직항 약 1시간 35분으로 짧아 이동 부담이 작음",
+              "gemini": "직항 기준 약 1시간 35분으로 비행 부담이 매우 적습니다."
+            },
+            "final": 8
+          },
+          "food": {
+            "ai": {
+              "claude": 7,
+              "gpt": 8,
+              "gemini": 7
+            },
+            "rationale": {
+              "claude": "도미밥·나베야키우동·귤 디저트, 선택지는 중간",
+              "gpt": "도미밥·나베야키우동·감귤 디저트 등 지역 음식이 매력적임",
+              "gemini": "도미밥 등 향토 요리가 특색 있으나 선택 폭은 좁습니다."
+            },
+            "final": 7
+          },
+          "photo": {
+            "ai": {
+              "claude": 7,
+              "gpt": 9,
+              "gemini": 7
+            },
+            "rationale": {
+              "claude": "도고온천 야경, 마쓰야마성 석양 등 감성 풍경",
+              "gpt": "마쓰야마성 전망과 도고온천 본관 등 풍경·야경 촬영에 좋음",
+              "gemini": "도고온천 본관과 봇짱 열차 등 고즈넉한 풍경이 매력적입니다."
+            },
+            "final": 8
+          },
+          "safety": {
+            "ai": {
+              "claude": 8,
+              "gpt": 9,
+              "gemini": 9
+            },
+            "rationale": {
+              "claude": "여행경보 미발령, 지진·집중호우만 유의",
+              "gpt": "여행경보 미발령 지역이며 지진 대비를 하면 비교적 안전함",
+              "gemini": "한적한 소도시로 범죄 우려가 낮고 치안이 우수합니다."
+            },
+            "final": 9
+          },
+          "hygiene": {
+            "ai": {
+              "claude": 8,
+              "gpt": 10,
+              "gemini": 9
+            },
+            "rationale": {
+              "claude": "수돗물 음용 가능, 겨울 독감 대비 필요",
+              "gpt": "수돗물 음용이 가능하고 일본의 의료·위생 환경이 양호함",
+              "gemini": "수돗물 음용이 가능하며 전반적인 위생 관리가 철저합니다."
+            },
+            "final": 9
+          }
+        }
+      },
+      "scoreDraft": {
+        "key": "[[\"c-2ac9b91b-0c8c-474d-9837-d55a50709157\",\"c-0c89fff5-e435-4329-b34f-980c3d5dd0a0\",\"c-edfd4078-531e-4d39-a3e7-b98463b9da17\"],[\"cost\",\"weather\",\"distance\",\"food\",\"photo\",\"safety\",\"hygiene\"]]",
+        "at": "2026-10-16T14:37:58.974Z",
+        "byModel": {
+          "claude": {
+            "status": "done",
+            "count": 21,
+            "usd": 0.019194,
+            "at": "2026-10-16T14:37:58.974Z"
+          },
+          "gpt": {
+            "status": "done",
+            "count": 21,
+            "usd": 0.001436,
+            "at": "2026-10-16T14:37:58.974Z"
+          },
+          "gemini": {
+            "status": "done",
+            "count": 21,
+            "usd": 0.009021,
+            "at": "2026-10-16T14:37:58.974Z"
+          }
+        }
+      },
+      "recommend": {
+        "key": "[\"overseas\",\"인천\",{\"mode\":\"month\",\"season\":null,\"month\":1,\"startDate\":null,\"nights\":null,\"dayTrip\":false},2000000,{\"type\":\"family\",\"familyDetail\":null},3,[\"도시\",\"사진\",\"쇼핑\",\"음식\",\"자연\"],\"\"]",
+        "at": "2026-10-16T14:26:59.290Z",
+        "byModel": {
+          "claude": {
+            "status": "done",
+            "items": [
+              {
+                "name": "오사카",
+                "nameEn": "Osaka",
+                "country": "일본",
+                "region": null,
+                "code": "KIX",
+                "travel": "직항 약 2h",
+                "reason": "먹거리와 쇼핑, 도시 야경을 한 번에 즐길 수 있어 3인 가족에게 맞습니다. 1월은 일본 노선 비수기라 항공권이 상대적으로 저렴해 3~4박이면 1인 200만 원 안에서 가능성이 높습니다.",
+                "trendEvidence": [
+                  "2025년 1~10월 일본을 찾은 한국인은 766만 명으로 전년 대비 6.4% 늘었고, 아고다 2025 인기 해외 여행지 3위가 오사카였습니다.",
+                  "2026년 8월 방일 한국인은 85만 500명으로 전년 같은 달보다 28.7% 늘었습니다.",
+                  "2025년 간사이 공항·오사카 항 기준 한국인 입국자는 약 248만 5천 명으로, 2018년보다 약 30만 명 많다는 분석이 있습니다(일본 정부 통계를 인용한 커뮤니티 글)."
+                ],
+                "sources": [
+                  "https://www.hankyung.com/article/202512166494K",
+                  "https://biz.heraldcorp.com/article/10884135",
+                  "https://m.cafe.daum.net/dotax/Elgq/4743859?svc=topRank"
+                ],
+                "tags": [
+                  "먹거리",
+                  "쇼핑",
+                  "도시 야경"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "후쿠오카",
+                "nameEn": "Fukuoka",
+                "country": "일본",
+                "region": null,
+                "code": "FUK",
+                "travel": "직항 약 1h 30m",
+                "reason": "비행시간이 짧아 가족 이동 부담이 적고, 시장·쇼핑몰·포장마차 먹거리와 근교 자연(다자이후, 유후인 등)을 함께 즐길 수 있습니다. 항공권과 숙박이 비교적 저렴해 예산 안에서 여유 있게 다녀올 수 있습니다.",
+                "trendEvidence": [
+                  "아고다 2025 인기 해외 여행지 2위, 스카이스캐너 2025 한국인 인기 여행 도시 2위였습니다.",
+                  "2025년 후쿠오카현 외국인 숙박객 중 한국인 비중이 36.82%로 1위였습니다.",
+                  "2025년 일본 숙박여행통계에서 한국인 누적 숙박 수는 후쿠오카현이 288만 3천 박으로 도쿄 다음으로 많았습니다."
+                ],
+                "sources": [
+                  "https://www.hankyung.com/article/202512166494K",
+                  "https://koreatowndaily.com/articles/20251230163037",
+                  "https://www.telltrip.com/news/why-koreans-visit-fukuoka-for-local-life/",
+                  "https://biz.heraldcorp.com/article/10884135"
+                ],
+                "tags": [
+                  "미식",
+                  "근교 자연",
+                  "가성비"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "타이베이",
+                "nameEn": "Taipei",
+                "country": "대만",
+                "region": null,
+                "code": "TPE",
+                "travel": "직항 약 2h 30m",
+                "reason": "야시장 먹거리, 쇼핑, 예류·지우펀 같은 근교 풍경과 사진 명소가 있어 관심사와 잘 맞습니다. 1월은 선선해 걷기 좋고, 물가가 높지 않아 1인 200만 원 안에서 넉넉합니다.",
+                "trendEvidence": [
+                  "2025년 대만을 방문한 한국인은 100만 명을 넘었고, 2년 연속 100만 명 이상이었습니다.",
+                  "2026년 1~3월 약 32만 명이 방문해 전년 동기보다 2.6% 늘었습니다.",
+                  "2026년 가을 시즌 타이베이의 호텔 검색량은 여름보다 2배 이상 늘었습니다(호텔스컴바인·카약)."
+                ],
+                "sources": [
+                  "https://www.traveltimes.co.kr/news/articleView.html?idxno=415759",
+                  "https://press.mtime.co.kr/newsRead.php?no=1033270",
+                  "https://sports.khan.co.kr/article/202610160200003/"
+                ],
+                "tags": [
+                  "야시장 미식",
+                  "근교 풍경",
+                  "사진 명소"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "다낭",
+                "nameEn": "Da Nang",
+                "country": "베트남",
+                "region": null,
+                "code": "DAD",
+                "travel": "직항 약 4h 40m",
+                "reason": "해변과 호이안 구시가, 바나힐 같은 사진 명소가 있고 현지 물가가 낮아 3인 가족 예산에 부담이 적습니다. 1월은 비교적 선선하고 흐린 날이 있을 수 있어 해수욕보다 관광과 미식 중심으로 짜는 편이 좋습니다.",
+                "trendEvidence": [
+                  "2025년 8월 1일 다낭시가 그해 100만 번째 한국인 관광객을 맞았습니다.",
+                  "아고다 데이터에서 다낭의 검색량이 전년 대비 약 42% 늘었고, 연간 한국인 방문객은 180만 명 이상으로 국제 관광객의 약 28.9%였습니다.",
+                  "2025년 11월 바나힐을 찾은 한국인은 57만 6천 명으로 국제 관광객 중 비중이 가장 컸습니다."
+                ],
+                "sources": [
+                  "https://www.wuica.org/post/%EB%8B%A4%EB%82%AD-2025%EB%85%84-%ED%95%9C%EA%B5%AD%EC%9D%B8-%EA%B4%80%EA%B4%91%EA%B0%9D-100%EB%A7%8C-%EB%AA%85-%EB%8F%8C%ED%8C%8C",
+                  "https://v.daum.net/v/GQ3bxanQU0?f=p",
+                  "https://www.thepublic.kr/news/articleView.html?idxno=288307"
+                ],
+                "tags": [
+                  "호이안 야경",
+                  "가성비",
+                  "해변·사진"
+                ],
+                "motif": "sea",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "마쓰야마",
+                "nameEn": "Matsuyama",
+                "country": "일본",
+                "region": null,
+                "code": "MYJ",
+                "travel": "직항 약 1h 40m",
+                "reason": "도고온천과 마쓰야마성, 시마나미 해도 같은 자연·풍경이 있고 도시 규모가 작아 가족이 천천히 다니기 좋습니다. 쇼핑은 대도시보다 약하지만 항공·숙박 비용이 낮아 예산 안에서 소화할 수 있습니다.",
+                "trendEvidence": [
+                  "2026년 10~11월 여행 기간 기준 마쓰야마 항공권 검색량이 여름 대비 2.5배로, 일본 도시 중 상승폭이 가장 컸습니다(호텔스컴바인·카약).",
+                  "일본 정부 통계를 인용한 커뮤니티 분석에서 2025년 마쓰야마 한국인 방문은 2018년 대비 600% 늘었다는 집계가 있습니다. 비공식 집계라 참고용입니다."
+                ],
+                "sources": [
+                  "https://www.hankyung.com/article/202610152933g",
+                  "https://m.cafe.daum.net/dotax/Elgq/4743859?svc=topRank"
+                ],
+                "tags": [
+                  "온천",
+                  "소도시 풍경",
+                  "성·사진"
+                ],
+                "motif": "mountain",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "푸꾸옥",
+                "nameEn": "Phu Quoc",
+                "country": "베트남",
+                "region": null,
+                "code": "PQC",
+                "travel": "직항 약 5h",
+                "reason": "1월은 건기라 해변·리조트·야시장·테마파크를 가족이 함께 즐기기 좋습니다. 겨울 성수기에는 항공권과 리조트 요금이 오르기 쉬워, 고급 리조트로 4박 이상 잡으면 1인 200만 원을 넘길 수 있습니다.",
+                "trendEvidence": [
+                  "아고다 기준 푸꾸옥의 한국인 방문객이 63% 늘었고, 2025년 처음 한국인 관심 해외 여행지 TOP10에 들었습니다.",
+                  "2026년 4월 17일 선 푸꾸옥 항공이 인천~푸꾸옥 직항 노선을 열었고, 8월 1일부터 서울 노선 운항 횟수를 늘린다고 발표했습니다.",
+                  "트립닷컴 리포트에 따르면 2026년 푸꾸옥 검색 관심도가 53% 늘어 세계 트렌드 여행지 4위였습니다."
+                ],
+                "sources": [
+                  "https://www.koreadaily.com/article/20260611225701755",
+                  "https://kr.trip.com/guide/info/travel-trends.html",
+                  "https://blog.ai.dmomo.co.kr/news/35546"
+                ],
+                "tags": [
+                  "겨울 휴양",
+                  "리조트 해변",
+                  "가족 여행"
+                ],
+                "motif": "sea",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": true
+              },
+              {
+                "name": "홍콩",
+                "nameEn": "Hong Kong",
+                "country": "홍콩",
+                "region": null,
+                "code": "HKG",
+                "travel": "직항 약 3h 30m",
+                "reason": "빅토리아 하버 야경, 피크 트램 전망, 딤섬·쇼핑을 하루 일정에 모두 담을 수 있습니다. 1월은 건조하고 선선해 여행하기 좋지만 숙박비가 높고 성수기 요금이 붙어, 4박 이상이면 1인 200만 원을 넘길 수 있습니다.",
+                "trendEvidence": [
+                  "2026년 8월 홍콩 방문객은 546만 명으로 팬데믹 이후 월간 최대치를 기록했습니다.",
+                  "2025년 12월 31일~2026년 1월 4일 신년 연휴 방문객은 약 95만 명으로 전년 동기 대비 약 40% 늘었습니다.",
+                  "2026년 가을 시즌 한국인 이용자 검색에서 홍콩이 야경 여행지로 꼽혔습니다(호텔스컴바인·카약)."
+                ],
+                "sources": [
+                  "https://www.newstravel.co.kr/news/article.html?no=27791",
+                  "https://dailyhongkong.com/2026/01/06/hong-kongs-2026-new-year-holiday-tourist-arrivals-reached-950000-a-40-increase-from-last-year/",
+                  "https://www.wikitree.co.kr/articles/1166686"
+                ],
+                "tags": [
+                  "야경 촬영",
+                  "쇼핑",
+                  "딤섬 미식"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": true
+              }
+            ],
+            "citations": 0,
+            "usd": 0.374204,
+            "at": "2026-10-16T14:26:59.290Z"
+          },
+          "gpt": {
+            "status": "done",
+            "items": [
+              {
+                "name": "후쿠오카",
+                "nameEn": "Fukuoka",
+                "country": "일본",
+                "region": null,
+                "code": "FUK",
+                "travel": "직항 2h",
+                "reason": "비행시간이 짧고 먹거리·쇼핑이 풍부해 가족 3명이 편하게 즐기기 좋으며, 근교 자연 명소를 당일치기로 더할 수 있습니다. 3~4박으로 계획하면 1인 200만 원 안에서 무리 없이 맞출 가능성이 높습니다.",
+                "trendEvidence": [
+                  "한국인 방일객이 2023년 696만 명에서 2024년 882만 명으로 증가했습니다.",
+                  "아고다의 2025년 한국인 숙소 검색 인기 해외 여행지에서 후쿠오카가 2위를 기록했습니다."
+                ],
+                "sources": [
+                  "https://www.yanolja-research.com/brief/view/166?lang=en",
+                  "https://www.agoda.com/press/2025-international-travel-overview-agoda-unveils-the-ranking-of-top-overseas-destinations-among-south-korean-travelers/",
+                  "https://www.flightsfrom.com/ICN-FUK"
+                ],
+                "tags": [
+                  "가족 먹거리 여행",
+                  "근교 자연",
+                  "쇼핑"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "다낭",
+                "nameEn": "Da Nang",
+                "country": "베트남",
+                "region": null,
+                "code": "DAD",
+                "travel": "직항 4h 45m",
+                "reason": "해변과 시내, 호이안 근교를 함께 둘러볼 수 있어 가족 여행에서 휴양과 사진 촬영을 모두 챙기기 좋습니다. 숙박·식비 부담이 비교적 낮아 1인 200만 원 예산에 맞추기 수월합니다.",
+                "trendEvidence": [
+                  "다낭은 2025년 8월 1일 한국인 방문객 100만 명을 맞이했다고 현지 관광 당국이 발표했습니다.",
+                  "2025년 한국인 숙소 검색 기준 인기 해외 여행지 10곳에 포함됐습니다."
+                ],
+                "sources": [
+                  "https://danangfantasticity.com/en/news/da-nang-welcomes-the-1-millionth-korean-visitor-in-2025",
+                  "https://www.agoda.com/press/2025-international-travel-overview-agoda-unveils-the-ranking-of-top-overseas-destinations-among-south-korean-travelers/",
+                  "https://www.flightconnections.com/flights-from-icn-to-dad"
+                ],
+                "tags": [
+                  "해변 휴양",
+                  "가족 여행",
+                  "야경 촬영"
+                ],
+                "motif": "sea",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "나트랑",
+                "nameEn": "Nha Trang",
+                "country": "베트남",
+                "region": null,
+                "code": "CXR",
+                "travel": "직항 약 5h 30m",
+                "reason": "해변 휴양에 더해 섬 투어와 해안 풍경 촬영을 즐기기 좋고, 가족이 함께 머물기 편한 숙소 선택지도 다양합니다. 현지 물가가 비교적 낮아 1인 200만 원 예산에 맞추기 좋은 편입니다.",
+                "trendEvidence": [
+                  "아고다의 2025년 한국인 숙소 검색 인기 해외 여행지 10곳에 나트랑이 포함됐습니다.",
+                  "2025년 1~10월 한국인 해외여행 관심도는 아고다 데이터에서 전년보다 15% 증가했습니다."
+                ],
+                "sources": [
+                  "https://www.agoda.com/press/2025-international-travel-overview-agoda-unveils-the-ranking-of-top-overseas-destinations-among-south-korean-travelers/",
+                  "https://www.flightconnections.com/flights-from-icn-to-cxr"
+                ],
+                "tags": [
+                  "겨울 해변 휴양",
+                  "섬 투어",
+                  "해안 사진"
+                ],
+                "motif": "sea",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "치앙마이",
+                "nameEn": "Chiang Mai",
+                "country": "태국",
+                "region": null,
+                "code": "CNX",
+                "travel": "직항 약 4h 30m",
+                "reason": "사원과 산·자연 풍경, 야시장과 카페를 함께 즐길 수 있어 관심사가 다양한 가족에게 잘 맞습니다. 1월은 인기 있는 여행 시기라 항공권과 숙소를 늦게 예약하면 1인 예산을 넘길 가능성이 있습니다.",
+                "trendEvidence": [
+                  "에어비앤비 자료에 따르면 한국인 게스트의 치앙마이 숙박 예약 박수가 2024년 전년 대비 약 50% 증가했습니다.",
+                  "2025년 여행일 검색 증가를 바탕으로 에어비앤비가 치앙마이를 세계 인기 상승 여행지 25곳 중 하나로 전망했습니다."
+                ],
+                "sources": [
+                  "https://www.traveldailynews.asia/reports-surveys/airbnb-apac-guests-drive-surge-in-travel-to-chiang-mai/",
+                  "https://www.departuremap.com/flights/icn-to-cnx"
+                ],
+                "tags": [
+                  "산·자연 풍경",
+                  "야시장 먹거리",
+                  "사원 사진"
+                ],
+                "motif": "mountain",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": true
+              },
+              {
+                "name": "오사카",
+                "nameEn": "Osaka",
+                "country": "일본",
+                "region": null,
+                "code": "KIX",
+                "travel": "직항 2h 5m",
+                "reason": "먹거리와 쇼핑, 가족 친화적인 관광지를 한곳에서 즐기기 좋고 교토·나라의 자연·역사 명소도 당일치기로 다녀올 수 있습니다. 인기 지역 숙소와 교통비를 고려해 3~4박으로 잡으면 1인 200만 원 안에서 계획할 수 있습니다.",
+                "trendEvidence": [
+                  "한국인 방일객은 2023년 696만 명에서 2024년 882만 명으로 증가했습니다.",
+                  "아고다의 2025년 한국인 숙소 검색 인기 해외 여행지에서 오사카가 3위를 기록했습니다."
+                ],
+                "sources": [
+                  "https://www.yanolja-research.com/brief/view/166?lang=en",
+                  "https://www.agoda.com/press/2025-international-travel-overview-agoda-unveils-the-ranking-of-top-overseas-destinations-among-south-korean-travelers/",
+                  "https://www.flightconnections.com/flights-from-icn-to-kix"
+                ],
+                "tags": [
+                  "먹거리",
+                  "쇼핑",
+                  "근교 당일치기"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "타이베이",
+                "nameEn": "Taipei",
+                "country": "대만",
+                "region": null,
+                "code": "TPE",
+                "travel": "직항 약 2h 45m",
+                "reason": "야시장 음식과 쇼핑, 도심 풍경을 즐기면서 근교 온천·산책 명소도 둘러볼 수 있어 가족 여행에 적합합니다. 시내 숙박비와 쇼핑 지출을 조절하면 1인 200만 원 예산에 맞출 수 있습니다.",
+                "trendEvidence": [
+                  "2025년 한국인 선호 아시아 여행지 만족도 조사에서 타이베이는 전년보다 순위가 2계단 상승했고 만족도 점수도 9점 올랐습니다.",
+                  "아고다의 2025년 한국인 숙소 검색 인기 해외 여행지 10곳에 타이베이가 포함됐습니다."
+                ],
+                "sources": [
+                  "https://www.consumerinsight.co.kr/up_files/2523_travel_en.pdf",
+                  "https://www.agoda.com/press/2025-international-travel-overview-agoda-unveils-the-ranking-of-top-overseas-destinations-among-south-korean-travelers/",
+                  "https://www.flightconnections.com/flights-from-icn-to-tpe"
+                ],
+                "tags": [
+                  "야시장 먹거리",
+                  "도시 사진",
+                  "근교 자연"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              }
+            ],
+            "citations": 0,
+            "usd": 0.07879085,
+            "at": "2026-10-16T14:26:59.290Z"
+          },
+          "gemini": {
+            "status": "done",
+            "items": [
+              {
+                "name": "후쿠오카",
+                "nameEn": "Fukuoka",
+                "country": "일본",
+                "region": null,
+                "code": "FUK",
+                "travel": "직항 1h 25m",
+                "reason": "비행시간이 짧고 도심 쇼핑과 온천, 미식 인프라가 발달해 3인 가족이 쾌적하게 여행하기에 최적입니다. 대중교통이 편리하며 1인 200만 원 예산 안에서 숙소와 식도락을 풍족하게 즐길 수 있습니다.",
+                "trendEvidence": [
+                  "글로벌 여행 플랫폼 아고다의 분석 결과 2026년 연말연시 가족 해외여행 숙소 검색량이 전년 대비 61% 증가하며 2위를 기록했습니다.",
+                  "2025년 스카이스캐너 검색 분석에서 비행 3시간 이내 단거리 여행지 중 최상위 검색량을 유지했습니다."
+                ],
+                "sources": [
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfaQOgGStX3IGaa2dgThDMC28Rrb1M44RgChbngQU-H9PDvQGdpljy43jTi52a_eZ0k6MhaZOtpgm_fd7MlTYCCuB3ONZgXRwUxsiUWrfLa_MzIKwA_QjeaY53fEEw7FRpdsuNb_qsus6r4Pn-UQeXAuKPJu7shg==",
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFClREmIPzi8XcOvvWgCi7HcyEpNcSQqaIiZFRly3tKdWRT8UOki7U3cLk2MLbO3OXuImPY7-W-SxdMXAmjnUae9jc12wCfVGlCVXaAyZT-l1yMRuKnoeOIEpdf8uXgsKPOn9m9NNPZq7xC0Kfoaq5AOaZ7Rf4adebwTg=="
+                ],
+                "tags": [
+                  "미식 탐방",
+                  "도심 쇼핑",
+                  "근교 온천"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "푸꾸옥",
+                "nameEn": "Phu Quoc",
+                "country": "베트남",
+                "region": null,
+                "code": "PQC",
+                "travel": "직항 5h 30m",
+                "reason": "1월은 화창한 건기로 해변 자연경관과 사파리, 테마파크 등 가족형 관광 콘텐츠가 풍부합니다. 현지 물가가 합리적이라 1인 200만 원 예산으로 고급 리조트 호캉스와 해산물 미식을 여유롭게 누릴 수 있습니다.",
+                "trendEvidence": [
+                  "아고다 데이터 분석에 따르면 2025년 한국인 여행 관심도가 전년 대비 63% 급증하며 인기 해외 여행지 10위권에 첫 진입했습니다.",
+                  "2026년 연말연시 가족 해외여행 숙소 검색 순위에서 검색량이 전년 대비 33% 증가하며 1위에 올랐습니다."
+                ],
+                "sources": [
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfaQOgGStX3IGaa2dgThDMC28Rrb1M44RgChbngQU-H9PDvQGdpljy43jTi52a_eZ0k6MhaZOtpgm_fd7MlTYCCuB3ONZgXRwUxsiUWrfLa_MzIKwA_QjeaY53fEEw7FRpdsuNb_qsus6r4Pn-UQeXAuKPJu7shg==",
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFPE8RbGT7vQ-w9kS4m5w_YaQyl6m6fB_DwKD9GZtDrMM7bIP8pXAqK18URp2Z0sbjkWCvo-f60TvTZ7-hha2zxtZXayfQwZ41IXNY3pYbuloKW2oa7Lzeur2GxBpIm_WobPymta-MuIkrU6fOZ-a5x7e4DH7gIMxR6FlA="
+                ],
+                "tags": [
+                  "겨울 휴양",
+                  "가족 테마파크",
+                  "일몰 사진"
+                ],
+                "motif": "sea",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "나트랑",
+                "nameEn": "Nha Trang",
+                "country": "베트남",
+                "region": null,
+                "code": "CXR",
+                "travel": "직항 4h 50m",
+                "reason": "해변 휴양과 도심 관광, 야시장 쇼핑을 고루 갖추어 가족 구성원 모두의 선호를 만족시키기 좋습니다. 1인 200만 원 예산으로 가성비 뛰어난 5성급 호텔 숙박과 다양한 미식 투어를 충분히 즐길 수 있습니다.",
+                "trendEvidence": [
+                  "아고다의 2025년 한국인 숙소 검색 결산에서 다낭에 앞선 인기 해외 여행지 4위를 차지했습니다.",
+                  "2026년 연말연시 가족 여행 숙소 검색 순위에서도 도쿄와 함께 상위 4위에 이름을 올렸습니다."
+                ],
+                "sources": [
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfaQOgGStX3IGaa2dgThDMC28Rrb1M44RgChbngQU-H9PDvQGdpljy43jTi52a_eZ0k6MhaZOtpgm_fd7MlTYCCuB3ONZgXRwUxsiUWrfLa_MzIKwA_QjeaY53fEEw7FRpdsuNb_qsus6r4Pn-UQeXAuKPJu7shg==",
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFuvkil608I7KRhk4KrnElhqt9jUxziw0C4ydpO1OS6sEeBq79CBHRb47WCvzxGQJ7IEJvk04K5OBBVfH7IW7lXERXIr5HZwVhtONtBlShOhPgudu8tUopfIf3pmEbVwyPyIQYoZCFbdiQ="
+                ],
+                "tags": [
+                  "해변 휴양",
+                  "가성비 리조트",
+                  "미식 투어"
+                ],
+                "motif": "sea",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "타이베이",
+                "nameEn": "Taipei",
+                "country": "대만",
+                "region": null,
+                "code": "TPE",
+                "travel": "직항 2h 35m",
+                "reason": "1월 날씨가 온화하여 야시장 식도락과 근교 지우펀·예류 등 자연 투어를 쾌적하게 둘러볼 수 있습니다. 대중교통망이 잘 갖춰져 가족 이동이 수월하며 1인 200만 원 예산으로 미식과 쇼핑을 넉넉히 해결할 수 있습니다.",
+                "trendEvidence": [
+                  "2024년 한국인 방문객 110만 명을 돌파하며 팬데믹 이전 수준을 회복하고 재부상했습니다.",
+                  "아고다 2025년 대한민국 여행객 인기 여행지 상위 10위권에 지속적으로 포함되었습니다."
+                ],
+                "sources": [
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGzj1GGfiBC4CNuuC80LyMsxD9-8nGw3wUz8xDnkjPQ7Xm6YmTmjsfqGXKtvGr9ZHqJ6QmW6zeGJXMzFKspNkhkQ-HiY9mb9W7XqWctiTk0tNP-C9BZNRk3M4n0fnKzUx3nd5-38DTfUeYshpmzRNPMojkUfILKpysl8tC83lIBHhXoyCN2CSoY4iy5-AXsXqwsD2dBth2Daz7oSuoDwvwskzW3nrwNwKru4mHJC1jNXCvGoZn7e42Ixg6bdQ==",
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFuvkil608I7KRhk4KrnElhqt9jUxziw0C4ydpO1OS6sEeBq79CBHRb47WCvzxGQJ7IEJvk04K5OBBVfH7IW7lXERXIr5HZwVhtONtBlShOhPgudu8tUopfIf3pmEbVwyPyIQYoZCFbdiQ="
+                ],
+                "tags": [
+                  "야시장 미식",
+                  "도시 랜드마크",
+                  "자연 투어"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 3,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "치앙마이",
+                "nameEn": "Chiang Mai",
+                "country": "태국",
+                "region": null,
+                "code": "CNX",
+                "travel": "직항 5h 45m",
+                "reason": "1월은 건기 절정으로 아침저녁 선선하여 고산 지대 자연 풍경과 사원, 로컬 마켓을 탐방하기에 이상적입니다. 저렴한 현지 물가 덕분에 1인 200만 원 예산으로 특색 있는 감성 카페와 전통 미식을 마음껏 즐길 수 있습니다.",
+                "trendEvidence": [
+                  "아고다 데이터에 따르면 2026년 가족 해외여행 숙소 검색량이 전년 대비 47% 증가하며 상위 10위에 진입했습니다.",
+                  "겨울철 온화한 기후와 미식·자연 콘텐츠로 단거리 피한 여행 수요가 꾸준히 확대되었습니다."
+                ],
+                "sources": [
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfaQOgGStX3IGaa2dgThDMC28Rrb1M44RgChbngQU-H9PDvQGdpljy43jTi52a_eZ0k6MhaZOtpgm_fd7MlTYCCuB3ONZgXRwUxsiUWrfLa_MzIKwA_QjeaY53fEEw7FRpdsuNb_qsus6r4Pn-UQeXAuKPJu7shg=="
+                ],
+                "tags": [
+                  "고산 지대 자연",
+                  "로컬 카페",
+                  "문화 사원"
+                ],
+                "motif": "mountain",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": false
+              },
+              {
+                "name": "삿포로",
+                "nameEn": "Sapporo",
+                "country": "일본",
+                "region": null,
+                "code": "CTS",
+                "travel": "직항 2h 45m",
+                "reason": "은빛 설경과 온천, 홋카이도 게 요리 등 겨울 특화 볼거리와 사진 촬영 요소가 압도적입니다. 다만 1월은 연말연시 및 겨울 축제 준비 시즌으로 항공권과 숙박 요금이 급등해 1인 200만 원 예산을 초과할 위험이 있습니다.",
+                "trendEvidence": [
+                  "아고다 조사에서 2026년 겨울 가족 여행 숙소 검색량이 전년 대비 46% 증가하며 9위를 기록했습니다.",
+                  "2025년 아고다 숙소 검색 결산에서도 홋카이도 중심지로 한국인 인기 여행지 톱10을 유지했습니다."
+                ],
+                "sources": [
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfaQOgGStX3IGaa2dgThDMC28Rrb1M44RgChbngQU-H9PDvQGdpljy43jTi52a_eZ0k6MhaZOtpgm_fd7MlTYCCuB3ONZgXRwUxsiUWrfLa_MzIKwA_QjeaY53fEEw7FRpdsuNb_qsus6r4Pn-UQeXAuKPJu7shg==",
+                  "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFuvkil608I7KRhk4KrnElhqt9jUxziw0C4ydpO1OS6sEeBq79CBHRb47WCvzxGQJ7IEJvk04K5OBBVfH7IW7lXERXIr5HZwVhtONtBlShOhPgudu8tUopfIf3pmEbVwyPyIQYoZCFbdiQ="
+                ],
+                "tags": [
+                  "겨울 설경",
+                  "온천 힐링",
+                  "설경 사진"
+                ],
+                "motif": "city",
+                "recommendedSeason": null,
+                "recommendedMonth": null,
+                "recommendedNights": 4,
+                "periodReason": null,
+                "overBudgetRisk": true
+              }
+            ],
+            "citations": 0,
+            "usd": 0.058594,
+            "at": "2026-10-16T14:26:59.290Z"
+          }
+        }
+      },
+      "panel": {
+        "depth": "fast",
+        "anonymized": true,
+        "chair": "claude",
+        "key": "[[\"c-2ac9b91b-0c8c-474d-9837-d55a50709157\",79.1],[\"c-0c89fff5-e435-4329-b34f-980c3d5dd0a0\",76.2],[\"c-edfd4078-531e-4d39-a3e7-b98463b9da17\",76.3]]",
+        "at": "2026-10-16T14:40:21.271Z",
+        "rounds": {
+          "r1": {
+            "claude": {
+              "status": "done",
+              "value": {
+                "first": "c-2ac9b91b-0c8c-474d-9837-d55a50709157",
+                "second": "c-0c89fff5-e435-4329-b34f-980c3d5dd0a0",
+                "reason": "c1 후쿠오카는 음식·쇼핑·도시·야경 관심사를 모두 채우고, 비행 1시간 반 안팎에 항공권도 20만~45만 원대라 예산 여유가 있다. 2위는 계산상 0.1점 차인 c3 대신 c2 타이베이를 택했다. 쇼핑·도시 관심사에는 대형 쇼핑이 제한적인 마쓰야마보다 타이베이가 낫고, 음식·사진도 9점이며 1월에 더 따뜻하다.",
+                "concerns": "1월 후쿠오카는 최고 10℃ 안팎에 비·눈이 오는 날이 있어 야외 사진·다자이후 일정이 불편할 수 있다. 1월 성수기 항공·숙박 가격은 자료 간 편차가 있어 예약 전 확인이 필요하다."
+              },
+              "usd": 0.017344,
+              "at": "2026-10-16T14:40:13.488Z"
+            },
+            "gpt": {
+              "status": "done",
+              "value": {
+                "first": "c-2ac9b91b-0c8c-474d-9837-d55a50709157",
+                "second": "c-0c89fff5-e435-4329-b34f-980c3d5dd0a0",
+                "reason": "c1은 짧은 비행과 비교적 여유 있는 예산, 음식·도시·쇼핑 관심사를 고르게 충족해 가족 여행에 가장 무난합니다. c2는 자연과 사진까지 조합하기 좋지만, 항공권 추정치가 자료마다 달라 2순위로 둡니다.",
+                "concerns": "1월 실제 항공·숙박 요금과 여행 기간을 확인해야 1인 200만 원 예산에 맞는지 판단할 수 있습니다."
+              },
+              "usd": 0.000504175,
+              "at": "2026-10-16T14:40:13.488Z"
+            },
+            "gemini": {
+              "status": "done",
+              "value": {
+                "first": "c-2ac9b91b-0c8c-474d-9837-d55a50709157",
+                "second": "c-0c89fff5-e435-4329-b34f-980c3d5dd0a0",
+                "reason": "c1은 짧은 비행시간과 풍부한 쇼핑·미식 인프라를 갖춰 가족의 다양한 관심사를 가장 안정적으로 충족합니다. c2는 계산 점수에서 근소하게 뒤졌으나, 대형 쇼핑이 제한적인 c3에 비해 쇼핑 인프라가 탄탄하고 1월 기온이 온화하여 겨울 가족 여행지로 더 적합합니다.",
+                "concerns": "c1의 1월 날씨는 최저 4℃ 내외에 강수 일수가 있어 야외 이동 및 사진 촬영 시 쌀쌀한 날씨에 대한 방한 대비가 필요합니다."
+              },
+              "usd": 0.005076,
+              "at": "2026-10-16T14:40:13.488Z"
+            }
+          },
+          "r3": {
+            "claude": {
+              "status": "done",
+              "value": {
+                "markdown": "**최종 추천은 c1 후쿠오카입니다.** 심사위원 3명 모두 1위로 꼽았고 계산 1위와도 같습니다. 직항 1시간 20~40분의 짧은 비행, 모츠나베·라멘 같은 음식, 쇼핑·도시·야경 관심사 충족이 근거입니다. 항공권은 20만~45만 원대, 숙박은 객실 기준 10만~25만 원대라 1인 200만 원 안에서 여유가 있어 보입니다.\n\n- 약점은 1월 날씨입니다. 최저 약 4℃, 최고 약 10℃에 비·눈이 올 수 있어 방한 준비와 실내 대안이 필요합니다.\n- 2순위는 c2 타이베이입니다. 날씨는 낫지만 항공권 자료가 25만~70만 원으로 갈립니다.\n- 확정 전에 실제 1월 요금과 일정을 확인하세요.",
+                "chosen": "c-2ac9b91b-0c8c-474d-9837-d55a50709157",
+                "consensus": 3,
+                "agreements": [
+                  "후쿠오카는 짧은 직항 비행과 음식·쇼핑·도시 관심사 충족 면에서 가족 여행에 가장 무난하다.",
+                  "1인 200만 원 예산은 후쿠오카 3박 4일 기준으로 여유 있어 보인다.",
+                  "후쿠오카의 가장 큰 약점은 1월 추위와 비·눈이다.",
+                  "2순위는 쇼핑·도시 면에서 타이베이가 마쓰야마보다 낫다."
+                ],
+                "openIssues": [
+                  "1월 성수기 항공권·숙박 요금이 자료마다 달라 실제 총비용이 불확실하다.",
+                  "여행 기간이 미정이라 예산 적합도와 일정 구성을 확정하기 어렵다.",
+                  "날씨가 나쁠 때 야외 사진·다자이후 일정을 어떻게 대체할지 정해야 한다."
+                ],
+                "checklist": [
+                  "인천–후쿠오카 1월 직항 왕복 항공권을 3명분으로 실제 검색해 가격 확인",
+                  "원하는 날짜에 가족 3명이 묵을 객실(또는 2실) 요금과 하카타·텐진 위치 확인",
+                  "여행 일정 기간의 날씨 예보를 보고 방한복과 우천 시 실내 일정 준비",
+                  "Visit Japan Web 사전 등록과 여권 유효기간 확인",
+                  "모츠나베 등 인기 식당 예약 가능 여부와 쇼핑 예산 별도 책정"
+                ],
+                "reasonIfDifferent": null
+              },
+              "usd": 0.019458,
+              "at": "2026-10-16T14:40:21.271Z"
+            }
+          }
+        },
+        "checks": []
+      },
+      "aiRuns": [
+        {
+          "id": "8c1fcdd1-d2b1-4280-905f-b88c4bf0ea42",
+          "runId": "d6a34551-d8f8-4b0a-bd99-64019da393ea",
+          "feature": "recommend",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 3186,
+            "outTokens": 2000,
+            "usd": 0.036372
+          },
+          "actual": {
+            "inTokens": 116142,
+            "outTokens": 7192,
+            "usd": 0.374204
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:26:49.628Z"
+        },
+        {
+          "id": "c1624f4e-357a-4593-afb3-063cd999b52f",
+          "runId": "d6a34551-d8f8-4b0a-bd99-64019da393ea",
+          "feature": "recommend",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 3186,
+            "outTokens": 2000,
+            "usd": 0.0113186
+          },
+          "actual": {
+            "inTokens": 60605,
+            "outTokens": 5205,
+            "usd": 0.07879085
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:26:54.646Z"
+        },
+        {
+          "id": "eb2e9032-bb40-4f7c-b53d-eb2b52bf3d02",
+          "runId": "d6a34551-d8f8-4b0a-bd99-64019da393ea",
+          "feature": "recommend",
+          "model": "gemini",
+          "modelSlug": "google/gemini-3.8-flash",
+          "estimate": {
+            "inTokens": 3186,
+            "outTokens": 2000,
+            "usd": 0.0238895
+          },
+          "actual": {
+            "inTokens": 952,
+            "outTokens": 7968,
+            "usd": 0.058594
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:26:54.848Z"
+        },
+        {
+          "id": "6e4f4e89-7c11-4a61-ab02-2e1261f1e8f3",
+          "runId": "fd8936d1-88c9-4180-8aed-c6b5fd48f12e",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4099,
+            "outTokens": 1500,
+            "usd": 0.033198000000000005
+          },
+          "actual": {
+            "inTokens": 144288,
+            "outTokens": 7183,
+            "usd": 0.440406
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:32:17.519Z"
+        },
+        {
+          "id": "6d8d3b63-a632-4482-890d-202058505ae1",
+          "runId": "fd8936d1-88c9-4180-8aed-c6b5fd48f12e",
+          "feature": "research",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 4099,
+            "outTokens": 1500,
+            "usd": 0.0111599
+          },
+          "actual": {
+            "inTokens": 72248,
+            "outTokens": 5068,
+            "usd": 0.10990325
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:32:37.402Z"
+        },
+        {
+          "id": "ad4fc6dc-cb7d-479e-bc28-9d8e63819ea9",
+          "runId": "fd8936d1-88c9-4180-8aed-c6b5fd48f12e",
+          "feature": "research",
+          "model": "gemini",
+          "modelSlug": "google/gemini-3.8-flash",
+          "estimate": {
+            "inTokens": 4099,
+            "outTokens": 1500,
+            "usd": 0.02269925
+          },
+          "actual": {
+            "inTokens": 2687,
+            "outTokens": 3003,
+            "usd": 0.0552765
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:31:45.157Z"
+        },
+        {
+          "id": "a9073c4d-69eb-41d4-89eb-7706ec126b16",
+          "runId": "fd8936d1-88c9-4180-8aed-c6b5fd48f12e",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4099,
+            "outTokens": 1500,
+            "usd": 0.033198000000000005
+          },
+          "actual": {
+            "inTokens": 163081,
+            "outTokens": 6026,
+            "usd": 0.476422
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:32:39.062Z"
+        },
+        {
+          "id": "ec2dbad0-49f3-4517-84b3-1281993d7aa7",
+          "runId": "fd8936d1-88c9-4180-8aed-c6b5fd48f12e",
+          "feature": "research",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 4099,
+            "outTokens": 1500,
+            "usd": 0.0111599
+          },
+          "actual": {
+            "inTokens": 76977,
+            "outTokens": 4481,
+            "usd": 0.099434625
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:33:40.449Z"
+        },
+        {
+          "id": "95560cab-988e-4c91-b110-dcdada331f4b",
+          "runId": "fd8936d1-88c9-4180-8aed-c6b5fd48f12e",
+          "feature": "research",
+          "model": "gemini",
+          "modelSlug": "google/gemini-3.8-flash",
+          "estimate": {
+            "inTokens": 4099,
+            "outTokens": 1500,
+            "usd": 0.02269925
+          },
+          "actual": {
+            "inTokens": 2687,
+            "outTokens": 2477,
+            "usd": 0.095304
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:33:06.139Z"
+        },
+        {
+          "id": "4d82cd18-fba3-4f56-88b6-47d6d43029cf",
+          "runId": "fd8936d1-88c9-4180-8aed-c6b5fd48f12e",
+          "feature": "research",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4099,
+            "outTokens": 1500,
+            "usd": 0.033198000000000005
+          },
+          "actual": {
+            "inTokens": 136101,
+            "outTokens": 7358,
+            "usd": 0.425782
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:33:40.359Z"
+        },
+        {
+          "id": "5d2512be-3c6c-4022-80a6-5dff6a2e010f",
+          "runId": "fd8936d1-88c9-4180-8aed-c6b5fd48f12e",
+          "feature": "research",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 4099,
+            "outTokens": 1500,
+            "usd": 0.0111599
+          },
+          "actual": {
+            "inTokens": 59291,
+            "outTokens": 4499,
+            "usd": 0.0081786
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:35:48.051Z"
+        },
+        {
+          "id": "af0ed37d-d98a-43e1-8a7c-efa4835bbf3f",
+          "runId": "fd8936d1-88c9-4180-8aed-c6b5fd48f12e",
+          "feature": "research",
+          "model": "gemini",
+          "modelSlug": "google/gemini-3.8-flash",
+          "estimate": {
+            "inTokens": 4099,
+            "outTokens": 1500,
+            "usd": 0.02269925
+          },
+          "actual": {
+            "inTokens": 2687,
+            "outTokens": 3665,
+            "usd": 0.113759
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:34:09.335Z"
+        },
+        {
+          "id": "f947f722-08ca-4048-9eef-c90548a11120",
+          "runId": "2c23e267-10e7-4107-b206-523ad63f31d5",
+          "feature": "scores",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 2043,
+            "outTokens": 840,
+            "usd": 0.012486
+          },
+          "actual": {
+            "inTokens": 3897,
+            "outTokens": 1140,
+            "usd": 0.019194
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:37:46.937Z"
+        },
+        {
+          "id": "31deb39d-3e0e-4c49-ac99-375c6b61398e",
+          "runId": "2c23e267-10e7-4107-b206-523ad63f31d5",
+          "feature": "scores",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 2043,
+            "outTokens": 840,
+            "usd": 0.0006242999999999999
+          },
+          "actual": {
+            "inTokens": 6025,
+            "outTokens": 1956,
+            "usd": 0.001436
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:37:54.925Z"
+        },
+        {
+          "id": "4544b538-b12e-4e3b-ae78-1a8a38610b8c",
+          "runId": "2c23e267-10e7-4107-b206-523ad63f31d5",
+          "feature": "scores",
+          "model": "gemini",
+          "modelSlug": "google/gemini-3.8-flash",
+          "estimate": {
+            "inTokens": 2043,
+            "outTokens": 840,
+            "usd": 0.00468225
+          },
+          "actual": {
+            "inTokens": 2668,
+            "outTokens": 1872,
+            "usd": 0.009021
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:37:54.516Z"
+        },
+        {
+          "id": "7832d10c-50ec-4a3a-85f4-964cc7d419bf",
+          "runId": "55942fc4-7e3a-4210-9055-84e1d9ed6fe9",
+          "feature": "panel",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 2034,
+            "outTokens": 800,
+            "usd": 0.012067999999999999
+          },
+          "actual": {
+            "inTokens": 3942,
+            "outTokens": 946,
+            "usd": 0.017344
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:40:13.270Z"
+        },
+        {
+          "id": "0e728be4-cdea-40e0-bfe3-20d5ae25eb5b",
+          "runId": "55942fc4-7e3a-4210-9055-84e1d9ed6fe9",
+          "feature": "panel",
+          "model": "gpt",
+          "modelSlug": "openai/gpt-6-luna",
+          "estimate": {
+            "inTokens": 2034,
+            "outTokens": 800,
+            "usd": 0.0006033999999999999
+          },
+          "actual": {
+            "inTokens": 2626,
+            "outTokens": 352,
+            "usd": 0.000504175
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:40:08.559Z"
+        },
+        {
+          "id": "4667c1f0-098c-4c89-83b8-7b50ec6b7ea3",
+          "runId": "55942fc4-7e3a-4210-9055-84e1d9ed6fe9",
+          "feature": "panel",
+          "model": "gemini",
+          "modelSlug": "google/gemini-3.8-flash",
+          "estimate": {
+            "inTokens": 2034,
+            "outTokens": 800,
+            "usd": 0.0045255
+          },
+          "actual": {
+            "inTokens": 2713,
+            "outTokens": 811,
+            "usd": 0.005076
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:40:13.473Z"
+        },
+        {
+          "id": "a763ef0b-aacf-4c9a-ac55-89a22567fec8",
+          "runId": "66f418a4-5320-4d73-b842-c6746bc02310",
+          "feature": "chair",
+          "model": "claude",
+          "modelSlug": "anthropic/claude-sonnet-5.5",
+          "estimate": {
+            "inTokens": 4679,
+            "outTokens": 1500,
+            "usd": 0.024358
+          },
+          "actual": {
+            "inTokens": 5184,
+            "outTokens": 909,
+            "usd": 0.019458
+          },
+          "status": "done",
+          "error": null,
+          "at": "2026-10-16T14:40:21.255Z"
+        }
+      ],
+      "decision": {
+        "chosen": "c-2ac9b91b-0c8c-474d-9837-d55a50709157",
+        "memo": ""
+      }
+    }
+  ]
+}
